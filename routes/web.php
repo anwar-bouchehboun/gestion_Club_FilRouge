@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('/club', function () {
     return view('client.club');
 });
+Route::get('/sous', function () {
+    return view('client.souscategrie');
+});
