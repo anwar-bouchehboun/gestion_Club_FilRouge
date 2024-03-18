@@ -5,7 +5,7 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
-class AppLayout extends Component
+class platformLayout extends Component
 {
     public function __construct()
     {
@@ -17,6 +17,6 @@ class AppLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.app');
+        return view('layouts.platform');
     }
 }

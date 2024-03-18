@@ -19,9 +19,10 @@
     <x-nav />
     <x-hero />
 
-    @yield('content')
-    <x-about />
-<x-footer />
+    {{-- @yield('content') --}}
+
+    {{ $solt }}
+    <x-footer />
 </body>
 
 </html>
