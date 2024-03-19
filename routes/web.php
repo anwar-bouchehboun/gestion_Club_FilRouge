@@ -23,3 +23,9 @@ Route::get('/club', function () {
 Route::get('/sous', function () {
     return view('client.souscategrie');
 });
+Route::get('/login', function () {
+    return view('auth.login');
+});
+Route::get('/register', function () {
+    return view('auth.register');
+});
