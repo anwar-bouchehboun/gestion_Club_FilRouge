@@ -1,6 +1,6 @@
 <x-goust-layout>
     <x-slot name="solt">
-        <section class="bg-gray-50 dark:bg-gray-900 py-7">
+        <section class="py-10 bg-gray-50 dark:bg-gray-900">
             <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
                 <div
