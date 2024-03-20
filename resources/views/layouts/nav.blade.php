@@ -15,25 +15,43 @@
         </button>
         <div class="hidden w-full md:block md:w-auto" id="navbar-default">
             <ul class="flex flex-col p-4 mt-4 font-medium md:p-0 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
-                <li>
-                    <a href="{{ route('home') }}"
-                        class="text-center block uppercase py-2 px-3 text-[#24B49A]  rounded md:bg-transparent md:text-[#24B49A] md:p-1 dark:text-white md:dark:text-[#24B49A] my-2"
-                        aria-current="page">Home</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="text-center block uppercase py-2 px-3 text-white hover:bg-[#24B49A] md:hover:bg-transparent md:border-0 md:hover:text-[#24B49A] md:p-1 dark:text-white my-2">ALL
-                        Club</a>
-                </li>
-                <li>
-                    <a href="{{ route('login.index') }}" type="button"
-                        class=" rounded text-center sm:mb-2 block uppercase focus:outline-none text-white bg-[#24B49A] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium text-sm px-6 py-1.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 md:mx-2  my-2">Login</a>
-                </li>
-                <li>
-                    <a href="{{ route('register') }}" type="button"
-                        class="rounded  text-center sm:mb-2 block uppercase focus:outline-none text-white bg-[#24B49A] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium text-sm px-6 py-1.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 md:mx-2  my-2">Sign
-                        Up</a>
-                </li>
+                @if (Route::has('login.index'))
+                    <li>
+                        <a href="{{ route('home') }}"
+                            class="text-center block uppercase py-2 px-3 text-[#24B49A]  rounded md:bg-transparent md:text-[#24B49A] md:p-1 dark:text-white md:dark:text-[#24B49A] my-2"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="text-center block uppercase py-2 px-3 text-white hover:bg-[#24B49A] md:hover:bg-transparent md:border-0 md:hover:text-[#24B49A] md:p-1 dark:text-white my-2">ALL
+                            Club</a>
+                    </li>
+                    @auth
+                        {{-- @if (Auth::check() && Auth::user()->role === 'client') --}}
+
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" href="{{ route('logout') }}" type="button"
+                                    class=" rounded text-center sm:mb-2 block uppercase focus:outline-none text-white bg-[#24B49A] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium text-sm px-6 py-1.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 md:mx-2  my-2">LogOut</button>
+                            </form>
+                        </li>
+
+                        {{-- @endif --}}
+                    @else
+                        <li>
+                            <a href="{{ route('login.index') }}" type="button"
+                                class=" rounded text-center sm:mb-2 block uppercase focus:outline-none text-white bg-[#24B49A] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium text-sm px-6 py-1.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 md:mx-2  my-2">Login</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li>
+                                <a href="{{ route('register') }}" type="button"
+                                    class="rounded  text-center sm:mb-2 block uppercase focus:outline-none text-white bg-[#24B49A] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium text-sm px-6 py-1.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 md:mx-2  my-2">Sign
+                                    Up</a>
+                            </li>
+                        @endif
+                    @endauth
+                @endif
             </ul>
 
 

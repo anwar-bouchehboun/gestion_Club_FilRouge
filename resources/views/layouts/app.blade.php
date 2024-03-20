@@ -16,12 +16,12 @@
 </head>
 
 <body>
-   @include('layouts.nav');
+    @include('layouts.nav');
     <x-hero />
     {{-- @yield('content') --}}
     {{ $solt }}
     <x-about />
-<x-footer />
+    <x-footer />
 </body>
 
 </html>
