@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('image')->nullable();
+            $table->string('type');
+            $table->boolean('acces')->default(true);
+            $table->enum('role',['client','admin'])->default('client');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
