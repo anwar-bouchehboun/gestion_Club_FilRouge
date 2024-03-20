@@ -1,5 +1,16 @@
 <x-goust-layout>
     <x-slot name="solt">
+        @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "WOow...",
+                text: "{{ session('success') }}",
+                // footer: '<a href="#">Why do I have this issue?</a>'
+                // time:300
+            });
+        </script>
+    @endif
         <section class="bg-gray-50 dark:bg-gray-900">
             <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 

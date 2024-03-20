@@ -36,11 +36,11 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'image'=> $validated['image']
+            'image' => $validated['image']
         ]);
 
-        Alert::success('Succes', 'Compte has been Create');
-        return back();
+        // Alert::success('Succes', 'Compte has been Create');
+        return redirect()->route('login.index')->with('success', 'Compte has been created');
 
 
     }
