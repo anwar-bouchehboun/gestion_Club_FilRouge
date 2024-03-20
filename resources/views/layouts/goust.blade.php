@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <x-nav />
+    @include('layouts.nav');
     <main class="">
         {{ $solt }}
     </main>
@@ -24,6 +24,7 @@
 
 
     <x-footer />
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 </body>
 
 </html>

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <x-nav />
+   @include('layouts.nav');
     <x-hero />
     {{-- @yield('content') --}}
     {{ $solt }}

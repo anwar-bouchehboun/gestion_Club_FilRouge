@@ -8,7 +8,9 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\Rules\Password;
+use PHPUnit\Framework\MockObject\ReturnValueNotConfiguredException;
 
 class RegisterController extends Controller
 {
@@ -16,25 +18,29 @@ class RegisterController extends Controller
     {
         return view('auth.register');
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-             'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => ['required', 'confirmed', Password::defaults()],
             // 'role'=>'required'
-            'image' => 'required', // Exemple de validation pour les images
+            'image' => 'required',
 
         ]);
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('image', 'public');
+        }
 
-         Client::create([
+        Client::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-
+            'image'=> $validated['image']
         ]);
-          $user=Client::all();
-        dd($user);
 
+        Alert::success('Succes', 'Compte has been Create');
+        return back();
 
 
     }

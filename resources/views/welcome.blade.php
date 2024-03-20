@@ -8,7 +8,7 @@
                 <div class="w-full p-4 md:w-1/4 sm:w-1/2">
                     <div
                         class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
-                        <img src="./storage/image/club.jpg" alt="" srcset="club image">
+                        <img src="./storage/image/club.jpg" alt="" >
                         <a href="#">
                             <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">GAMING</h2>
                         </a>
@@ -17,17 +17,7 @@
                 <div class="w-full p-4 md:w-1/4 sm:w-1/2">
                     <div
                         class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
-                        <img src="./storage/image/club.jpg" alt="" srcset="club image">
-                        <a href="#">
-                            <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">GAMING</h2>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="w-full p-4 md:w-1/4 sm:w-1/2">
-                    <div
-                        class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
-                        <img src="./storage/image/club.jpg" alt="" srcset="club image">
+                        <img src="./storage/image/club.jpg" alt="" >
                         <a href="#">
                             <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">GAMING</h2>
                         </a>
@@ -37,7 +27,7 @@
                 <div class="w-full p-4 md:w-1/4 sm:w-1/2">
                     <div
                         class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
-                        <img src="./storage/image/club.jpg" alt="" srcset="club image">
+                        <img src="./storage/image/club.jpg" alt="" >
                         <a href="#">
                             <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">GAMING</h2>
                         </a>
@@ -47,7 +37,7 @@
                 <div class="w-full p-4 md:w-1/4 sm:w-1/2">
                     <div
                         class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
-                        <img src="./storage/image/club.jpg" alt="" srcset="club image">
+                        <img src="./storage/image/club.jpg" alt="" >
                         <a href="#">
                             <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">GAMING</h2>
                         </a>
@@ -57,16 +47,7 @@
                 <div class="w-full p-4 md:w-1/4 sm:w-1/2">
                     <div
                         class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
-                        <img src="./storage/image/club.jpg" alt="" srcset="club image">
-                        <a href="#">
-                            <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">GAMING</h2>
-                        </a>
-                    </div>
-                </div>
-                <div class="w-full p-4 md:w-1/4 sm:w-1/2">
-                    <div
-                        class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
-                        <img src="./storage/image/club.jpg" alt="" srcset="club image">
+                        <img src="./storage/image/club.jpg" alt="" >
                         <a href="#">
                             <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">GAMING</h2>
                         </a>
@@ -76,7 +57,26 @@
                 <div class="w-full p-4 md:w-1/4 sm:w-1/2">
                     <div
                         class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
-                        <img src="./storage/image/club.jpg" alt="" srcset="club image">
+                        <img src="./storage/image/club.jpg" alt="" >
+                        <a href="#">
+                            <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">GAMING</h2>
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full p-4 md:w-1/4 sm:w-1/2">
+                    <div
+                        class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
+                        <img src="./storage/image/club.jpg" alt="" >
+                        <a href="#">
+                            <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">GAMING</h2>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-full p-4 md:w-1/4 sm:w-1/2">
+                    <div
+                        class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
+                        <img src="./storage/image/club.jpg" alt="" >
                         <a href="#">
                             <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">GAMING</h2>
                         </a>
