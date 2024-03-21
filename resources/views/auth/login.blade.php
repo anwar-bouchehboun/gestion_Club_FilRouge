@@ -39,7 +39,9 @@
                                       <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
                                     </div>
                                 </div>
+                                @if (Route::has('password.request'))
                                 <a href="#" class="text-sm font-medium text-[#24B49A] hover:underline dark:text-primary-500">Forgot Your password?</a>
+                            @endif
                             </div>
                             <button type="submit" class="w-full text-white bg-[#24B49A]  py-3 rounded">Sign in</button>
                             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
