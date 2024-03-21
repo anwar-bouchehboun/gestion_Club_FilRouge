@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeConroller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\ForgotPasswordLinkController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordLinkController;
+
+
 
 
 
@@ -34,6 +36,7 @@ Route::middleware('guest')->group(function () {
     Route::post('register', [RegisterController::class, 'store'])->name('register.store');
     Route::get('login', [LoginController::class, 'index'])->name('login.index');
     Route::post('logine', [LoginController::class, 'store'])->name('login.store');
+    Route::get('forgot-password', [ForgotPasswordLinkController::class, 'create'])->name('password.request');
     Route::post('/forgot-password', [ForgotPasswordLinkController::class, 'store']);
     Route::post('/forgot-password/{token}', [ForgotPasswordController::class, 'reset']);
 });
