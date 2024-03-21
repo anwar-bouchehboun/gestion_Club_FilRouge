@@ -14,16 +14,27 @@ class LoginController extends Controller
         return view('auth.login');
     }
     public function store(Request $request){
-        $auth=$request->only('email','password');
-        if(Auth::attempt($auth)){
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials, $request->filled('remember'))) {
+            $request->session()->regenerate();
             return redirect()->route('home');
-        }else{
-            return back();
         }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
 
     }
     public function destroy(Request $request): RedirectResponse
     {
+        $user = Auth::guard('web')->user();
+
+        if ($user && $user->getRememberToken()) {
+
+            $user->setRememberToken(null);
+            $user->save();
+        }
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
