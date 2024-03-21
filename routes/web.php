@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeConroller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -36,7 +37,15 @@ Route::middleware('guest')->group(function () {
     Route::post('register', [RegisterController::class, 'store'])->name('register.store');
     Route::get('login', [LoginController::class, 'index'])->name('login.index');
     Route::post('logine', [LoginController::class, 'store'])->name('login.store');
-    Route::get('forgot-password', [ForgotPasswordLinkController::class, 'create'])->name('password.request');
-    Route::post('/forgot-password', [ForgotPasswordLinkController::class, 'store']);
-    Route::post('/forgot-password/{token}', [ForgotPasswordController::class, 'reset']);
+    // Route::get('forgot-password', [ForgotPasswordLinkController::class, 'create'])->name('forgot.form');
+    // Route::post('forgot-password', [ForgotPasswordLinkController::class, 'store'])->name('forgot.store');
+    // //  Route::post('reset-password', [ForgotPasswordController::class, 'reset'])->name('reset.password');
+    // Route::post('/forgot-password/{token}', [ForgotPasswordController::class, 'reset']);
+    Route::get('/request', [ForgotPasswordLinkController::class, 'create']);
+
+    Route::post('/request', [ForgotPasswordLinkController::class, 'store']);
+
+    Route::get('password/reset/{token}', [ForgotPasswordController::class, 'create'])->name('password.reset');
+
+    Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('reset');
 });

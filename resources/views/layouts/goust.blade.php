@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    @include('layouts.nav');
+    @include('layouts.nav')
     <main class="">
         {{ $solt }}
     </main>
