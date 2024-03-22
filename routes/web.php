@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 // use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeConroller;
@@ -16,9 +17,9 @@ use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 Route::get('/', [HomeConroller::class, 'index'])->name('home');
 
 
-// Route::get('/club', function () {
-//     return view('client.club');
-// });
+Route::get('/club', function () {
+    return view('client.club');
+});
 Route::get('/sous', function () {
     return view('client.souscategrie');
 });
@@ -26,12 +27,32 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 Route::middleware(['auth', 'role:client'])->group(function () {
-    Route::get('/club', function () {
-        return view('client.club');
-    });
+    // Route::get('/club', function () {
+    //     return view('client.club');
+    // });
     Route::post('logout', [LoginController::class, 'destroy'])
         ->name('logout');
 });
+// stripe
+Route::post('/session', [StripeController::class, 'session'])->name('session');
+Route::get('/success', [StripeController::class, 'success'])->name('success');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisterController::class, 'create'])->name('register');
     Route::post('register', [RegisterController::class, 'store'])->name('register.store');

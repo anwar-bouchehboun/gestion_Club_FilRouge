@@ -1,6 +1,7 @@
 <x-platform-layout>
     <x-slot name="solt">
         {{-- section catagrorie --}}
+
         <section class= "mt-3 body-font md:mt-0">
             <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Categorie</h2>
             <div class="container px-5 mx-auto md:py-12 py-11">
@@ -113,8 +114,13 @@
                             <p class="mt-3 italic text-black">Price : <span class="text-[#24B49A]">500</span>$</p>
                         </div>
                         <div>
-                            <button type="button"
-                                class=" px-9 py-3 mt-10 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none ">Reservé</button>
+                            <form action="{{ route('session') }}" method="post">
+                                @csrf
+                                <input type="text" name="price" value="500" hidden>
+                                <button type="submit"
+                                    class=" px-9 py-3 mt-10 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none ">Reservé</button>
+                            </form>
+
                         </div>
 
                     </div>
