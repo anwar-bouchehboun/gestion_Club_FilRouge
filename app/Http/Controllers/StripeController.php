@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Stripe\Checkout\Session;
 
 class StripeController extends Controller
 {
@@ -14,7 +15,7 @@ class StripeController extends Controller
         $two0 = "00";
         $total = "$totalprice$two0";
         // dd($total);
-        $session = \Stripe\Checkout\Session::create([
+        $session = Session::create([
             'line_items' => [
                 [
                     'price_data' => [
