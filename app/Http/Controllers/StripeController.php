@@ -25,7 +25,7 @@ class StripeController extends Controller
                         ],
                         'unit_amount' => $total,
                     ],
-                     'quantity'   => 1,
+                    'quantity' => 1,
                 ],
 
             ],
