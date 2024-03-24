@@ -22,7 +22,7 @@
     {{-- @yield('content') --}}
 
     <x-about />
-      {{ $solt }}
+    {{ $solt }}
     <x-footer />
 </body>
 

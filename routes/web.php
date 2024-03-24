@@ -33,15 +33,13 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 Route::middleware(['auth', 'role:client'])->group(function () {
-    // Route::get('/club', function () {
-    //     return view('client.club');
-    // });
+
+    Route::post('/session', [StripeController::class, 'session'])->name('session');
+    Route::get('/success', [StripeController::class, 'success'])->name('success');
     Route::post('logout', [LoginController::class, 'destroy'])
         ->name('logout');
 });
-// stripe
-Route::post('/session', [StripeController::class, 'session'])->name('session');
-Route::get('/success', [StripeController::class, 'success'])->name('success');
+
 
 
 

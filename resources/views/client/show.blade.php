@@ -1,14 +1,17 @@
-<x-show-layout>
+<x-goust-layout>
     <x-slot name="solt">
-
+        <div class="py-3 ">
+            <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Show Sous Categorie</h2>
+            <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
+        </div>
 
         <div class="  w-full font-[sans-serif] mb-7">
 
             <div class="grid md:grid-cols-2 gap-2 items-center md:max-h-[475px] overflow-hidden md:mx-4 ">
 
-                <div class="p-4 md:w-2/4 sm:w-0.5">
+                <div class="p-4 w-50 md:w-full">
 
-                    <img src="./storage/image/club.jpg" class=" md:w-2/4" alt="">
+                    <img src="./storage/image/club.jpg" class="w-full" alt="sous categorie club name">
                     <a href="#">
                     </a>
 
@@ -59,4 +62,4 @@
         </div>
 
     </x-slot>
-</x-show-layout>
+    </x-show-layout>
