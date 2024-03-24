@@ -20,6 +20,12 @@ Route::get('/', [HomeConroller::class, 'index'])->name('home');
 Route::get('/club', function () {
     return view('client.club');
 });
+Route::get('/categorie', function () {
+    return view('client.categorie');
+});
+Route::get('/show', function () {
+    return view('client.show');
+});
 Route::get('/sous', function () {
     return view('client.souscategrie');
 });

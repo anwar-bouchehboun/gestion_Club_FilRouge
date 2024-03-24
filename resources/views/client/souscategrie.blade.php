@@ -3,6 +3,8 @@
         {{-- section catagrorie --}}
         <section class= "mt-3 body-font md:mt-0">
             <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Sous Categorie</h2>
+            <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
+
             <div class="container px-24 mx-auto md:py-12 py-11">
                 <div class="flex flex-wrap gap-3 -m-4 text-center justify-evenly gap-y-10">
 
@@ -23,8 +25,7 @@
 
 
                     </div>
-                    <div
-                        class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow md:w-1/4 sm:w-1/2">
+                    <div class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow md:w-1/4 sm:w-1/2">
                         <a href="#" class="">
                             <img src="./storage/image/club.jpg" alt="Fifa club" class="px-4">
                         </a>

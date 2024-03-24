@@ -32,7 +32,7 @@
                 <img src="./storage/image/logo.png" class="relative z-50 rounded-md lg:w-4/5" alt="Logo club" />
             </div>
         </div>
-        <div class="relative z-50 grid gap-4 md:grid-cols-3 md:px-4 max-md:mt-10">
+        {{-- <div class="relative z-50 grid gap-4 md:grid-cols-3 md:px-4 max-md:mt-10">
             <div class="p-6 bg-white">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                     class="w-12 mb-4 inline-block bg-[#24B49A] p-3 rounded-md" viewBox="0 0 32 32">
@@ -73,6 +73,6 @@
                 <h3 class="mb-2 text-xl font-bold">Performance</h3>
                 <p class="text-sm">Experience blazing-fast performance with our platform.</p>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>

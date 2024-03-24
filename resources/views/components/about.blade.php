@@ -1,6 +1,8 @@
 <div class="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
     <div class="mb-10 ">
         <h2 class="text-4xl font-bold uppercase md:ms-12 ms-3">About us</h2>
+        <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
+
     </div>
     <div class="flex flex-col md:flex-row">
         <!-- can help image -->

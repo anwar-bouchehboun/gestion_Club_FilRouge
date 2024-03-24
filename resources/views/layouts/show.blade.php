@@ -16,13 +16,16 @@
 </head>
 
 <body>
-    @include('layouts.nav')
-    <x-hero />
-    <x-slide />
+    @include('layouts.nav');
+    <div class="pb-6 ">
+        <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Show Sous Categorie</h2>
+        <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
+    </div>
     {{-- @yield('content') --}}
+    <main class="my-2 md:my-4 md:w-52">
+        {{ $solt }}
+    </main>
 
-    <x-about />
-      {{ $solt }}
     <x-footer />
 </body>
 
