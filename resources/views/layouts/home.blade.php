@@ -17,12 +17,20 @@
 
 <body>
     @include('layouts.nav')
+
+
+
     <x-hero />
     <x-slide />
-    {{-- @yield('content') --}}
 
-    <x-about />
-    {{ $solt }}
+
+
+    {{-- @yield('content') --}}
+    <main>
+        <x-about />
+        {{ $solt }}
+    </main>
+
     <x-footer />
 </body>
 
