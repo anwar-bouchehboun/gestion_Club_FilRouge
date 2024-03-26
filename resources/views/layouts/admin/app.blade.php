@@ -18,7 +18,7 @@
 </head>
 
 <body >
-    <main  class="min-h-screen bg-gray-50/50">
+    <main  class="">
         @include('layouts.admin.side')
 
     {{ $solt }}
