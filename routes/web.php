@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\SouscategorieController;
@@ -19,20 +20,8 @@ use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 
 Route::get('/', [HomeConroller::class, 'index'])->name('home');
 
+Route::get('/Dashbord', [AdminController::class, 'index']);
 
-
-// Route::get('/categorie', function () {
-//     return view('client.categorie');
-// });
-// Route::get('/show', function () {
-//     return view('client.show');
-// });
-// Route::get('/sous', function () {
-//     return view('client.souscategrie');
-// });
-// Route::get('/login', function () {
-//     return view('auth.login');
-// });
 Route::middleware(['auth', 'role:client'])->group(function () {
 
     Route::post('/session', [StripeController::class, 'session'])->name('session');
@@ -40,24 +29,15 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::post('logout', [LoginController::class, 'destroy'])
         ->name('logout');
 });
+
+
+
+
+
+
 Route::resource('club',ClubController::class);
 Route::resource('categorie',CategorieController::class);
 Route::resource('souscategorie',SouscategorieController::class);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //guest
