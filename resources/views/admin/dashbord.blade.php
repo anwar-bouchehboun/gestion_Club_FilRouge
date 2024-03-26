@@ -12,23 +12,15 @@
                                     class="flex items-center font-sans text-sm antialiased font-normal leading-normal transition-colors duration-300 cursor-pointer text-blue-gray-900 hover:text-light-blue-500">
                                     <a href="#">
                                         <p
-                                            class="block font-sans text-sm antialiased font-normal leading-normal text-blue-900 transition-all opacity-50 hover:text-blue-500 hover:opacity-100">
-                                            dashboard</p>
+                                        class="block font-sans text-4xl antialiased font-bold leading-normal text-black uppercase transition-all ">
+                                        dashboard</p>
                                     </a>
-                                    <span
-                                        class="mx-2 font-sans text-sm antialiased font-normal leading-normal text-gray-500 pointer-events-none select-none">/</span>
+
                                 </li>
-                                <li
-                                    class="flex items-center font-sans text-sm antialiased font-normal leading-normal text-blue-900 transition-colors duration-300 cursor-pointer hover:text-blue-500">
-                                    <p
-                                        class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-                                        home</p>
-                                </li>
+
                             </ol>
                         </nav>
-                        <h6
-                            class="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-gray-900">
-                            home</h6>
+
                     </div>
                     <div class="flex items-center">
                         <div class="mr-auto md:mr-4 md:w-56">
@@ -57,7 +49,7 @@
 
 
                         </a>
-                   
+
                         <button aria-expanded="false" aria-haspopup="menu" id=":r2:"
                             class="relative middle none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30"
                             type="button">
