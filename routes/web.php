@@ -27,6 +27,8 @@ Route::get('/', [HomeConroller::class, 'index'])->name('home');
 Route::get('club', [ClubController::class, 'index'])->name('club');
 Route::get('categorie', [CategorieController::class, 'index'])->name('categorie');
 Route::get('souscategorie', [SouscategorieController::class, 'index'])->name('souscategorie');
+Route::get('souscategorie/show', [SouscategorieController::class, 'show']);
+
 // admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/Dashbord', [AdminControlle::class, 'index'])->name('Dashbord');

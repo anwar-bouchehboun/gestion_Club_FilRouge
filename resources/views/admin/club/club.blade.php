@@ -1,5 +1,18 @@
 <x-app-layout>
     <x-slot name="solt">
+        {{-- messg --}}
+        @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Noveau Club",
+                text: "{{ session('success') }}",
+
+            });
+        </script>
+    @endif
+
+   {{-- data club --}}
         <div class="p-4 xl:ml-80">
             <div class="flex flex-wrap justify-between my-6 capitalize ">
                 <nav aria-label="breadcrumb" class="w-max">
@@ -42,7 +55,7 @@
                                     Club
                                 </th>
                                 <th class="px-6 py-3 text-sm font-semibold text-left text-black">
-                                    ville
+                                    Descrption
                                 </th>
                                 <th class="px-6 py-3 text-sm font-semibold text-left text-black">
                                     Action
@@ -52,23 +65,24 @@
                         </thead>
 
                         <tbody>
-
+                            {{-- clubs --}}
+                            @forelse ($clubs as $club )
                             <tr class="bg-white dark:bg-gray-800">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Magic Mouse 2
+                               {!! $club->id !!}
                                 </th>
                                 <td class="px-6 py-4">
-                                    Black
+                                    {!! $club->club !!}
                                 </td>
                                 <td class="px-6 py-4">
-                                    Black
+                                    {!! $club->discrption !!}
                                 </td>
 
 
                                 <td class="flex px-6 py-4">
 
-                                    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
+                                    <button  data-modal-target="crud-modal" data-modal-toggle="crud-modal"
                                         class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="w-5 fill-blue-500 hover:fill-blue-700" viewBox="0 0 348.882 348.882">
@@ -81,7 +95,7 @@
                                         </svg>
                                     </button>
                                     <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                                        class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
+                                        class="mr-4 text-blue-500 hover:text-blue-700" title="Delete">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
                                             <path
@@ -97,8 +111,14 @@
 
                                 </td>
                             </tr>
+                            @empty
+                                   <h2>Nhoting Club </h2>
+                            @endforelse
+
                         </tbody>
+
                     </table>
+                    {{ $clubs->links() }}
                 </div>
 
             </div>
@@ -107,7 +127,7 @@
         <div id="popup" class="fixed inset-0 flex items-center justify-center hidden" style="">
             <div class="p-8 mx-3 bg-white rounded shadow-md ">
 
-                <form action="{{ route('Club.store') }}" method="post" class="w-96">
+                <form action="{{ route('Club.store') }}" method="post" class="w-96" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
                         <label for="club" class="block mb-2 font-medium text-gray-700">Club
@@ -119,20 +139,28 @@
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
-
                     <div class="mb-4">
-                        <label for="image" class="block mb-2 font-medium text-gray-700">Ville
+                        <label for="image" class="block mb-2 font-medium text-gray-700">Image
                             :</label>
-                        <select name="ville_id"
-                            id="club"class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                            <option value="">safi</option>
-                            <option value="">rabat</option>
-                            <option value="">agadir</option>
-                        </select>
-                        @error('ville_id')
+                        <input type="file" id="image" name="image"
+                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                          >
+                        @error('image')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
+                    <div class="mb-4">
+                        <label for="discrption" class="block mb-2 font-medium text-gray-700">Discrption
+                            :</label>
+                        <textarea id="discrption" name="discrption"
+                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                            placeholder="Entrez votre discrption "></textarea>
+                        @error('discrption')
+                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+
                     <button type="submit" class="px-20 py-2 text-white bg-[#24B49A] rounded-md float-end ">
                         Save
                     </button>
@@ -166,15 +194,16 @@
                     </div>
                     <!-- Modal body -->
 
-                    <form action="" method="post" class="p-4 md:p-5">
-                        @csrf
+                    <form action="{{ route('Club.update',$club->id) }}" method="post" class="p-4 md:p-5">
+                       @csrf
+                        @method('PUT')
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div class="col-span-2">
                                 <label for="club" class="block mb-2 font-medium text-gray-700">Club
                                     :</label>
                                 <input type="text" id="club" name="club"
                                     class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                    placeholder="Entrez votre Club ">
+                                    value="{{ old($club->club) }}">
                                 @error('club')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                                 @enderror
@@ -183,15 +212,22 @@
                             </div>
 
                             <div class="col-span-2 ">
-                                <label for="ville" class="block mb-2 font-medium text-gray-700">Ville
+                                <label for="image" class="block mb-2 font-medium text-gray-700">Image
                                     :</label>
-                                <select name="ville_id"
-                                    id="ville"class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                                    <option value="">safi</option>
-                                    <option value="">rabat</option>
-                                    <option value="">club1</option>
-                                </select>
-                                @error('ville_id')
+                                <input type="file" id="image" name="image"
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    placeholder="Entrez votre Club ">
+                                @error('image')
+                                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-span-2 ">
+                                <label for="discrption" class="block mb-2 font-medium text-gray-700">Discrption
+                                    :</label>
+                                <textarea type="file" id="discrption" name="discrption"
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    value="{{ old($club->discrption) }}"></textarea>
+                                @error('discrption')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>

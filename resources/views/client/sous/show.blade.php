@@ -59,7 +59,7 @@
 
 
         </div>
-        </div>
+
 
     </x-slot>
     </x-show-layout>
