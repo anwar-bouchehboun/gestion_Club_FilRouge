@@ -3,7 +3,7 @@
 <aside
     class="bg-[#24B49A] -translate-x-80 fixed inset-0 z-50 h-[calc(200vh-32px)] w-72  transition-transform duration-300 xl:translate-x-0">
     <div class="relative border-b border-white/20">
-        <a class="flex items-center gap-4 px-8 py-6" href="#/">
+        <a class="flex items-center gap-4 px-8 py-6" href="/Dashbord">
             <h6 class="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-white">
                 PHONIXCLUB</h6>
         </a>
@@ -21,7 +21,7 @@
     <div class="m-4">
         <ul class="flex flex-col gap-1 mb-4">
             <li>
-                <a aria-current="page" class="active" href="#">
+                <a aria-current="page" class="active" href="/Dashbord">
                 <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">
@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="#">
+                <a class="" href="/Dashbord/categorie">
                     <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">
@@ -57,7 +57,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="#">
+                <a class="" href="/Dashbord/Event">
                     <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">
@@ -74,7 +74,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="#">
+                <a class="" href="/Dashbord/User">
                     <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">
@@ -92,7 +92,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="#">
+                <a class="" href="/Dashbord/Club">
                     <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">

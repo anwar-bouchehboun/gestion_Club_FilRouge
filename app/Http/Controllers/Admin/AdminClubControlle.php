@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminUserController extends Controller
+class AdminClubControlle extends Controller
 {
     public function index(){
-        return view('admin.user.user');
+        return view('admin.club.club');
     }
 }

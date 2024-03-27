@@ -104,7 +104,7 @@
             </div>
         </div>
         {{-- Modal insert --}}
-        <div id="popup" class="fixed inset-0 flex items-center justify-center " style="">
+        <div id="popup" class="fixed inset-0 flex items-center justify-center hidden" style="">
             <div class="p-8 mx-3 bg-white rounded shadow-md ">
 
                 <form action="{{ route('club.store') }}" method="post" class="w-96">
@@ -143,11 +143,6 @@
         </div>
         {{-- modal edit --}}
 
-
-        <!-- Modal toggle -->
-
-
-        <!-- Main modal -->
         <div id="crud-modal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-md max-h-full p-4">

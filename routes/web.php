@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminClubControlle;
+use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeConroller;
 use App\Http\Controllers\ClubController;
@@ -25,6 +27,10 @@ Route::get('/', [HomeConroller::class, 'index'])->name('home');
 Route::get('/Dashbord', [AdminControlle::class, 'index']);
 Route::get('/Dashbord/categorie', [AdminCatgorieController::class, 'index']);
 Route::get('/Dashbord/Event', [AdminEventController::class, 'index']);
+Route::get('/Dashbord/User', [AdminUserController::class, 'index']);
+Route::get('/Dashbord/Club', [AdminClubControlle::class, 'index']);
+
+
 
 
 Route::middleware(['auth', 'role:client'])->group(function () {

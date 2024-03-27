@@ -18,7 +18,7 @@
                     </ol>
                 </nav>
                 <div class="px-0 mb-0 border-0 rounded-t ">
-                    <button id="ouvrirPopup"
+                    <button data-modal-target="add-modal" data-modal-toggle="add-modal"
                         class=" px-4 py-2 mx-2 mt-4 text-white bg-[#24B49A] rounded-md uppercase ">+
                         Add new
                         Event</button>
@@ -122,53 +122,116 @@
             </div>
         </div>
         {{-- Modal insert --}}
-        <div id="popup" class="fixed inset-0 flex items-center justify-center " style="">
-            <div class="p-8 mx-3 bg-white rounded shadow-md ">
 
-                <form action="{{ route('club.store') }}" method="post" class="w-96">
-                    @csrf
-                    <div class="mb-4">
-                        <label for="club" class="block mb-2 font-medium text-gray-700">Club
-                            :</label>
-                        <input type="text" id="club" name="club"
-                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                            placeholder="Entrez votre club ">
-                        @error('club')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="image" class="block mb-2 font-medium text-gray-700">Ville
-                            :</label>
-                        <select name="ville_id"
-                            id="club"class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                            <option value="">safi</option>
-                            <option value="">rabat</option>
-                            <option value="">agadir</option>
-                        </select>
-                        @error('ville_id')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <button type="submit" class="px-20 py-2 text-white bg-[#24B49A] rounded-md float-end ">
-                        Save
-                    </button>
-                </form>
-                <button id="fermerPopup"
-                    class="px-16 py-2 text-white bg-red-500 rounded-md me-1 float-end hover:bg-red-600 focus:outline-none focus:bg-red-600">Fermer</button>
-            </div>
-        </div>
-        {{-- modal edit --}}
-
-
-        <!-- Modal toggle -->
 
 
         <!-- Main modal -->
+        <div id="add-modal" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative w-full max-w-2xl max-h-full p-4 ">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Create New Event
+                        </h3>
+                        <button type="button"
+                            class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-toggle="add-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <form class="p-4 md:p-5 ">
+                        <div class="grid grid-cols-2 gap-4 mb-4 ">
+                            <div class="col-span-4 sm:col-span-1">
+                                <label for="name" class="block mb-2 font-medium text-gray-700">Name
+                                    :</label>
+                                <input type="text" id="club" name="name"
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    placeholder="Entrez votre club ">
+                                @error('name')
+                                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-span-4 sm:col-span-1">
+                                <label for="local" class="block mb-2 font-medium text-gray-700">Localisation
+                                    :</label>
+                                <input type="text" id="local" name="localisation"
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    placeholder="Entrez votre local ">
+                                @error('localisation')
+                                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="price"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                <input type="number" name="price" id="price"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="$2999" >
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="club"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Club</label>
+                                <select id="club" name="club_id"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <option selected="">Select Club</option>
+                                    <option value="TV">TV/Monitors</option>
+                                    <option value="PC">PC</option>
+                                    <option value="GA">Gaming/Console</option>
+                                    <option value="PH">Phones</option>
+                                </select>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="date"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                <input type="date" name="date" id="date"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="image"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
+                                    <input type="file" name="image" id="image"
+                                    class="block text-sm border border-gray-300 rounded-lg ">
+                            </div>
+                            <div class="col-span-2">
+                                <label for="description"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event
+                                    Description</label>
+                                <textarea id="description" rows="4" name="description"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Write Event description here"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="text-white inline-flex items-center bg-[#24B49A] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <svg class="w-5 h-5 me-1 -ms-1" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            Add new Event
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {{-- ---------------------------- --}}
+
+        {{-- modal edit --}}
         <div id="crud-modal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="relative w-full max-w-md max-h-full p-4">
+            <div class="relative w-full max-w-2xl max-h-full p-4">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <!-- Modal header -->
@@ -179,8 +242,8 @@
                         <button type="button"
                             class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
                             data-modal-toggle="crud-modal">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 14 14">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 14 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>
@@ -189,40 +252,78 @@
                     </div>
                     <!-- Modal body -->
 
-                    <form action="" method="post" class="p-4 md:p-5">
-                        @csrf
-                        <div class="grid grid-cols-2 gap-4 mb-4">
-                            <div class="col-span-2">
-                                <label for="club" class="block mb-2 font-medium text-gray-700">Club
+                    <form class="p-4 md:p-5 ">
+                        <div class="grid grid-cols-2 gap-4 mb-4 ">
+                            <div class="col-span-4 sm:col-span-1">
+                                <label for="name" class="block mb-2 font-medium text-gray-700">Name
                                     :</label>
-                                <input type="text" id="club" name="club"
+                                <input type="text" id="club" name="name"
                                     class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                    placeholder="Entrez votre Club ">
-                                @error('club')
+                                    placeholder="Entrez votre club ">
+                                @error('name')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                                 @enderror
-                                {{-- <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label> --}}
-                                {{-- <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required=""> --}}
                             </div>
-
-                            <div class="col-span-2 ">
-                                <label for="ville" class="block mb-2 font-medium text-gray-700">Ville
+                            <div class="col-span-4 sm:col-span-1">
+                                <label for="local" class="block mb-2 font-medium text-gray-700">Localisation
                                     :</label>
-                                <select name="ville_id"
-                                    id="ville"class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                                    <option value="">safi</option>
-                                    <option value="">rabat</option>
-                                    <option value="">club1</option>
-                                </select>
-                                @error('ville_id')
+                                <input type="text" id="local" name="localisation"
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    placeholder="Entrez votre local ">
+                                @error('localisation')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>
 
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="price"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                <input type="number" name="price" id="price"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="$2999" required="">
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="club"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Club</label>
+                                <select id="club" name="club_id"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <option selected="">Select Club</option>
+                                    <option value="TV">TV/Monitors</option>
+                                    <option value="PC">PC</option>
+                                    <option value="GA">Gaming/Console</option>
+                                    <option value="PH">Phones</option>
+                                </select>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="date"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                <input type="date" name="date" id="date"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            </div>
+                            <div class="col-span-2 sm:col-span-1 ">
+                                <label for="image"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
+                                <input type="file" name="image" id="image"
+                                    class="block text-sm border border-gray-300 rounded-lg ">
+                            </div>
+                            <div class="col-span-2">
+                                <label for="description"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event
+                                    Description</label>
+                                <textarea id="description" rows="4" name="description"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Write Event description here"></textarea>
+                            </div>
                         </div>
                         <button type="submit"
-                            class="text-white inline-flex items-center bg-[#24B49A]    font-medium rounded-lg text-sm px-5 py-2.5 text-center   ">
-                            Update Club
+                            class="text-white inline-flex items-center bg-[#24B49A]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <svg class="w-5 h-5 me-1 -ms-1" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                           Update Event
                         </button>
                     </form>
                 </div>
@@ -272,18 +373,3 @@
 
     </x-slot>
 </x-app-layout>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const boutonOuvrirPopup = document.getElementById('ouvrirPopup');
-        const boutonFermerPopup = document.getElementById('fermerPopup');
-        const popup = document.getElementById('popup');
-
-        boutonOuvrirPopup.addEventListener('click', function() {
-            popup.classList.remove('hidden');
-        });
-
-        boutonFermerPopup.addEventListener('click', function() {
-            popup.classList.add('hidden');
-        });
-    });
-</script>
