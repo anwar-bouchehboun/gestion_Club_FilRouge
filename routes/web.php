@@ -24,22 +24,21 @@ use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 
 Route::get('/', [HomeConroller::class, 'index'])->name('home');
 
-Route::get('club',[ClubController::class,'index'])->name('club');
-Route::get('categorie',[CategorieController::class,'index'])->name('categorie');
-Route::get('souscategorie',[SouscategorieController::class ,'index'])->name('souscategorie');
+Route::get('club', [ClubController::class, 'index'])->name('club');
+Route::get('categorie', [CategorieController::class, 'index'])->name('categorie');
+Route::get('souscategorie', [SouscategorieController::class, 'index'])->name('souscategorie');
 // admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
-Route::get('/Dashbord', [AdminControlle::class,'index'])->name('Dashbord');
-Route::resource('/Dashbord/categorie', AdminCatgorieController::class);
-Route::resource('/Dashbord/Event', AdminEventController::class);
-Route::resource('/Dashbord/User', AdminUserController::class);
-Route::resource('/Dashbord/Club', AdminClubControlle::class);
+    Route::get('/Dashbord', [AdminControlle::class, 'index'])->name('Dashbord');
+    Route::resource('/Dashbord/categorie', AdminCatgorieController::class);
+    Route::resource('/Dashbord/Event', AdminEventController::class);
+    Route::resource('/Dashbord/User', AdminUserController::class);
+    Route::resource('/Dashbord/Club', AdminClubControlle::class);
 });
 
 
 
 Route::middleware(['auth', 'role:client'])->group(function () {
-
     Route::post('/session', [StripeController::class, 'session'])->name('session');
     Route::get('/success', [StripeController::class, 'success'])->name('success');
     Route::post('logout', [LoginController::class, 'destroy'])
