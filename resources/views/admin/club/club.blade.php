@@ -10,7 +10,7 @@
                             <a href="#">
                                 <p
                                     class="block font-sans text-4xl antialiased font-bold leading-normal text-black uppercase transition-all ">
-                                    Add Categorie</p>
+                                    Add Club</p>
                             </a>
 
                         </li>
@@ -21,7 +21,7 @@
                     <button id="ouvrirPopup"
                         class=" px-4 py-2 mx-2 mt-4 text-white bg-[#24B49A] rounded-md uppercase ">+
                         Add new
-                        Categorie</button>
+                        Club</button>
 
 
                 </div>
@@ -39,10 +39,10 @@
                                     #
                                 </th>
                                 <th class="px-6 py-3 text-sm font-semibold text-left text-black">
-                                    Categorie
+                                    Club
                                 </th>
                                 <th class="px-6 py-3 text-sm font-semibold text-left text-black">
-                                    Club
+                                    ville
                                 </th>
                                 <th class="px-6 py-3 text-sm font-semibold text-left text-black">
                                     Action
@@ -104,40 +104,32 @@
             </div>
         </div>
         {{-- Modal insert --}}
-        <div id="popup" class="fixed inset-0 flex items-center justify-center hidden " style="">
+        <div id="popup" class="fixed inset-0 flex items-center justify-center " style="">
             <div class="p-8 mx-3 bg-white rounded shadow-md ">
 
-                <form action="{{ route('categorie.store') }}" method="post">
+                <form action="{{ route('club.store') }}" method="post" class="w-96">
                     @csrf
                     <div class="mb-4">
-                        <label for="categorie" class="block mb-2 font-medium text-gray-700">Categorie
+                        <label for="club" class="block mb-2 font-medium text-gray-700">Club
                             :</label>
-                        <input type="text" id="categorie" name="name"
+                        <input type="text" id="club" name="club"
                             class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                            placeholder="Entrez votre CaTegorie ">
-                        @error('name')
+                            placeholder="Entrez votre club ">
+                        @error('club')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
+
                     <div class="mb-4">
-                        <label for="image" class="block mb-2 font-medium text-gray-700">Image
+                        <label for="image" class="block mb-2 font-medium text-gray-700">Ville
                             :</label>
-                        <input type="file" id="image" name="image"
-                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                        @error('image')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="image" class="block mb-2 font-medium text-gray-700">Club
-                            :</label>
-                        <select name="club_id"
+                        <select name="ville_id"
                             id="club"class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                            <option value="">club1</option>
-                            <option value="">club1</option>
-                            <option value="">club1</option>
+                            <option value="">safi</option>
+                            <option value="">rabat</option>
+                            <option value="">agadir</option>
                         </select>
-                        @error('club_id')
+                        @error('ville_id')
                             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                         @enderror
                     </div>
@@ -146,7 +138,7 @@
                     </button>
                 </form>
                 <button id="fermerPopup"
-                    class="px-16 py-2 mt-4 text-white bg-red-500 rounded-md float-end hover:bg-red-600 focus:outline-none focus:bg-red-600">Fermer</button>
+                    class="px-16 py-2 text-white bg-red-500 rounded-md me-1 float-end hover:bg-red-600 focus:outline-none focus:bg-red-600">Fermer</button>
             </div>
         </div>
         {{-- modal edit --}}
@@ -164,7 +156,7 @@
                     <!-- Modal header -->
                     <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                            Edit Categorie
+                            Edit Club
                         </h3>
                         <button type="button"
                             class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
@@ -183,38 +175,28 @@
                         @csrf
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div class="col-span-2">
-                                <label for="categorie" class="block mb-2 font-medium text-gray-700">Categorie
+                                <label for="club" class="block mb-2 font-medium text-gray-700">Club
                                     :</label>
-                                <input type="text" id="categorie" name="name"
+                                <input type="text" id="club" name="club"
                                     class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                                    placeholder="Entrez votre CaTegorie ">
-                                @error('name')
+                                    placeholder="Entrez votre Club ">
+                                @error('club')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                                 @enderror
                                 {{-- <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label> --}}
                                 {{-- <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required=""> --}}
                             </div>
-                            <div class="col-span-2">
-                                <label for="image" class="block mb-2 font-medium text-gray-700">Image
-                                    :</label>
-                                <input type="file" id="image" name="name"
-                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                                @error('image')
-                                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                                @enderror
-                                {{-- <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label> --}}
-                                {{-- <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required=""> --}}
-                            </div>
+
                             <div class="col-span-2 ">
-                                <label for="club" class="block mb-2 font-medium text-gray-700">Club
+                                <label for="ville" class="block mb-2 font-medium text-gray-700">Ville
                                     :</label>
-                                <select name="club_id"
-                                    id="club"class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                                    <option value="">club1</option>
-                                    <option value="">club1</option>
+                                <select name="ville_id"
+                                    id="ville"class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                                    <option value="">safi</option>
+                                    <option value="">rabat</option>
                                     <option value="">club1</option>
                                 </select>
-                                @error('club_id')
+                                @error('ville_id')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -222,7 +204,7 @@
                         </div>
                         <button type="submit"
                             class="text-white inline-flex items-center bg-[#24B49A]    font-medium rounded-lg text-sm px-5 py-2.5 text-center   ">
-                            Update Categorie
+                            Update Club
                         </button>
                     </form>
                 </div>
@@ -251,7 +233,7 @@
                                 stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
                         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to
-                            delete this Categorie?</h3>
+                            delete this Club?</h3>
 
                         <form id="deleteForm" action="" method="POST">
                             @csrf
