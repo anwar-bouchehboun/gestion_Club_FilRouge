@@ -107,7 +107,7 @@
         <div id="popup" class="fixed inset-0 flex items-center justify-center hidden" style="">
             <div class="p-8 mx-3 bg-white rounded shadow-md ">
 
-                <form action="{{ route('club.store') }}" method="post" class="w-96">
+                <form action="{{ route('Club.store') }}" method="post" class="w-96">
                     @csrf
                     <div class="mb-4">
                         <label for="club" class="block mb-2 font-medium text-gray-700">Club

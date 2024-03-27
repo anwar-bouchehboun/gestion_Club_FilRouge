@@ -22,17 +22,12 @@
                             aria-current="page">Home</a>
                     </li>
                     <li>
-                        <a href="{{ route('club.index') }}"
+                        <a href="{{ route('club') }}"
                             class="text-center block uppercase py-2 px-3 text-white hover:bg-[#24B49A] md:hover:bg-transparent md:border-0 md:hover:text-[#24B49A] md:p-1 dark:text-white my-2">ALL
                             Club</a>
                     </li>
                     @auth
-                    <li>
-                        <a href=""
-                            class="text-center block uppercase py-2 px-3 text-white hover:bg-[#24B49A] md:hover:bg-transparent md:border-0 md:hover:text-[#24B49A] md:p-1 dark:text-white my-2">
-                           Profile
-                        </a>
-                    </li>
+                   
                         {{-- @if (Auth::check() && Auth::user()->role === 'client') --}}
 
                         <li>

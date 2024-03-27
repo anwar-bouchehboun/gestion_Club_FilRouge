@@ -21,7 +21,7 @@
     <div class="m-4">
         <ul class="flex flex-col gap-1 mb-4">
             <li>
-                <a aria-current="page" class="active" href="/Dashbord">
+                <a aria-current="page" class="active" href="{{ route('Dashbord') }}">
                 <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">
@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="/Dashbord/categorie">
+                <a class="" href="{{ route('categorie.index') }}">
                     <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">
@@ -57,7 +57,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="/Dashbord/Event">
+                <a class="" href="{{ route('Event.index') }}">
                     <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">
@@ -74,7 +74,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="/Dashbord/User">
+                <a class="" href="{{ route('User.index') }}">
                     <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">
@@ -92,7 +92,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="/Dashbord/Club">
+                <a class="" href="{{ route('Club.index') }}">
                     <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">

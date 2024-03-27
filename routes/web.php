@@ -20,16 +20,21 @@ use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 
 
 
-
+// visteur
 
 Route::get('/', [HomeConroller::class, 'index'])->name('home');
 
-Route::get('/Dashbord', [AdminControlle::class, 'index']);
-Route::get('/Dashbord/categorie', [AdminCatgorieController::class, 'index']);
-Route::get('/Dashbord/Event', [AdminEventController::class, 'index']);
-Route::get('/Dashbord/User', [AdminUserController::class, 'index']);
-Route::get('/Dashbord/Club', [AdminClubControlle::class, 'index']);
-
+Route::get('club',[ClubController::class,'index'])->name('club');
+Route::get('categorie',[CategorieController::class,'index'])->name('categorie');
+Route::get('souscategorie',[SouscategorieController::class ,'index'])->name('souscategorie');
+// admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::get('/Dashbord', [AdminControlle::class,'index'])->name('Dashbord');
+Route::resource('/Dashbord/categorie', AdminCatgorieController::class);
+Route::resource('/Dashbord/Event', AdminEventController::class);
+Route::resource('/Dashbord/User', AdminUserController::class);
+Route::resource('/Dashbord/Club', AdminClubControlle::class);
+});
 
 
 
@@ -46,9 +51,7 @@ Route::middleware(['auth', 'role:client'])->group(function () {
 
 
 
-Route::resource('club',ClubController::class);
-Route::resource('categorie',CategorieController::class);
-Route::resource('souscategorie',SouscategorieController::class);
+
 
 
 //guest
