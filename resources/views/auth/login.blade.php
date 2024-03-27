@@ -59,7 +59,7 @@
                             </div>
                             <button type="submit" class="w-full text-white bg-[#24B49A]  py-3 rounded">Sign in</button>
                             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Don’t have an account yet? <a href="#"
+                                Don’t have an account yet? <a href="{{ route('register') }}"
                                     class="font-medium text-[#24B49A] hover:underline ">Register</a>
                             </p>
                         </form>

@@ -67,7 +67,7 @@
                             </div>
                             <button type="submit" class="w-full text-white bg-[#24B49A] py-2 rounded">Register</button>
                             <p class="text-sm font-light text-black">
-                                Don’t have an account yet? <a href="#"
+                                Don’t have an account yet? <a href="{{ route('login.index') }}"
                                     class="font-medium text-[#24B49A] hover:underline">Login</a>
                             </p>
                         </form>

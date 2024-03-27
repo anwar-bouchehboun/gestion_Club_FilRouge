@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\ClubController;
-use App\Http\Controllers\SouscategorieController;
-use App\Http\Controllers\StripeController;
+use App\Http\Controllers\Admin\AdminControlle;
 use Illuminate\Support\Facades\Route;
-// use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeConroller;
+use App\Http\Controllers\ClubController;
+use App\Http\Controllers\StripeController;
+// use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\SouscategorieController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 
@@ -20,7 +20,7 @@ use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 
 Route::get('/', [HomeConroller::class, 'index'])->name('home');
 
-Route::get('/Dashbord', [AdminController::class, 'index']);
+Route::get('/Dashbord', [AdminControlle::class, 'index']);
 
 Route::middleware(['auth', 'role:client'])->group(function () {
 
