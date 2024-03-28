@@ -86,7 +86,9 @@
 
                                 <td class="flex px-6 py-4">
 
-                                    <button class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
+                                    <button
+                                    onclick="editCategorieModal({{ $categorie->id }},'{{ $categorie->name }}','{{ $categorie->discrption }}','{{ $categorie->image }}',{{ $categorie->club_id }})"
+                                    class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="w-5 fill-blue-500 hover:fill-blue-700" viewBox="0 0 348.882 348.882">
                                             <path
@@ -97,7 +99,8 @@
                                                 data-original="#000000" />
                                         </svg>
                                     </button>
-                                    <button class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
+                                    <button  onclick="openDeleteModal({{ $categorie->id }})"
+                                     class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
                                             <path
@@ -155,7 +158,7 @@
                             <div class="col-span-2">
                                 <label for="categorie" class="block mb-2 font-medium text-gray-700">Categorie
                                     :</label>
-                                <input type="text" id="categorie" name="name"
+                                <input type="text" id="" name="name"
                                     class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     placeholder="Entrez votre CaTegorie ">
                                 @error('name')
@@ -167,7 +170,7 @@
                             <div class="col-span-2">
                                 <label for="image" class="block mb-2 font-medium text-gray-700">Image
                                     :</label>
-                                <input type="file" id="image" name="image"
+                                <input type="file" id="" name="image"
                                     class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                                 @error('image')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
@@ -193,7 +196,7 @@
                             <div class="col-span-2 ">
                                 <label for="discrption" class="block mb-2 font-medium text-gray-700">Discrption
                                     :</label>
-                                <textarea id="discrption_name" name="discrption"
+                                <textarea id="" name="discrption"
                                     class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
                                 @error('discrption')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
@@ -235,8 +238,10 @@
                     </div>
                     <!-- Modal body -->
 
-                    <form action="" method="post" class="p-4 md:p-5">
+                    <form id="edit-form" action="" method="post" class="p-4 md:p-5"  enctype="multipart/form-data">
+
                         @csrf
+                        @method('PATCH')
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div class="col-span-2">
                                 <label for="categorie" class="block mb-2 font-medium text-gray-700">Categorie
@@ -250,10 +255,21 @@
                                 {{-- <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label> --}}
                                 {{-- <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required=""> --}}
                             </div>
+                            <div class="hidden col-span-2">
+                                <label for="image" class="block mb-2 font-medium text-gray-700">Image
+                                    :</label>
+                                <input type="text" id="image_categorie" name="image"
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                                @error('image')
+                                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                                @enderror
+                                {{-- <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label> --}}
+                                {{-- <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required=""> --}}
+                            </div>
                             <div class="col-span-2">
                                 <label for="image" class="block mb-2 font-medium text-gray-700">Image
                                     :</label>
-                                <input type="file" id="image" name="name"
+                                <input type="file"  name="image"
                                     class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                                 @error('image')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
@@ -264,13 +280,24 @@
                             <div class="col-span-2 ">
                                 <label for="club" class="block mb-2 font-medium text-gray-700">Club
                                     :</label>
-                                <select name="club_id"
+                                    <select name="club_id" id="club_name"
                                     id="club"class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                                    <option value="">club1</option>
-                                    <option value="">club1</option>
-                                    <option value="">club1</option>
+                                    <option value="" disabled selected>Select club</option>
+                                    @foreach ($clubs as $club)
+                                        <option value="{!! $club->id !!}">{{ $club->club }}</option>
+                                    @endforeach
+
                                 </select>
                                 @error('club_id')
+                                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-span-2 ">
+                                <label for="discrption" class="block mb-2 font-medium text-gray-700">Discrption
+                                    :</label>
+                                <textarea id="discrption_name" name="discrption"
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+                                @error('discrption')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                                 @enderror
                             </div>
@@ -327,19 +354,9 @@
 
 
     </x-slot>
+    @push('vite')
+    @vite('resources/js/editCategorie.js')
+    @vite('resources/js/deleteCategorie.js')
+@endpush
 </x-app-layout>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const boutonOuvrirPopup = document.getElementById('ouvrirPopup');
-        const boutonFermerPopup = document.getElementById('fermerPopup');
-        const popup = document.getElementById('popup');
 
-        boutonOuvrirPopup.addEventListener('click', function() {
-            popup.classList.remove('hidden');
-        });
-
-        boutonFermerPopup.addEventListener('click', function() {
-            popup.classList.add('hidden');
-        });
-    });
-</script>

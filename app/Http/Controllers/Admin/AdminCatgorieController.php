@@ -14,30 +14,50 @@ class AdminCatgorieController extends Controller
     {
         $clubs = Club::all();
         // $categories=Categorie::paginate(3);
-        $categories=Categorie::with('club')->paginate(3);
+        $categories = Categorie::with('club')->paginate(3);
         // dd($categories);
-        return view('admin.categorie.categorie',compact('clubs','categories'));
+        return view('admin.categorie.categorie', compact('clubs', 'categories'));
     }
     public function store(CategorieRequest $categorieRequest)
     {
 
-        $categorieRequest->validated();
-//   dd($categorieRequest->all());
+       $create= $categorieRequest->validated();
+        //   dd($categorieRequest->all());
         if ($categorieRequest->hasFile('image')) {
             $imagePath = $categorieRequest->file('image')->store('image', 'public');
 
         }
-        $createClub = Categorie::create([
-            'name'=>$categorieRequest->name,
-            'club_id' => $categorieRequest->club_id,
-            'image' => $imagePath,
-            'discrption' => $categorieRequest->discrption,
-        ]);
+        $createClub = Categorie::create($create);
         if ($createClub) {
             return redirect()->back()->with('success', 'categorie created');
 
         }
 
     }
+    // update catrgorie
+    public function update(CategorieRequest $categorieRequest, Categorie $categorie)
+    {
+        // dd( $categorieRequest->all());
+    $update=    $categorieRequest->validated();
 
+        if ($categorieRequest->hasFile('image')) {
+            $imagePath = $categorieRequest->file('image')->store('image', 'public');
+
+        } else {
+            $imagePath = $categorieRequest->input('image');
+        }
+        $updateCategorie = $categorie->update($update );
+        if ($updateCategorie) {
+            return redirect()->back()->with('success', 'Club update');
+        }
+
+    }
+    // delete categorie
+    public function destroy(Categorie $categorie)
+    {
+
+        $categorie->delete();
+        return redirect()->back()->with('success', 'Club Delleting');
+
+    }
 }

@@ -25,6 +25,8 @@ class CategorieRequest extends FormRequest
             'name' => 'required|string',
             'image' => 'required',
             'club_id' => 'required|exists:clubs,id',
+            'discrption'=>'required|regex:/^[a-zA-Z-\w_\s\W]+$/',
+
         ];
     }
 }
