@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->foreignId('club_id')->constrained('clubs')->onDelete('cascade')->onUpdate('cascade');
             $table->string('image');
             $table->text('discrption');

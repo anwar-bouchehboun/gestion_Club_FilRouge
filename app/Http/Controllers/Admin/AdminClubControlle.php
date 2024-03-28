@@ -15,6 +15,7 @@ class AdminClubControlle extends Controller
         $clubs = Club::paginate(3);
         return view('admin.club.club', compact('clubs'));
     }
+    // crate Club
     public function store(ClubRequest $clubRequest)
     {
 
@@ -35,7 +36,7 @@ class AdminClubControlle extends Controller
         }
 
     }
-
+//  Update club
     public function update(ClubRequest $clubRequest, Club $club)
     {
 
@@ -60,9 +61,10 @@ class AdminClubControlle extends Controller
         }
 
     }
+    // delete club
     public function destroy(Club $club)
     {
-        
+
         $club->delete();
         return redirect()->back()->with('success', 'Club Delleting');
 

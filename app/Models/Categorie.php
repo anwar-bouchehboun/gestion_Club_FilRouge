@@ -10,11 +10,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Categorie extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
-    
+
     protected $fillable = [
         'name',
         'image',
         'club_id',
+        'discrption',
     ];
     public function club(){
         return $this->belongsTo(Club::class,'club_id');

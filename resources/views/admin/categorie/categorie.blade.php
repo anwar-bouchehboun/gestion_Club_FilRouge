@@ -1,5 +1,16 @@
 <x-app-layout>
     <x-slot name="solt">
+        {{-- messg --}}
+        @if (session('success'))
+            <script>
+                Swal.fire({
+                    icon: "success",
+                    title: "Noveau Categorie",
+                    text: "{{ session('success') }}",
+
+                });
+            </script>
+        @endif
         <div class="p-4 xl:ml-80">
             <div class="flex flex-wrap justify-between my-6 capitalize ">
                 <nav aria-label="breadcrumb" class="w-max">
@@ -18,7 +29,7 @@
                     </ol>
                 </nav>
                 <div class="px-0 mb-0 border-0 rounded-t ">
-                    <button id="ouvrirPopup"
+                    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
                         class=" px-4 py-2 mx-2 mt-4 text-white bg-[#24B49A] rounded-md uppercase ">+
                         Add new
                         Categorie</button>
@@ -42,6 +53,9 @@
                                     Categorie
                                 </th>
                                 <th class="px-6 py-3 text-sm font-semibold text-left text-black">
+                                    Discrption
+                                </th>
+                                <th class="px-6 py-3 text-sm font-semibold text-left text-black">
                                     Club
                                 </th>
                                 <th class="px-6 py-3 text-sm font-semibold text-left text-black">
@@ -52,24 +66,27 @@
                         </thead>
 
                         <tbody>
-
+                            @forelse ($categories as $categorie)
                             <tr class="bg-white dark:bg-gray-800">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Magic Mouse 2
+                                   {{$categorie->id}}
                                 </th>
                                 <td class="px-6 py-4">
-                                    Black
+                                    {{$categorie->name}}
                                 </td>
                                 <td class="px-6 py-4">
-                                    Black
+                                    {{$categorie->discrption}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{$categorie->club->club}}
+
                                 </td>
 
 
                                 <td class="flex px-6 py-4">
 
-                                    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal"
-                                        class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
+                                    <button class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="w-5 fill-blue-500 hover:fill-blue-700" viewBox="0 0 348.882 348.882">
                                             <path
@@ -80,8 +97,7 @@
                                                 data-original="#000000" />
                                         </svg>
                                     </button>
-                                    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                                        class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
+                                    <button class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
                                             <path
@@ -97,63 +113,106 @@
 
                                 </td>
                             </tr>
+                            @empty
+                            <h2 class="">Nohting Categorie</h2>
+                            @endforelse
+
                         </tbody>
                     </table>
+                    {{ $categories->links() }}
                 </div>
 
             </div>
         </div>
         {{-- Modal insert --}}
-        <div id="popup" class="fixed inset-0 flex items-center justify-center hidden " style="">
-            <div class="p-8 mx-3 bg-white rounded shadow-md ">
+        <div id="crud-modal" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative w-full max-w-md max-h-full p-4">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <!-- Modal header -->
+                    <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Add Categorie
+                        </h3>
+                        <button type="button"
+                            class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-toggle="crud-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
 
-                <form action="{{ route('categorie.store') }}" method="post">
-                    @csrf
-                    <div class="mb-4">
-                        <label for="categorie" class="block mb-2 font-medium text-gray-700">Categorie
-                            :</label>
-                        <input type="text" id="categorie" name="name"
-                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-                            placeholder="Entrez votre CaTegorie ">
-                        @error('name')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="image" class="block mb-2 font-medium text-gray-700">Image
-                            :</label>
-                        <input type="file" id="image" name="image"
-                            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                        @error('image')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="mb-4">
-                        <label for="image" class="block mb-2 font-medium text-gray-700">Club
-                            :</label>
-                        <select name="club_id"
-                            id="club"class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
-                            <option value="">club1</option>
-                            <option value="">club1</option>
-                            <option value="">club1</option>
-                        </select>
-                        @error('club_id')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <button type="submit" class="px-20 py-2 text-white bg-[#24B49A] rounded-md float-end ">
-                        Save
-                    </button>
-                </form>
-                <button id="fermerPopup"
-                    class="px-16 py-2 mt-4 text-white bg-red-500 rounded-md float-end hover:bg-red-600 focus:outline-none focus:bg-red-600">Fermer</button>
+                    <form action="{{ route('categorie.store') }}" method="post" class="p-4 md:p-5"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div class="col-span-2">
+                                <label for="categorie" class="block mb-2 font-medium text-gray-700">Categorie
+                                    :</label>
+                                <input type="text" id="categorie" name="name"
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                                    placeholder="Entrez votre CaTegorie ">
+                                @error('name')
+                                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                                @enderror
+                                {{-- <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label> --}}
+                                {{-- <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required=""> --}}
+                            </div>
+                            <div class="col-span-2">
+                                <label for="image" class="block mb-2 font-medium text-gray-700">Image
+                                    :</label>
+                                <input type="file" id="image" name="image"
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                                @error('image')
+                                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                                @enderror
+                                {{-- <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label> --}}
+                                {{-- <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required=""> --}}
+                            </div>
+                            <div class="col-span-2 ">
+                                <label for="club" class="block mb-2 font-medium text-gray-700">Club
+                                    :</label>
+                                <select name="club_id"
+                                    id="club"class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
+                                    <option value="" disabled selected>Select club</option>
+                                    @foreach ($clubs as $club)
+                                        <option value="{!! $club->id !!}">{{ $club->club }}</option>
+                                    @endforeach
+
+                                </select>
+                                @error('club_id')
+                                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-span-2 ">
+                                <label for="discrption" class="block mb-2 font-medium text-gray-700">Discrption
+                                    :</label>
+                                <textarea id="discrption_name" name="discrption"
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+                                @error('discrption')
+                                    <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                        </div>
+                        <button type="submit"
+                            class="text-white inline-flex items-center bg-[#24B49A]    font-medium rounded-lg text-sm px-5 py-2.5 text-center   ">
+                            Add Categorie
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
+
         {{-- modal edit --}}
 
-
-
-        <div id="crud-modal" tabindex="-1" aria-hidden="true"
+        <div id="edit-modal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-md max-h-full p-4">
                 <!-- Modal content -->
@@ -165,9 +224,9 @@
                         </h3>
                         <button type="button"
                             class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="crud-modal">
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 14 14">
+                            data-modal-toggle="edit-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 14 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>

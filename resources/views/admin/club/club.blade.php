@@ -134,7 +134,7 @@
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        Edit Club
+                        Add Club
                     </h3>
                     <button type="button"
                         class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
@@ -177,7 +177,7 @@
                         <div class="col-span-2 ">
                             <label for="discrption" class="block mb-2 font-medium text-gray-700">Discrption
                                 :</label>
-                            <textarea type="file" id="" name="discrption"
+                            <textarea  id="" name="discrption"
                                 class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
                             @error('discrption')
                                 <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
@@ -255,7 +255,7 @@
                             <div class="col-span-2 ">
                                 <label for="discrption" class="block mb-2 font-medium text-gray-700">Discrption
                                     :</label>
-                                <textarea type="file" id="discrption_name" name="discrption"
+                                <textarea  id="discrption_name" name="discrption"
                                     class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
                                 @error('discrption')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
