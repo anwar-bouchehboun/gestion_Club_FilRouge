@@ -12,7 +12,7 @@ class AdminClubControlle extends Controller
     public function index()
     {
         // $clubs = Club::all();
-        $clubs = Club::paginate(3);
+        $clubs = Club::orderBy('id', 'desc')->paginate(5);
         return view('admin.club.club', compact('clubs'));
     }
     // crate Club

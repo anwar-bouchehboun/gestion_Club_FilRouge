@@ -14,7 +14,7 @@ class AdminCatgorieController extends Controller
     {
         $clubs = Club::all();
         // $categories=Categorie::paginate(3);
-        $categories = Categorie::with('club')->paginate(3);
+        $categories = Categorie::with('club')->orderBy('id', 'desc')->paginate(3);
         // dd($categories);
         return view('admin.categorie.categorie', compact('clubs', 'categories'));
     }
