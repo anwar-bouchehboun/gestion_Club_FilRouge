@@ -12,7 +12,7 @@ class AdminClubControlle extends Controller
     public function index()
     {
         // $clubs = Club::all();
-        $clubs=Club::paginate(3);
+        $clubs = Club::paginate(3);
         return view('admin.club.club', compact('clubs'));
     }
     public function store(ClubRequest $clubRequest)
@@ -33,6 +33,38 @@ class AdminClubControlle extends Controller
             return redirect()->back()->with('success', 'Club created');
 
         }
+
+    }
+
+    public function update(ClubRequest $clubRequest, Club $club)
+    {
+
+        $clubRequest->validated();
+        if ($clubRequest->hasFile('image')) {
+            $imagePath = $clubRequest->file('image')->store('image', 'public');
+
+        } else {
+            $imagePath = $clubRequest->input('image');
+        }
+     $updateClub  = $club->update(
+            [
+                'club' => $clubRequest->club,
+                'image' => $imagePath,
+                'discrption' => $clubRequest->discrption,
+
+            ]
+        );
+        if ($updateClub) {
+            return redirect()->back()->with('success', 'Club update');
+
+        }
+
+    }
+    public function destroy(Club $club)
+    {
+        
+        $club->delete();
+        return redirect()->back()->with('success', 'Club Delleting');
 
     }
 }

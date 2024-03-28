@@ -33,9 +33,9 @@ Route::get('souscategorie/show', [SouscategorieController::class, 'show']);
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/Dashbord', [AdminControlle::class, 'index'])->name('Dashbord');
     Route::resource('/Dashbord/categorie', AdminCatgorieController::class);
-    Route::resource('/Dashbord/Event', AdminEventController::class);
-    Route::resource('/Dashbord/User', AdminUserController::class);
-    Route::resource('/Dashbord/Club', AdminClubControlle::class);
+    Route::resource('/Dashbord/event', AdminEventController::class);
+    Route::resource('/Dashbord/user', AdminUserController::class);
+    Route::resource('/Dashbord/club', AdminClubControlle::class);
 });
 
 

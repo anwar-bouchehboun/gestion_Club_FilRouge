@@ -22,7 +22,7 @@
         <ul class="flex flex-col gap-1 mb-4">
             <li>
                 <a aria-current="page" class="active" href="{{ route('Dashbord') }}">
-                <button
+                    <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -57,7 +57,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="{{ route('Event.index') }}">
+                <a class="" href="{{ route('event.index') }}">
                     <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">
@@ -74,7 +74,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="{{ route('User.index') }}">
+                <a class="" href="{{ route('user.index') }}">
                     <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">
@@ -92,7 +92,7 @@
                 </a>
             </li>
             <li>
-                <a class="" href="{{ route('Club.index') }}">
+                <a class="" href="{{ route('club.index') }}">
                     <button
                         class="flex items-center w-full gap-4 px-4 py-3 font-sans text-xs font-bold text-white capitalize transition-all rounded-lg middle none center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none hover:bg-white/10 active:bg-white/30"
                         type="button">

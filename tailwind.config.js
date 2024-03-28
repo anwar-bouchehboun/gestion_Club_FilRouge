@@ -1,3 +1,5 @@
+
+// import forms from '@tailwindcss/forms';
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -10,6 +12,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    
     require('flowbite/plugin')
   ],
 }
