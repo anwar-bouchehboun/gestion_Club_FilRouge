@@ -1,16 +1,7 @@
 <x-app-layout>
     <x-slot name="solt">
         {{-- messg --}}
-        @if (session('success'))
-            <script>
-                Swal.fire({
-                    icon: "success",
-                    title: "Noveau Club",
-                    text: "{{ session('success') }}",
-
-                });
-            </script>
-        @endif
+        <x-sweet-alert />
 
         {{-- data club --}}
         <div class="p-4 xl:ml-80">
@@ -157,7 +148,7 @@
                             <div class="col-span-2">
                                 <label for="club" class="block mb-2 font-medium text-gray-700">Club
                                     :</label>
-                                <input type="text" id="club" name="club"
+                                <input type="text" id="club" name="club" value="{{ old('club') }}"
                                     class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                                 @error('club')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
@@ -179,7 +170,7 @@
                                 <label for="discrption" class="block mb-2 font-medium text-gray-700">Discrption
                                     :</label>
                                 <textarea id="" name="discrption"
-                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">{{ old('discrption') }}</textarea>
                                 @error('discrption')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                                 @enderror
@@ -223,6 +214,7 @@
                         enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
+                        <input type="hidden" id="id" name="id">
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div class="col-span-2">
                                 <label for="club" class="block mb-2 font-medium text-gray-700">Club

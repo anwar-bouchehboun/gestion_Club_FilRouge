@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Club;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClubRequest extends FormRequest
+class UpdateClubRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +24,13 @@ class ClubRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'club'=>'required|string|unique:clubs,club',
-            'image'=>'required',
-            'discrption'=>'required|regex:/^[a-zA-Z-\w_\s\W]+$/',
+            'club' => [
+                'required',
+                'string',
+                Rule::unique('clubs', 'club')->ignore($this->id),
+            ],
+            'image' => 'required',
+            'discrption' => 'required|regex:/^[a-zA-Z-\w_\s\W]+$/',
         ];
     }
 }

@@ -53,10 +53,7 @@ class AdminCatgorieController extends Controller
     {
         // dd( $categorieRequest->all());
         $update = $categorieRequest->validated();
-        if (!$update) {
-            return redirect()->back()->with('info', 'Problem validtion');
 
-        }
 
         if ($categorieRequest->hasFile('image')) {
             $imagePath = $categorieRequest->file('image')->store('image', 'public');
@@ -83,7 +80,10 @@ class AdminCatgorieController extends Controller
     {
 
         $categorie->delete();
-        return redirect()->back()->with('success', 'Categorie Delleting');
+        return redirect()->back()->with([
+            'message' => 'Catégorie Suppimer avec succès',
+            'success' => true,
+        ]);
 
     }
 }

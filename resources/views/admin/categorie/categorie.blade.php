@@ -156,7 +156,7 @@
                             <div class="col-span-2">
                                 <label for="categorie" class="block mb-2 font-medium text-gray-700">Categorie
                                     :</label>
-                                <input type="text" id="" name="name"
+                                <input type="text" id="" name="name" value="{{ old('name') }}"
                                     class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                                     placeholder="Entrez votre CaTegorie ">
                                 @error('name')
@@ -183,7 +183,9 @@
                                     id="club"class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">
                                     <option value="" disabled selected>Select club</option>
                                     @foreach ($clubs as $club)
-                                        <option value="{!! $club->id !!}">{{ $club->club }}</option>
+                                        <option value="{!! $club->id !!}"
+                                            {{ old('club_id') == $club->id ? 'selected' : '' }}>{{ $club->club }}
+                                        </option>
                                     @endforeach
 
                                 </select>
@@ -195,7 +197,7 @@
                                 <label for="discrption" class="block mb-2 font-medium text-gray-700">Discrption
                                     :</label>
                                 <textarea id="" name="discrption"
-                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
+                                    class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500">{{ old('discrption') }}</textarea>
                                 @error('discrption')
                                     <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                                 @enderror
