@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategorieRequest extends FormRequest
+class UpdateCategorieRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +23,14 @@ class CategorieRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:categories,name',
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('categories', 'name')->ignore($this->categorie->id),
+            ],
             'image' => 'required',
             'club_id' => 'required|exists:clubs,id',
-            'discrption'=>'required|regex:/^[a-zA-Z-\w_\s\W]+$/',
+            'discrption' => 'required|regex:/^[a-zA-Z-\w_\s\W]+$/',
 
         ];
     }

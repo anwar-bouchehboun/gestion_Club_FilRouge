@@ -7,6 +7,7 @@ use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategorieRequest;
+use App\Http\Requests\UpdateCategorieRequest;
 
 class AdminCatgorieController extends Controller
 {
@@ -24,6 +25,7 @@ class AdminCatgorieController extends Controller
         $create = $categorieRequest->validated();
 
 
+
         //   dd($categorieRequest->all());
         if ($categorieRequest->hasFile('image')) {
             $imagePath = $categorieRequest->file('image')->store('image', 'public');
@@ -33,10 +35,13 @@ class AdminCatgorieController extends Controller
             'name' => $categorieRequest->name,
             'image' => $imagePath,
             'club_id' => $categorieRequest->club_id,
-            'discrption'=>$categorieRequest->discrption,
+            'discrption' => $categorieRequest->discrption,
         ]);
         if ($createClub) {
-            return redirect()->back()->with('success', 'categorie created');
+            return redirect()->back()->with([
+                'message' => 'Catégorie créée avec succès',
+                'success' => true,
+            ]);
         }
         // else {
         //     return redirect()->back()->with('error', 'Failed to create categorie');
@@ -44,11 +49,11 @@ class AdminCatgorieController extends Controller
 
     }
     // update catrgorie
-    public function update(CategorieRequest $categorieRequest, Categorie $categorie)
+    public function update(UpdateCategorieRequest $categorieRequest, Categorie $categorie)
     {
         // dd( $categorieRequest->all());
         $update = $categorieRequest->validated();
-        if(!$update){
+        if (!$update) {
             return redirect()->back()->with('info', 'Problem validtion');
 
         }
@@ -63,10 +68,13 @@ class AdminCatgorieController extends Controller
             'name' => $categorieRequest->name,
             'image' => $imagePath,
             'club_id' => $categorieRequest->club_id,
-            'discrption'=>$categorieRequest->discrption,
+            'discrption' => $categorieRequest->discrption,
         ]);
         if ($updateCategorie) {
-            return redirect()->back()->with('success', 'categorie update');
+            return redirect()->back()->with([
+                'message' => 'Catégorie modifiée avec succès',
+                'success' => true,
+            ]);
         }
 
     }

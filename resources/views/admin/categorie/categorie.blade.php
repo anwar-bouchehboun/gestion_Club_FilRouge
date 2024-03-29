@@ -1,25 +1,7 @@
 <x-app-layout>
     <x-slot name="solt">
         {{-- messg --}}
-        @if (session('success'))
-            <script>
-                Swal.fire({
-                    icon: "success",
-                    title: "Categorie",
-                    text: "{{ session('success') }}",
-
-                });
-            </script>
-        @endif
-        {{-- @if(session('error'))
-        <script>
-            Swal.fire({
-                icon: "error",
-                title: "Categorie",
-                text: "{{ session('error') }}",
-            });
-        </script>
-    @endif --}}
+        <x-sweet-alert />
 
 
         <div class="p-4 xl:ml-80">
