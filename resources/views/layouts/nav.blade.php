@@ -27,7 +27,7 @@
                             Club</a>
                     </li>
                     @auth
-                   
+
                         {{-- @if (Auth::check() && Auth::user()->role === 'client') --}}
 
                         <li>

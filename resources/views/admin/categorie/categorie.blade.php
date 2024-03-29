@@ -5,12 +5,23 @@
             <script>
                 Swal.fire({
                     icon: "success",
-                    title: "Noveau Categorie",
+                    title: "Categorie",
                     text: "{{ session('success') }}",
 
                 });
             </script>
         @endif
+        {{-- @if(session('error'))
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Categorie",
+                text: "{{ session('error') }}",
+            });
+        </script>
+    @endif --}}
+
+
         <div class="p-4 xl:ml-80">
             <div class="flex flex-wrap justify-between my-6 capitalize ">
                 <nav aria-label="breadcrumb" class="w-max">
@@ -128,6 +139,10 @@
 
             </div>
         </div>
+
+
+
+
         {{-- Modal insert --}}
         <div id="crud-modal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">

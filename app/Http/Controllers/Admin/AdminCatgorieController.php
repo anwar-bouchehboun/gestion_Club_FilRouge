@@ -21,24 +21,37 @@ class AdminCatgorieController extends Controller
     public function store(CategorieRequest $categorieRequest)
     {
 
-       $create= $categorieRequest->validated();
+        $create = $categorieRequest->validated();
+
+
         //   dd($categorieRequest->all());
         if ($categorieRequest->hasFile('image')) {
             $imagePath = $categorieRequest->file('image')->store('image', 'public');
 
         }
-        $createClub = Categorie::create($create);
+        $createClub = Categorie::create([
+            'name' => $categorieRequest->name,
+            'image' => $imagePath,
+            'club_id' => $categorieRequest->club_id,
+            'discrption'=>$categorieRequest->discrption,
+        ]);
         if ($createClub) {
             return redirect()->back()->with('success', 'categorie created');
-
         }
+        // else {
+        //     return redirect()->back()->with('error', 'Failed to create categorie');
+        // }
 
     }
     // update catrgorie
     public function update(CategorieRequest $categorieRequest, Categorie $categorie)
     {
         // dd( $categorieRequest->all());
-    $update=    $categorieRequest->validated();
+        $update = $categorieRequest->validated();
+        if(!$update){
+            return redirect()->back()->with('info', 'Problem validtion');
+
+        }
 
         if ($categorieRequest->hasFile('image')) {
             $imagePath = $categorieRequest->file('image')->store('image', 'public');
@@ -46,9 +59,14 @@ class AdminCatgorieController extends Controller
         } else {
             $imagePath = $categorieRequest->input('image');
         }
-        $updateCategorie = $categorie->update($update );
+        $updateCategorie = $categorie->update([
+            'name' => $categorieRequest->name,
+            'image' => $imagePath,
+            'club_id' => $categorieRequest->club_id,
+            'discrption'=>$categorieRequest->discrption,
+        ]);
         if ($updateCategorie) {
-            return redirect()->back()->with('success', 'Club update');
+            return redirect()->back()->with('success', 'categorie update');
         }
 
     }
@@ -57,7 +75,7 @@ class AdminCatgorieController extends Controller
     {
 
         $categorie->delete();
-        return redirect()->back()->with('success', 'Club Delleting');
+        return redirect()->back()->with('success', 'Categorie Delleting');
 
     }
 }
