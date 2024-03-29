@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class SousCategorieRequest extends FormRequest
+class UpdateSousCategorieRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +23,12 @@ class SousCategorieRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>'required|string|unique:souscategories,name',
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('souscategories', 'name')->ignore($this->souscategorie->id),
+            ],
+
             'image'=>'required',
             'price'=>'required|integer',
             'categorie_id'=>'required|exists:categories,id',

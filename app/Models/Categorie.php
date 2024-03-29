@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Categorie extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
+    protected $cascadeDeletes = ['categorie'];
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'name',
@@ -19,6 +22,9 @@ class Categorie extends Model
     ];
     public function club(){
         return $this->belongsTo(Club::class,'club_id');
+    }
+    public function souscategorie(){
+        return $this->hasMany(Souscategorie::class,'categorie_id');
     }
 
 }
