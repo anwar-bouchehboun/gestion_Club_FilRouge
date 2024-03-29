@@ -9,7 +9,7 @@ class StripeController extends Controller
 {
     public function session(Request $request)
     {
-        // dd($request->get('price'));
+        dd($request->get('price'));
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
         $totalprice = $request->get('price');
         $two0 = "00";

@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SouscategorieController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\Admin\AdminCatgorieController;
+use App\Http\Controllers\Admin\AdminSousCategorieController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 
@@ -33,18 +34,22 @@ Route::get('souscategorie/show', [SouscategorieController::class, 'show']);
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/Dashbord', [AdminControlle::class, 'index'])->name('Dashbord');
     Route::resource('/Dashbord/categorie', AdminCatgorieController::class);
+    Route::resource('/Dashbord/souscategorie', AdminSousCategorieController::class);
     Route::resource('/Dashbord/event', AdminEventController::class);
     Route::resource('/Dashbord/user', AdminUserController::class);
     Route::resource('/Dashbord/club', AdminClubControlle::class);
+
 });
-
-
-
+// logout
+Route::middleware('auth')->group(function () {
+    Route::post('logout', [LoginController::class, 'destroy'])
+    ->name('logout');
+});
+// client
 Route::middleware(['auth', 'role:client'])->group(function () {
     Route::post('/session', [StripeController::class, 'session'])->name('session');
     Route::get('/success', [StripeController::class, 'success'])->name('success');
-    Route::post('logout', [LoginController::class, 'destroy'])
-        ->name('logout');
+
 });
 
 

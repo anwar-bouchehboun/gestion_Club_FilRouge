@@ -9,11 +9,13 @@ use Illuminate\Http\RedirectResponse;
 
 class LoginController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         return view('auth.login');
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
@@ -37,11 +39,7 @@ class LoginController extends Controller
     {
         $user = Auth::guard('web')->user();
 
-        if ($user && $user->getRememberToken()) {
 
-            $user->setRememberToken(null);
-            $user->save();
-        }
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
