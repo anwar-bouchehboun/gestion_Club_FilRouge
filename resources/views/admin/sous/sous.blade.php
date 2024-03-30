@@ -13,8 +13,8 @@
                             class="flex items-center font-sans text-sm antialiased font-normal leading-normal transition-colors duration-300 cursor-pointer text-blue-gray-900 hover:text-light-blue-500">
                             <a href="#">
                                 <p
-                                    class="block font-sans text-4xl antialiased font-bold leading-normal text-black uppercase transition-all ">
-                                    Add Categorie</p>
+                                    class="block font-sans text-3xl antialiased font-bold leading-normal text-[#24B49A] uppercase transition-all ">
+                                    Add SousCategorie</p>
                             </a>
 
                         </li>
@@ -83,7 +83,7 @@
                                     <td class="px-6 py-4">
                                         {{-- {{ $souscategorie->price}} $ --}}
                                         <img src="../storage/{{ $souscategorie->image }}" alt=" image sousceategorie "
-                                            class="w-24 h-24 mb-3 rounded-full shadow-lg">
+                                            class="w-16 h-16 mb-3 rounded-full shadow-lg ">
                                     </td>
 
 

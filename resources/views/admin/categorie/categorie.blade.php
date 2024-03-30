@@ -13,7 +13,7 @@
                             class="flex items-center font-sans text-sm antialiased font-normal leading-normal transition-colors duration-300 cursor-pointer text-blue-gray-900 hover:text-light-blue-500">
                             <a href="#">
                                 <p
-                                    class="block font-sans text-4xl antialiased font-bold leading-normal text-black uppercase transition-all ">
+                                    class="block font-sans text-3xl antialiased font-bold leading-normal text-[#24B49A] uppercase transition-all ">
                                     Add Categorie</p>
                             </a>
 
