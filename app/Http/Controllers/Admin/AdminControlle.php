@@ -12,6 +12,7 @@ class AdminControlle extends Controller
 {
     public function index()
     {
+        //Stistique Chart js
         $clubs = Club::with('categorie')->count();
         $Notcategorie = Club::whereDoesntHave('categorie')->count();
         $categorie = Categorie::with('souscategorie')->count();
