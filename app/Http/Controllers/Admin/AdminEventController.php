@@ -8,6 +8,8 @@ use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventRequest;
+use App\Http\Requests\StoreImageRequest;
+use App\Http\Requests\UpdateEventRequest;
 
 class AdminEventController extends Controller
 {
@@ -15,24 +17,52 @@ class AdminEventController extends Controller
     {
         $clubs = Club::all();
         // $categories=Categorie::paginate(3);
-         $events = Event::with('club')->orderBy('id', 'desc')->paginate(3);
+        $events = Event::with('club')->orderBy('id', 'desc')->paginate(3);
         // dd($events);
-        return view('admin.Event.event', compact('clubs','events'));
+        return view('admin.Event.event', compact('clubs', 'events'));
     }
-
-    public function store(StoreEventRequest $storeEventRequest)
+    // insert event
+    public function store(StoreEventRequest $storeEventRequest, StoreImageRequest $storeImageRequest)
     {
-        $validate=$storeEventRequest->validated();
-        // $twoDaysAfter = Carbon::yesterday()->diffForHumans();
-        // dd($twoDaysAfter);
-        $crateevent=Event::create($validate);
-        if ($crateevent) {
+        $validate = $storeEventRequest->validated();
+        $validateimage = $storeImageRequest->validated();
+        if ($storeImageRequest->hasFile('image')) {
+            $crateevent = Event::create($validate);
+            foreach ($storeImageRequest->file('image') as $image) {
+                $path = $image->store('image', 'public');
+                $crateevent->image()->create([
+                    // 'path' => $path,
+                    'image' => $path,
+                ]);
+            }
+
             return redirect()->back()->with([
                 'message' => 'Event créée avec succès',
                 'success' => true,
             ]);
         }
 
+    }
+    // update
+    public function update(Event $event, UpdateEventRequest $updateEventRequest, StoreImageRequest $storeImageRequest)
+    {
+
+        $validatedData = $updateEventRequest->validated();
+        $event->update($validatedData);
+
+        if ($storeImageRequest->hasFile('image')) {
+            foreach ($storeImageRequest->file('image') as $image) {
+                $path = $image->store('image', 'public');
+                $event->image()->create([
+                    'image' => $path,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with([
+            'message' => 'Event mis à jour avec succès',
+            'success' => true,
+        ]);
     }
 
 

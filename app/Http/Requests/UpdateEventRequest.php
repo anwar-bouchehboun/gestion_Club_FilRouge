@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEventRequest extends FormRequest
+class UpdateEventRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +23,11 @@ class StoreEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:events,name',
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('events', 'name')->ignore($this->event->id),
+            ],
             'prix' => 'integer|required',
            'date'=> 'required|date|after:today',
             'local' => 'required|string',

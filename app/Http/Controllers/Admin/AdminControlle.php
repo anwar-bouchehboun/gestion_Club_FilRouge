@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Club;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Models\Event;
 use App\Models\Categorie;
+use Illuminate\Http\Request;
+use App\Models\Souscategorie;
+use App\Http\Controllers\Controller;
+
 // use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class AdminControlle extends Controller
@@ -13,11 +16,12 @@ class AdminControlle extends Controller
     public function index()
     {
         //Stistique Chart js
-        $clubs = Club::with('categorie')->count();
-        $Notcategorie = Club::whereDoesntHave('categorie')->count();
-        $categorie = Categorie::with('souscategorie')->count();
-        $notSouscategorie = Categorie::whereDoesntHave('souscategorie')->count();
-         $data="['club',".$clubs."],['ClubNotcategorie',".$Notcategorie."],['categorie',".$categorie."],['notSouscategorie',".$notSouscategorie."]";
+        $clubs = Club::count();
+        $events = Event::count();
+        // $Notcategorie = Club::whereDoesntHave('categorie')->count();
+        $categorie = Categorie::count();
+        $Souscategorie = Souscategorie::count();
+         $data="['club',".$clubs."],['categorie',".$categorie."],['Souscategorie',".$Souscategorie."],['Events',".$events."]";
         return view('admin.dashbord', compact('data'));
     }
 }
