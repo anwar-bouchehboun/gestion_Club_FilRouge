@@ -178,20 +178,20 @@
             <div class="flex flex-wrap md:flex-row">
                 <div class=" md:max-w-50 max-w-44">
                     {{-- <div class=""> --}}
-                        {{-- <div class="col-md-2"> --}}
-                            {{-- <div class="card"> --}}
+                    {{-- <div class="col-md-2"> --}}
+                    {{-- <div class="card"> --}}
 
 
-                                <div class="card-body">
-                                    <div id="piechart_3d" style="width: 300px; height: 300px;"></div>
+                    <div class="card-body">
+                        <div id="piechart_3d" style="width: 350px; height: 300px;"></div>
 
-                                    {{-- <h1 class="text-[#24B49A] text-2xl font-medium uppercase">{{ $clients->options['chart_title'] }}</h1>
+                        {{-- <h1 class="text-[#24B49A] text-2xl font-medium uppercase">{{ $clients->options['chart_title'] }}</h1>
                                     {!! $clients->renderHtml() !!} --}}
 
-                                </div>
+                    </div>
 
-                            {{-- </div> --}}
-                        {{-- </div> --}}
+                    {{-- </div> --}}
+                    {{-- </div> --}}
                     {{-- </div> --}}
                     {{-- {!! $clients->renderChartJsLibrary() !!}
                     {!! $clients->renderJs() !!} --}}
@@ -219,6 +219,10 @@
         var options = {
             title: 'Satistique Club',
             is3D: true,
+            curveType: 'function',
+          legend: { position: 'bottom' }
+
+
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));

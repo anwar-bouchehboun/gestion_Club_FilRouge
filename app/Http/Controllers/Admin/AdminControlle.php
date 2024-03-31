@@ -17,6 +17,6 @@ class AdminControlle extends Controller
         $categorie = Categorie::with('souscategorie')->count();
         $notSouscategorie = Categorie::whereDoesntHave('souscategorie')->count();
          $data="['club',".$clubs."],['ClubNotcategorie',".$Notcategorie."],['categorie',".$categorie."],['notSouscategorie',".$notSouscategorie."]";
-        return view('admin.dashbord', compact('clients','data'));
+        return view('admin.dashbord', compact('data'));
     }
 }
