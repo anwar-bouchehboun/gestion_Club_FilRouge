@@ -36,8 +36,9 @@
 <script>
     var container = document.getElementById('image-container');
 
-    var containers = document.getElementById('image-containers');
+    // var containers = document.getElementById('image-containers');
     function addImage() {
+        console.log("ee");
         var newInput = document.createElement('input');
         newInput.type = 'file';
         newInput.name = 'image[]'; // Use 'images[]' to match the existing input
@@ -47,20 +48,8 @@
             'file:border-0', 'file:text-sm', 'file:font-semibold', 'file:bg-blue-50', 'file:text-blue-700',
             'hover:file:bg-blue-100');
 
-        // container.appendChild(newInput);
-        containers.appendChild(newInput);
+         container.appendChild(newInput);
+        // containers.appendChild(newInput);
     }
-    // function addImages() {
-    //     var newInput = document.createElement('input');
-    //     newInput.type = 'file';
-    //     newInput.name = 'image[]'; // Use 'images[]' to match the existing input
-    //     newInput.required = true;
-    //     newInput.classList.add('block', 'border-gray-300', 'py-[8px]', 'w-full', 'bg-white', 'rounded-lg', 'text-sm',
-    //         'text-slate-500', 'file:mr-4', 'file:py-2', 'file:ml-2', 'file:px-4', 'file:rounded-md',
-    //         'file:border-0', 'file:text-sm', 'file:font-semibold', 'file:bg-blue-50', 'file:text-blue-700',
-    //         'hover:file:bg-blue-100');
 
-    //     // container.appendChild(newInput);
-    //     containers.appendChild(newInput);
-    // }
 </script>
