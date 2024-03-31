@@ -7,24 +7,30 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Categorie extends Model
+class Event extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
-    protected $cascadeDeletes = ['souscategorie'];
+    protected $cascadeDeletes = ['image'];
 
     protected $dates = ['deleted_at'];
 
+
     protected $fillable = [
         'name',
-        'image',
+        'prix',
+        'date',
+        'local',
         'club_id',
         'discrption',
     ];
+
+
+
+
+    public function image(){
+        return $this->hasMany(Image::class,'event_id');
+    }
     public function club(){
         return $this->belongsTo(Club::class,'club_id');
     }
-    public function souscategorie(){
-        return $this->hasMany(Souscategorie::class,'categorie_id');
-    }
-
 }
