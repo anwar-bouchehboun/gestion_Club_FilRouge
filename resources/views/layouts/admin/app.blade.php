@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -21,17 +20,16 @@
 </head>
 
 <body>
-    <main  class="">
+    <main class="">
         @include('layouts.admin.side')
 
-    {{ $solt }}
+        {{ $solt }}
 
-</main>
-
-
+    </main>
 
 
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </body>
 
 </html>

@@ -12,8 +12,8 @@
                                     class="flex items-center font-sans text-sm antialiased font-normal leading-normal transition-colors duration-300 cursor-pointer text-blue-gray-900 hover:text-light-blue-500">
                                     <a href="#">
                                         <p
-                                        class="block font-sans text-3xl antialiased font-bold leading-normal text-[#24B49A] uppercase transition-all ">
-                                        dashboard</p>
+                                            class="block font-sans text-3xl antialiased font-bold leading-normal text-[#24B49A] uppercase transition-all ">
+                                            dashboard</p>
                                     </a>
 
                                 </li>
@@ -175,7 +175,53 @@
 
 
             </div>
+            <div class="flex flex-wrap md:flex-row">
+                <div class=" md:max-w-50 max-w-44">
+                    {{-- <div class=""> --}}
+                        {{-- <div class="col-md-2"> --}}
+                            {{-- <div class="card"> --}}
+
+
+                                <div class="card-body">
+                                    <div id="piechart_3d" style="width: 300px; height: 300px;"></div>
+
+                                    {{-- <h1 class="text-[#24B49A] text-2xl font-medium uppercase">{{ $clients->options['chart_title'] }}</h1>
+                                    {!! $clients->renderHtml() !!} --}}
+
+                                </div>
+
+                            {{-- </div> --}}
+                        {{-- </div> --}}
+                    {{-- </div> --}}
+                    {{-- {!! $clients->renderChartJsLibrary() !!}
+                    {!! $clients->renderJs() !!} --}}
+                </div>
+
+
+            </div>
 
         </div>
+
     </x-slot>
 </x-app-layout>
+<script type="text/javascript">
+    google.charts.load("current", {
+        packages: ["corechart"]
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['club', 'STATSITIQUE'],
+            <?php echo $data; ?>
+        ]);
+
+        var options = {
+            title: 'Satistique Club',
+            is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+    }
+</script>
