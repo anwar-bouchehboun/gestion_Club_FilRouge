@@ -220,7 +220,7 @@
             title: 'Satistique Club',
             is3D: true,
             curveType: 'function',
-          legend: { position: 'bottom' }
+          legend: { position: 'bottom' },
 
 
         };
