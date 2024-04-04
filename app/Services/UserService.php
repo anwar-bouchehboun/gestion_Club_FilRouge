@@ -1,10 +1,12 @@
 <?php
 namespace App\Services;
-use App\Repositories\RepositoryInterface;
+
+use App\Interface\AuthInterface;
+
 class UserService
 {
     public function __construct(
-        protected RepositoryInterface $clientRepository
+        protected AuthInterface $clientRepository
     ) {
     }
 
@@ -13,7 +15,7 @@ class UserService
         return $this->clientRepository->create($data);
     }
 
-    public function update(array $data, $id)
+    public function update($id,array $data)
     {
         return $this->clientRepository->update($data, $id);
     }

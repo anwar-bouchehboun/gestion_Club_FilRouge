@@ -2,14 +2,19 @@
 
 namespace App\Providers;
 
-use App\Repositories\ClubInterface;
+use App\Interface\AuthInterface;
+use App\Interface\CategorieInterface;
+use App\Interface\ClubInterface;
+use App\Repositories\CategorieRepository;
 use App\Repositories\ClubRepository;
-use App\Repositories\RepositoryInterface;
-use App\Repositories\UserRepository;
-use App\Services\ClubServices;
 use App\Services\UserService;
+use App\Services\ClubServices;
+use App\Repositories\UserRepository;
+use App\Services\CateogireServices;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+
+// use App\Repositories\RepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,14 +23,22 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        app()->bind(RepositoryInterface::class, UserRepository::class);
+        // user
+        app()->bind(AuthInterface::class, UserRepository::class);
         app()->bind(UserService::class, function ($app) {
-            return new UserService($app->make(RepositoryInterface::class));
+            return new UserService($app->make(AuthInterface::class));
         });
+        //club
         app()->bind(ClubInterface::class, ClubRepository::class);
         app()->bind(ClubServices::class, function ($app) {
             return new ClubServices($app->make(ClubInterface::class));
         });
+        // categorie
+        app()->bind(CategorieInterface::class,CategorieRepository::class);
+        app()->bind(CateogireServices::class, function ($app) {
+            return new CateogireServices($app->make(CategorieInterface::class));
+        });
+
     }
 
     /**

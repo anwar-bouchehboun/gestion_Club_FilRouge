@@ -17,65 +17,86 @@ class AdminClubControlle extends Controller
     ) {
     }
 
-
     public function index()
     {
-        // $clubs = Club::all();
-        $clubs = Club::orderBy('id', 'desc')->paginate(5);
+        $clubs = $this->clubService->all();
         return view('admin.club.club', compact('clubs'));
     }
     // crate Club
     public function store(ClubRequest $clubRequest)
     {
 
-        $data = $clubRequest->validated();
-        if ($clubRequest->hasFile('image')) {
-            $data['image'] = $clubRequest->file('image')->store('image', 'public');
-        }
-        $createClub = $this->clubService->create($data);
+        try {
+            $data = $clubRequest->validated();
+            if ($clubRequest->hasFile('image')) {
+                $data['image'] = $clubRequest->file('image')->store('image', 'public');
+            }
+            // create Club
+            $createClub = $this->clubService->create($data);
 
-        if ($createClub) {
+            if ($createClub) {
+                return redirect()->back()->with([
+                    'message' => 'club créée avec succès',
+                    'success' => true,
+                ]);
 
+            }
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                'message' => 'club créée avec succès',
-                'success' => true,
+                'message' => 'Une erreur s\'est produite lors de la création du club. Veuillez réessayer.',
+                'success' => false,
             ]);
-
         }
+
 
     }
     //  Update club
     public function update(UpdateClubRequest $clubRequest, Club $club)
     {
-        $id = $club->id;
-        $data = $clubRequest->validated();
-        if ($clubRequest->hasFile('image')) {
-            $data['image'] = $clubRequest->file('image')->store('image', 'public');
+        try {
+            $id = $club->id;
+            $data = $clubRequest->validated();
+            if ($clubRequest->hasFile('image')) {
+                $data['image'] = $clubRequest->file('image')->store('image', 'public');
 
-        } else {
-            $data['image'] = $clubRequest->input('image');
-        }
+            } else {
+                $data['image'] = $clubRequest->input('image');
+            }
 
-        $updateClub = $this->clubService->update($data, $id);
-        if ($updateClub) {
+            $updateClub = $this->clubService->update($data, $id);
+            if ($updateClub) {
+                return redirect()->back()->with([
+                    'message' => 'Club modifiée avec succès',
+                    'success' => true,
+                ]);
+
+            }
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                'message' => 'Club modifiée avec succès',
-                'success' => true,
+                'message' => 'Une erreur s\'est produite lors de la Modification  du club. Veuillez réessayer.',
+                'success' => false,
             ]);
-
         }
+
 
     }
     // delete club
     public function destroy(Club $club)
     {
 
-        $this->clubService->delete($club->id);
-        // $club->delete();
-        return redirect()->back()->with([
-            'message' => 'club supprimer avec succès',
-            'success' => true,
-        ]);
+        try {
+            $this->clubService->delete($club->id);
+            return redirect()->back()->with([
+                'message' => 'club supprimer avec succès',
+                'success' => true,
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with([
+                'message' => 'Une erreur s\'est produite lors de la Supprimer  du club. Veuillez réessayer.',
+                'success' => false,
+            ]);
+        }
+
 
     }
 }

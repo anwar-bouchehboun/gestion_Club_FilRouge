@@ -1,11 +1,9 @@
 <?php
+namespace App\Interface;
 
-namespace App\Repositories;
 
-interface RepositoryInterface
-{
-  
 
+interface AuthInterface{
     public function find($id);
 
     public function create(array $data);

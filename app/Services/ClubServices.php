@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Club;
-use App\Repositories\ClubInterface;
+use App\Interface\ClubInterface;
 
 
 class ClubServices
@@ -33,10 +33,10 @@ class ClubServices
         return $this->clubtRepository->delete($id);
     }
 
-    // public function all()
-    // {
-    //     return $this->clientRepository->all();
-    // }
+    public function all()
+    {
+        return $this->clubtRepository->all();
+    }
 
     public function find($id)
     {

@@ -8,14 +8,27 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategorieRequest;
 use App\Http\Requests\UpdateCategorieRequest;
+use App\Services\CateogireServices;
 
 class AdminCatgorieController extends Controller
 {
+
+
+    public function __construct(protected CateogireServices $cateogireServices)
+    {
+
+    }
+
+
+
     public function index()
     {
-        $clubs = Club::all();
-        // $categories=Categorie::paginate(3);
-        $categories = Categorie::with('club')->orderBy('id', 'desc')->paginate(3);
+     
+        $categories = $this->cateogireServices->all();
+        $clubs = $this->cateogireServices->club();
+        // $clubs = $data['clubs'];
+        // $categories = $data['categories'];
+
         // dd($categories);
         return view('admin.categorie.categorie', compact('clubs', 'categories'));
     }

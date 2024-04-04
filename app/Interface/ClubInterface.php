@@ -1,12 +1,10 @@
 <?php
+namespace App\Interface;
 
-namespace App\Repositories;
 
-use App\Models\Club;
 
-interface ClubInterface
-{
-
+interface ClubInterface{
+    public function all();
 
     public function find($id);
 

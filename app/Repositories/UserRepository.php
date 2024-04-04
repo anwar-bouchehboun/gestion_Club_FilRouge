@@ -2,10 +2,12 @@
 
 namespace App\Repositories;
 
+use App\Interface\AuthInterface;
 use App\Models\Client;
 use App\Models\User;
 
-class UserRepository implements RepositoryInterface
+
+class UserRepository implements AuthInterface
 {
     protected $user;
 
