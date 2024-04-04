@@ -19,21 +19,29 @@
                             @csrf
                             <div>
                                 <x-input-label for="name" :value="__('Name')" />
+                                <div class="relative ">
+                                    <input type="text" name="name" id="name" value="{{ old('name') }}"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Name">
+                                    <span id="nameIcon"
+                                        class="absolute text-gray-400 transform -translate-y-1/2 right-3 top-1/2"></span>
 
-                                {{-- <label for="name" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Name</label> --}}
-                                <input type="text" name="name" id="name" value="{{ old('name') }}"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Name">
+                                </div>
+
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
 
                             </div>
                             <div>
                                 <x-input-label for="email" :value="__('Email')" />
 
-                                {{-- <label for="email" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Your email</label> --}}
-                                <input type="email" name="email" id="email" value="{{ old('email') }}"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="name@company.com">
+                                <div class="relative ">
+                                    <input type="text" name="email" id="email" value="{{ old('email') }}"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="name@company.com">
+                                    <span id="emailIcon"
+                                        class="absolute text-gray-400 transform -translate-y-1/2 right-3 top-1/2"></span>
+
+                                </div>
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
 
                             </div>
@@ -59,9 +67,14 @@
                             <div>
                                 <x-input-label for="image" :value="__('Image')" />
 
-                                {{-- <label for="image" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Image</label> --}}
-                                <input type="file" name="image"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   ">
+                                <div class="relative ">
+                                    <input type="file" name="image" id="image" onchange="validateImage()"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   ">
+                                        <span id="imageIcon"
+                                        class="absolute text-gray-400 transform -translate-y-1/2 right-3 top-1/2"></span>
+
+                                    </div>
+
                                 <x-input-error :messages="$errors->get('image')" class="mt-2" />
 
                             </div>
@@ -79,3 +92,4 @@
 
     </x-slot>
 </x-goust-layout>
+<script src="/assets/js/RegisterVlidation.js"></script>
