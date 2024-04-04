@@ -6,38 +6,34 @@ use App\Models\User;
 use App\Models\Client;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Services\UserService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreClientCompte;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\Rules\Password;
 use PHPUnit\Framework\MockObject\ReturnValueNotConfiguredException;
 
 class RegisterController extends Controller
 {
+    public function __construct(
+        protected UserService $userService
+    ) {
+    }
+
+
     public function create(): View
     {
         return view('auth.register');
     }
-    public function store(Request $request)
+    public function store(StoreClientCompte $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Password::defaults()],
-            // 'role'=>'required'
-            'image' => 'required',
-
-        ]);
+        $data = $request->validated();
+        $data['password'] = Hash::make($request->password);
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('image', 'public');
+            $data['image'] = $request->file('image')->store('image', 'public');
         }
-
-        Client::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'image' => $validated['image']
-        ]);
+        $client = $this->userService->create($data);
 
         // Alert::success('Succes', 'Compte has been Create');
         return redirect()->route('login.index')->with('success', 'Compte has been created');
