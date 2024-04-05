@@ -18,7 +18,7 @@ class SousCategorieRepository implements SousCategorieInterface
 
     public function all()
     {
-        return Souscategorie::with('categorie')->orderBy('id', 'desc')->paginate(4);
+        return Souscategorie::with('categorie')->orderBy('id', 'desc')->paginate(3);
 
     }
     public function categorie()

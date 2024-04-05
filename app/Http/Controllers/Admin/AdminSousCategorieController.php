@@ -86,7 +86,7 @@ class AdminSousCategorieController extends Controller
 
         try {
             $this->sousCategorieServices->delete($souscategorie->id);
-            return redirect()->back()->with([
+            return redirect()->route('souscategorie.index')->with([
                 'message' => 'Souscategorie supprimer avec succès',
                 'success' => true,
             ]);

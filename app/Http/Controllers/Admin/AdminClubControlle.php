@@ -86,7 +86,7 @@ class AdminClubControlle extends Controller
 
         try {
             $this->clubService->delete($club->id);
-            return redirect()->back()->with([
+            return redirect()->route('club.index')->with([
                 'message' => 'club supprimer avec succès',
                 'success' => true,
             ]);

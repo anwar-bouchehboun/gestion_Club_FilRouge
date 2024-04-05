@@ -19,7 +19,7 @@ class EventRepositroy implements EventInterface
     }
     public function all()
     {
-        return Event::with('club')->orderBy('id', 'desc')->paginate(3);
+        return Event::with('club')->orderBy('id', 'desc')->paginate(4);
     }
 
     public function club()
@@ -37,12 +37,28 @@ class EventRepositroy implements EventInterface
 
     public function update(UpdateEventRequest $updateEventRequest, StoreImageRequest $storeImageRequest, $id)
     {
+        $validatedData = $updateEventRequest->validated();
+       $event=Event::findOrFail($id);
+
+        $event->update($validatedData);
+
+        if ($storeImageRequest->hasFile('image')) {
+            foreach ($storeImageRequest->file('image') as $image) {
+                $path = $image->store('image', 'public');
+                $id->image()->create([
+                    'image' => $path,
+                ]);
+            }
+        }
+
 
     }
 
     public function delete($id)
     {
-
+        $event = $this->event->findOrFail($id);
+        $event->delete();
+        return $event;
     }
 
     public function store(StoreEventRequest $storeEventRequest, StoreImageRequest $storeImageRequest)
@@ -55,7 +71,7 @@ class EventRepositroy implements EventInterface
             $crateevent = Event::create($validate);
             foreach ($storeImageRequest->file('image') as $image) {
                 $path = $image->store('image', 'public');
-                $v = $crateevent->image()->create([
+              $crateevent->image()->create([
                     // 'path' => $path,
                     'image' => $path,
                 ]);

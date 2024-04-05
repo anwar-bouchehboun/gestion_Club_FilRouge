@@ -92,12 +92,12 @@ class AdminCatgorieController extends Controller
         try {
             $this->cateogireServices->delete($categorie->id);
 
-            return redirect()->back()->with([
+            return redirect()->route('categorie.index')->with([
                 'message' => 'Catégorie Suppimer avec succès',
                 'success' => true,
             ]);
         } catch (\Throwable $th) {
-            return redirect()->back()->with([
+            return redirect()->route('categorie.index')->with([
                 'message' => 'Une erreur s\'est  lors de la Supprimer  du club. Veuillez réessayer.',
                 'success' => false,
             ]);

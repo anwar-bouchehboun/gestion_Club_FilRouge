@@ -14,26 +14,27 @@ use App\Http\Requests\UpdateEventRequest;
 
 class AdminEventController extends Controller
 {
-    public function __construct(protected EventServices $eventServices){
+    public function __construct(protected EventServices $eventServices)
+    {
 
     }
     public function index()
     {
-        $clubs = Club::all();
+        $clubs = $this->eventServices->club();
 
-        $events =$this->eventServices->all();
+        $events = $this->eventServices->all();
 
         return view('admin.Event.event', compact('clubs', 'events'));
     }
     // insert event
     public function store(StoreEventRequest $storeEventRequest, StoreImageRequest $storeImageRequest)
     {
-              $this->eventServices->store($storeEventRequest,$storeImageRequest);
+        $this->eventServices->store($storeEventRequest, $storeImageRequest);
 
-            return redirect()->back()->with([
-                'message' => 'Event créée avec succès',
-                'success' => true,
-            ]);
+        return redirect()->back()->with([
+            'message' => 'Event créée avec succès',
+            'success' => true,
+        ]);
         // }
 
     }
@@ -41,17 +42,7 @@ class AdminEventController extends Controller
     public function update(Event $event, UpdateEventRequest $updateEventRequest, StoreImageRequest $storeImageRequest)
     {
 
-        $validatedData = $updateEventRequest->validated();
-        $event->update($validatedData);
-
-        if ($storeImageRequest->hasFile('image')) {
-            foreach ($storeImageRequest->file('image') as $image) {
-                $path = $image->store('image', 'public');
-                $event->image()->create([
-                    'image' => $path,
-                ]);
-            }
-        }
+        $this->eventServices->update($updateEventRequest,$storeImageRequest,$event->id);
 
         return redirect()->back()->with([
             'message' => 'Event mis à jour avec succès',
@@ -64,8 +55,8 @@ class AdminEventController extends Controller
     public function destroy(Event $event)
     {
 
-        $event->delete();
-        return redirect()->back()->with([
+       $this->eventServices->delete($event->id);
+        return redirect()->route('event.index')->with([
             'message' => 'Event Suppimer avec succès',
             'success' => true,
         ]);
