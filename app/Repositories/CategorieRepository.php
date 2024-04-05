@@ -1,35 +1,47 @@
 <?php
 namespace App\Repositories;
+
 use App\Models\Club;
 use App\Models\Categorie;
 use App\Interface\CategorieInterface;
 
-class CategorieRepository implements CategorieInterface{
+class CategorieRepository implements CategorieInterface
+{
     protected $categorie;
-    public function __construct(Categorie $categorie){
-        $this->categorie=$categorie;
+    public function __construct(Categorie $categorie)
+    {
+        $this->categorie = $categorie;
     }
-    public function all(){
-
+    public function all()
+    {
         return Categorie::with('club')->orderBy('id', 'desc')->paginate(3);
 
     }
-   public function club(){
-    return Club::all();
-   }
-    public function find($id){
-
+    public function club()
+    {
+        return Club::all();
+    }
+    public function find($id)
+    {
+        return $this->categorie->find($id);
     }
 
-    public function create(array $data){
-
+    public function create(array $data)
+    {
+        return $this->categorie->create($data);
     }
 
-    public function update(array $data,$id){
-
+    public function update(array $data, $id)
+    {
+        $categorie = $this->categorie->findOrFail($id);
+        $categorie->update($data);
+        return $categorie;
     }
 
-    public function delete($id){
-
+    public function delete($id)
+    {
+        $categorie = $this->categorie->findOrFail($id);
+        $categorie->delete();
+        return $categorie;
     }
 }

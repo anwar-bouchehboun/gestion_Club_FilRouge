@@ -23,7 +23,7 @@ class AdminCatgorieController extends Controller
 
     public function index()
     {
-     
+
         $categories = $this->cateogireServices->all();
         $clubs = $this->cateogireServices->club();
         // $clubs = $data['clubs'];
@@ -34,56 +34,53 @@ class AdminCatgorieController extends Controller
     }
     public function store(CategorieRequest $categorieRequest)
     {
+        try {
+            $data = $categorieRequest->validated();
+            if ($categorieRequest->hasFile('image')) {
+                $data['image'] = $categorieRequest->file('image')->store('image', 'public');
 
-        $create = $categorieRequest->validated();
-
-
-
-        //   dd($categorieRequest->all());
-        if ($categorieRequest->hasFile('image')) {
-            $imagePath = $categorieRequest->file('image')->store('image', 'public');
-
-        }
-        $createClub = Categorie::create([
-            'name' => $categorieRequest->name,
-            'image' => $imagePath,
-            'club_id' => $categorieRequest->club_id,
-            'discrption' => $categorieRequest->discrption,
-        ]);
-        if ($createClub) {
+            }
+            $createClub = $this->cateogireServices->create($data);
+            if ($createClub) {
+                return redirect()->back()->with([
+                    'message' => 'Catégorie créée avec succès',
+                    'success' => true,
+                ]);
+            }
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                'message' => 'Catégorie créée avec succès',
-                'success' => true,
+                'message' => 'Une erreur s\'est produite lors de la création du categorie. Veuillez réessayer.',
+                'success' => false,
             ]);
         }
-        // else {
-        //     return redirect()->back()->with('error', 'Failed to create categorie');
-        // }
+
+
 
     }
     // update catrgorie
     public function update(UpdateCategorieRequest $categorieRequest, Categorie $categorie)
     {
-        // dd( $categorieRequest->all());
-        $update = $categorieRequest->validated();
 
+        try {
+            $data = $categorieRequest->validated();
+            if ($categorieRequest->hasFile('image')) {
+                $data['image'] = $categorieRequest->file('image')->store('image', 'public');
 
-        if ($categorieRequest->hasFile('image')) {
-            $imagePath = $categorieRequest->file('image')->store('image', 'public');
+            } else {
+                $data['image'] = $categorieRequest->input('image');
+            }
+            $updateCategorie = $this->cateogireServices->update($data, $categorie->id);
 
-        } else {
-            $imagePath = $categorieRequest->input('image');
-        }
-        $updateCategorie = $categorie->update([
-            'name' => $categorieRequest->name,
-            'image' => $imagePath,
-            'club_id' => $categorieRequest->club_id,
-            'discrption' => $categorieRequest->discrption,
-        ]);
-        if ($updateCategorie) {
+            if ($updateCategorie) {
+                return redirect()->back()->with([
+                    'message' => 'Catégorie modifiée avec succès',
+                    'success' => true,
+                ]);
+            }
+        } catch (\Throwable $th) {
             return redirect()->back()->with([
-                'message' => 'Catégorie modifiée avec succès',
-                'success' => true,
+                'message' => 'Une erreur s\'est produite lors de la Modifiection du categorie. Veuillez réessayer.',
+                'success' => false,
             ]);
         }
 
@@ -92,11 +89,19 @@ class AdminCatgorieController extends Controller
     public function destroy(Categorie $categorie)
     {
 
-        $categorie->delete();
-        return redirect()->back()->with([
-            'message' => 'Catégorie Suppimer avec succès',
-            'success' => true,
-        ]);
+        try {
+            $this->cateogireServices->delete($categorie->id);
+
+            return redirect()->back()->with([
+                'message' => 'Catégorie Suppimer avec succès',
+                'success' => true,
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with([
+                'message' => 'Une erreur s\'est produite lors de la Supprimer  du club. Veuillez réessayer.',
+                'success' => false,
+            ]);
+        }
 
     }
 }
