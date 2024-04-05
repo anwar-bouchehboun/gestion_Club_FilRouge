@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\EventServices;
 use Carbon\Carbon;
 use App\Models\Club;
 use App\Models\Event;
@@ -13,34 +14,27 @@ use App\Http\Requests\UpdateEventRequest;
 
 class AdminEventController extends Controller
 {
+    public function __construct(protected EventServices $eventServices){
+
+    }
     public function index()
     {
         $clubs = Club::all();
-        // $categories=Categorie::paginate(3);
-        $events = Event::with('club')->orderBy('id', 'desc')->paginate(3);
-        // dd($events);
+
+        $events =$this->eventServices->all();
+
         return view('admin.Event.event', compact('clubs', 'events'));
     }
     // insert event
     public function store(StoreEventRequest $storeEventRequest, StoreImageRequest $storeImageRequest)
     {
-        $validate = $storeEventRequest->validated();
-        $validateimage = $storeImageRequest->validated();
-        if ($storeImageRequest->hasFile('image')) {
-            $crateevent = Event::create($validate);
-            foreach ($storeImageRequest->file('image') as $image) {
-                $path = $image->store('image', 'public');
-                $crateevent->image()->create([
-                    // 'path' => $path,
-                    'image' => $path,
-                ]);
-            }
+              $this->eventServices->store($storeEventRequest,$storeImageRequest);
 
             return redirect()->back()->with([
                 'message' => 'Event créée avec succès',
                 'success' => true,
             ]);
-        }
+        // }
 
     }
     // update

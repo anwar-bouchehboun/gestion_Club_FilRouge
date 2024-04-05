@@ -125,6 +125,7 @@
 
                         </tbody>
                     </table>
+                    {{ $events->links() }}
                 </div>
 
             </div>

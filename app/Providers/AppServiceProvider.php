@@ -5,14 +5,17 @@ namespace App\Providers;
 use App\Interface\AuthInterface;
 use App\Interface\CategorieInterface;
 use App\Interface\ClubInterface;
+use App\Interface\EventInterface;
 use App\Interface\SousCategorieInterface;
 use App\Repositories\CategorieRepository;
 use App\Repositories\ClubRepository;
+use App\Repositories\EventRepositroy;
 use App\Repositories\SousCategorieRepository;
 use App\Services\UserService;
 use App\Services\ClubServices;
 use App\Repositories\UserRepository;
 use App\Services\CateogireServices;
+use App\Services\EventServices;
 use App\Services\SousCategorieServices;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
@@ -45,6 +48,11 @@ class AppServiceProvider extends ServiceProvider
         app()->bind(SousCategorieInterface::class,SousCategorieRepository::class);
         app()->bind(SousCategorieServices::class,function($app){
             return new SousCategorieServices($app->make(SousCategorieInterface::class));
+        });
+        //Event
+        app()->bind(EventInterface::class,EventRepositroy::class);
+        app()->bind(EventServices::class,function($app){
+            return new EventServices($app->make(EventInterface::class));
         });
 
     }
