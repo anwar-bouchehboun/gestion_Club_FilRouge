@@ -5,12 +5,15 @@ namespace App\Providers;
 use App\Interface\AuthInterface;
 use App\Interface\CategorieInterface;
 use App\Interface\ClubInterface;
+use App\Interface\SousCategorieInterface;
 use App\Repositories\CategorieRepository;
 use App\Repositories\ClubRepository;
+use App\Repositories\SousCategorieRepository;
 use App\Services\UserService;
 use App\Services\ClubServices;
 use App\Repositories\UserRepository;
 use App\Services\CateogireServices;
+use App\Services\SousCategorieServices;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
@@ -37,6 +40,11 @@ class AppServiceProvider extends ServiceProvider
         app()->bind(CategorieInterface::class,CategorieRepository::class);
         app()->bind(CateogireServices::class, function ($app) {
             return new CateogireServices($app->make(CategorieInterface::class));
+        });
+        //souscategorie
+        app()->bind(SousCategorieInterface::class,SousCategorieRepository::class);
+        app()->bind(SousCategorieServices::class,function($app){
+            return new SousCategorieServices($app->make(SousCategorieInterface::class));
         });
 
     }

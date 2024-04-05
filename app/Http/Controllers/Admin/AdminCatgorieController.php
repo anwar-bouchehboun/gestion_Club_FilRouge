@@ -49,7 +49,7 @@ class AdminCatgorieController extends Controller
             }
         } catch (\Throwable $th) {
             return redirect()->back()->with([
-                'message' => 'Une erreur s\'est produite lors de la création du categorie. Veuillez réessayer.',
+                'message' => 'Une erreur s\'est  lors de la création du categorie. Veuillez réessayer.',
                 'success' => false,
             ]);
         }
@@ -79,7 +79,7 @@ class AdminCatgorieController extends Controller
             }
         } catch (\Throwable $th) {
             return redirect()->back()->with([
-                'message' => 'Une erreur s\'est produite lors de la Modifiection du categorie. Veuillez réessayer.',
+                'message' => 'Une erreur s\'est  lors de la Modifiection du categorie. Veuillez réessayer.',
                 'success' => false,
             ]);
         }
@@ -98,7 +98,7 @@ class AdminCatgorieController extends Controller
             ]);
         } catch (\Throwable $th) {
             return redirect()->back()->with([
-                'message' => 'Une erreur s\'est produite lors de la Supprimer  du club. Veuillez réessayer.',
+                'message' => 'Une erreur s\'est  lors de la Supprimer  du club. Veuillez réessayer.',
                 'success' => false,
             ]);
         }

@@ -90,7 +90,7 @@
 
 
 
-                                    <td class="flex px-6 py-4">
+                                    <td class="flex px-6 py-10">
 
                                         <button
                                             onclick="openEditSousModal({{ $souscategorie->id }},'{{ $souscategorie->name }}',{{ $souscategorie->price }},'{{ $souscategorie->image }}','{{ $souscategorie->discrption }}',{{ $souscategorie->categorie_id }})"

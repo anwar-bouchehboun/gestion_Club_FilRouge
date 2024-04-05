@@ -43,7 +43,7 @@ class AdminClubControlle extends Controller
             }
         } catch (\Throwable $th) {
             return redirect()->back()->with([
-                'message' => 'Une erreur s\'est produite lors de la création du club. Veuillez réessayer.',
+                'message' => 'Une erreur s\'est  lors de la création du club. Veuillez réessayer.',
                 'success' => false,
             ]);
         }
@@ -73,7 +73,7 @@ class AdminClubControlle extends Controller
             }
         } catch (\Throwable $th) {
             return redirect()->back()->with([
-                'message' => 'Une erreur s\'est produite lors de la Modification  du club. Veuillez réessayer.',
+                'message' => 'Une erreur s\'est  lors de la Modification  du club. Veuillez réessayer.',
                 'success' => false,
             ]);
         }
@@ -92,7 +92,7 @@ class AdminClubControlle extends Controller
             ]);
         } catch (\Throwable $th) {
             return redirect()->back()->with([
-                'message' => 'Une erreur s\'est produite lors de la Supprimer  du club. Veuillez réessayer.',
+                'message' => 'Une erreur s\'est  lors de la Supprimer  du club. Veuillez réessayer.',
                 'success' => false,
             ]);
         }
