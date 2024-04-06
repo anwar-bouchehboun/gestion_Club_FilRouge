@@ -6,7 +6,8 @@
                     <div class="grid items-center md:grid-cols-2 md:gap-12">
                         <div class="relative z-50 max-md:order-1 max-md:text-center">
                             <h2 class="lg:text-6xl md:text-5xl text-2xl font-extrabold mb-4 md:!leading-[56px]"><span
-                                    class="text-[#24B49A] uppercase">Club</span>  {{ $clubs->club }} <span class="text-[#24B49A]">and</span>
+                                    class="text-[#24B49A] uppercase">Club</span> {{ $clubs->club }} <span
+                                    class="text-[#24B49A]">and</span>
                                 Categories
                             </h2>
                             <p class="mt-6 text-base leading-relaxed">
@@ -35,7 +36,8 @@
                         </div>
                         <div
                             class="lg:h-[550px] md:h-[650px] flex items-center relative max-md:before:hidden before:absolute md:ms-16 ms-0 before:h-[120%] before:w-[120%] before:right-0 before:z-0">
-                            <img src="../storage/{{ $clubs->image }} " class="relative z-50 rounded-md lg:w-4/5" alt="Logo club" />
+                            <img src="../storage/{{ $clubs->image }} " class="relative z-50 rounded-md lg:w-4/5"
+                                alt="Logo club" />
                         </div>
                     </div>
                     {{-- <div class="relative z-50 grid gap-4 md:grid-cols-3 md:px-4 max-md:mt-10">
@@ -91,57 +93,58 @@
             <div class="container px-5 mx-auto md:py-12 py-11">
                 <div class="flex flex-wrap -m-4 text-center">
                     @forelse ($cateogires as  $categorie)
-                    <div class="w-full p-4 sm:w-1/2 md:w-1/3">
-                        <div
-                            class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
-                            <img src="../storage/{{$categorie->image}}" alt="{{$categorie->image}}">
-                            <div class="flex px-5">
+                        <div class="w-full p-4 sm:w-1/2 md:w-1/3">
+                            <div
+                                class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
+                                <img src="../storage/{{ $categorie->image }}" alt="{{ $categorie->image }}">
+                                <div class="flex px-5">
 
-                                <div class="flex items-center mt-2.5 mb-2.5 ">
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <div
-                                        class="bg-red-100 text-red-800 text-xs font-semibold  px-2.5  rounded dark:bg-red-200 dark:text-red-800 md:ml-40 ml-16">
-                                        5.0</div>
+                                    <div class="flex items-center mt-2.5 mb-2.5 ">
+                                        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                            </path>
+                                        </svg>
+                                        <div
+                                            class="bg-red-100 text-red-800 text-xs font-semibold  px-2.5  rounded dark:bg-red-200 dark:text-red-800 md:ml-40 ml-16">
+                                            5.0</div>
+                                    </div>
                                 </div>
+                                <a href="#">
+                                    <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">
+                                        {{ $categorie->name }}</h2>
+                                </a>
                             </div>
-                            <a href="#">
-                                <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">{{ $categorie->name }}</h2>
-                            </a>
                         </div>
-                    </div>
                     @empty
-    <div>
-        <h1  class="text-xl text-center">Nhoting Categorie</h1>
-    </div>
+                        <div class="mx-auto text-center">
+                            <h1 class="text-xl font-semibold text-center">Nhoting Categorie</h1>
+                        </div>
                     @endforelse
 
 
@@ -246,82 +249,82 @@
             </div>
         </div>
 
-    {{-- commentaire --}}
-    <section class="">
-        <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Comentaire</h2>
+        {{-- commentaire --}}
+        <section class="">
+            <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Comentaire</h2>
 
-        <div class="container py-5 mx-auto my-5">
-            <div class="flex justify-center">
-                <div class="w-full md:w-10/12 lg:w-8/12">
-                    <div class="bg-white rounded-lg shadow-md">
-                        <div class="p-4">
-                            <div class="flex items-center">
-                                <img class="w-16 mr-3 rounded-full shadow-md md:w-20 lg:w-24"
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
-                                    alt="avatar">
-                                <div>
-                                    <h6 class="mb-1 font-bold text-primary">Lily Coleman</h6>
-                                    <p class="mb-0 text-sm text-[#24B49A]">Shared publicly - Jan 2020</p>
-                                </div>
-                            </div>
-
-                            <p class="pb-2 mt-3 mb-4">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
-                            </p>
-
-
-                        </div>
-                        <div class="p-4">
-                            <div class="flex items-center">
-                                <img class="w-16 mr-3 rounded-full shadow-md md:w-20 lg:w-24"
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
-                                    alt="avatar">
-                                <div>
-                                    <h6 class="mb-1 font-bold text-primary">Lily Coleman</h6>
-                                    <p class="mb-0 text-sm text-[#24B49A]">Shared publicly - Jan 2020</p>
-                                </div>
-                            </div>
-
-                            <p class="pb-2 mt-3 mb-4">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
-                            </p>
-
-
-                        </div>
-
-                        <div class="px-4 py-3 bg-gray-100">
-                            <form action="">
+            <div class="container py-5 mx-auto my-5">
+                <div class="flex justify-center">
+                    <div class="w-full md:w-10/12 lg:w-8/12">
+                        <div class="bg-white rounded-lg shadow-md">
+                            <div class="p-4">
                                 <div class="flex items-center">
-                                    <img class="w-10 h-10 mr-3 rounded-full shadow-md md:w-12 md:h-12 lg:w-16 lg:h-16"
+                                    <img class="w-16 mr-3 rounded-full shadow-md md:w-20 lg:w-24"
                                         src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
                                         alt="avatar">
-
-
-
-                                    <div class="w-full">
-                                        <textarea
-                                            class="w-full h-24 bg-white border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
-                                            id="textAreaExample" rows="4"></textarea>
-                                        <label class="sr-only" for="textAreaExample">Message</label>
+                                    <div>
+                                        <h6 class="mb-1 font-bold text-primary">Lily Coleman</h6>
+                                        <p class="mb-0 text-sm text-[#24B49A]">Shared publicly - Jan 2020</p>
                                     </div>
                                 </div>
-                                <div class="pt-1 mt-2 text-right">
-                                    <button type="button"
-                                        class="px-4 py-2 mr-2 text-white bg-[#24B49A] rounded-md">Post
-                                        comment</button>
-                                    <button type="button"
-                                        class="px-4 py-2 text-[#24B49A] border border-[#24B49A] rounded-md">Cancel</button>
+
+                                <p class="pb-2 mt-3 mb-4">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
+                                </p>
+
+
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-center">
+                                    <img class="w-16 mr-3 rounded-full shadow-md md:w-20 lg:w-24"
+                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
+                                        alt="avatar">
+                                    <div>
+                                        <h6 class="mb-1 font-bold text-primary">Lily Coleman</h6>
+                                        <p class="mb-0 text-sm text-[#24B49A]">Shared publicly - Jan 2020</p>
+                                    </div>
                                 </div>
-                            </form>
+
+                                <p class="pb-2 mt-3 mb-4">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
+                                </p>
+
+
+                            </div>
+
+                            <div class="px-4 py-3 bg-gray-100">
+                                <form action="">
+                                    <div class="flex items-center">
+                                        <img class="w-10 h-10 mr-3 rounded-full shadow-md md:w-12 md:h-12 lg:w-16 lg:h-16"
+                                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
+                                            alt="avatar">
+
+
+
+                                        <div class="w-full">
+                                            <textarea
+                                                class="w-full h-24 bg-white border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
+                                                id="textAreaExample" rows="4"></textarea>
+                                            <label class="sr-only" for="textAreaExample">Message</label>
+                                        </div>
+                                    </div>
+                                    <div class="pt-1 mt-2 text-right">
+                                        <button type="button"
+                                            class="px-4 py-2 mr-2 text-white bg-[#24B49A] rounded-md">Post
+                                            comment</button>
+                                        <button type="button"
+                                            class="px-4 py-2 text-[#24B49A] border border-[#24B49A] rounded-md">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </x-slot>
 </x-platform-layout>

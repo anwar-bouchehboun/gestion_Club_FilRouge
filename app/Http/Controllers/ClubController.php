@@ -25,7 +25,6 @@ class ClubController extends Controller
     {
         $clubs = $this->clubService->find($id);
         $cateogires=$this->clubService->categorie($id);
-        // dd($clubs);
         return view('client.categorie.categorie', compact('cateogires','clubs'));
     }
 
