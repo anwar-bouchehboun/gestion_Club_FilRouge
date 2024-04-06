@@ -6,9 +6,10 @@ use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Models\Souscategorie;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Services\SousCategorieServices;
 use App\Http\Requests\SousCategorieRequest;
 use App\Http\Requests\UpdateSousCategorieRequest;
-use App\Services\SousCategorieServices;
 
 class AdminSousCategorieController extends Controller
 {
@@ -20,22 +21,26 @@ class AdminSousCategorieController extends Controller
 
     public function index()
     {
-        $categories = $this->sousCategorieServices->categorie();
-        $souscategories = $this->sousCategorieServices->all();
+        if (Auth::User()->role == "admin") {
+            $categories = $this->sousCategorieServices->categorie();
+            $souscategories = $this->sousCategorieServices->all();
+        }
         return view('admin.sous.sous', compact('categories', 'souscategories'));
     }
 
     public function store(SousCategorieRequest $sousCategorieRequest)
     {
         try {
-            $data = $sousCategorieRequest->validated();
-            if ($sousCategorieRequest->hasFile('image')) {
-                $data['image'] = $sousCategorieRequest->file('image')->store('image', 'public');
+            if (Auth::User()->role == "admin") {
 
+                $data = $sousCategorieRequest->validated();
+                if ($sousCategorieRequest->hasFile('image')) {
+                    $data['image'] = $sousCategorieRequest->file('image')->store('image', 'public');
+
+                }
+
+                $this->sousCategorieServices->create($data);
             }
-
-            $this->sousCategorieServices->create($data);
-
 
             return redirect()->back()->with([
                 'message' => 'SousCategorie créée avec succès',
@@ -55,17 +60,18 @@ class AdminSousCategorieController extends Controller
     public function update(UpdateSousCategorieRequest $sousCategorieRequest, Souscategorie $souscategorie)
     {
         try {
-            $data = $sousCategorieRequest->validated();
-            if ($sousCategorieRequest->hasFile('image')) {
-                $data['image'] = $sousCategorieRequest->file('image')->store('image', 'public');
+            if (Auth::User()->role == "admin") {
+                $data = $sousCategorieRequest->validated();
+                if ($sousCategorieRequest->hasFile('image')) {
+                    $data['image'] = $sousCategorieRequest->file('image')->store('image', 'public');
 
-            } else {
-                $data['image'] = $sousCategorieRequest->input('image');
+                } else {
+                    $data['image'] = $sousCategorieRequest->input('image');
+                }
+
+                $this->sousCategorieServices->update($data, $souscategorie->id);
+
             }
-
-            $this->sousCategorieServices->update($data, $souscategorie->id);
-
-
             return redirect()->back()->with([
                 'message' => 'SousCategorie modifiée avec succès',
                 'success' => true,
@@ -85,7 +91,9 @@ class AdminSousCategorieController extends Controller
     {
 
         try {
+            if(Auth::User()->role=="admin"){
             $this->sousCategorieServices->delete($souscategorie->id);
+            }
             return redirect()->route('souscategorie.index')->with([
                 'message' => 'Souscategorie supprimer avec succès',
                 'success' => true,
@@ -96,6 +104,7 @@ class AdminSousCategorieController extends Controller
                 'success' => false,
             ]);
         }
+
 
 
     }

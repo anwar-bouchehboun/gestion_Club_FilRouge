@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Models\Club;
 use App\Models\Event;
+use App\Models\Image;
 use App\Interface\EventInterface;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\StoreImageRequest;
@@ -80,5 +81,7 @@ class EventRepositroy implements EventInterface
         }
 
     }
+
+
 
 }

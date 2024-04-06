@@ -15,4 +15,7 @@ interface ClubInterface{
     public function update(array $data,$id);
 
     public function delete($id);
+    public function event($id);
+
+    public function image($id);
 }

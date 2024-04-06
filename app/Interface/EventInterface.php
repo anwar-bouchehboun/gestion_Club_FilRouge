@@ -18,5 +18,6 @@ interface EventInterface
     public function delete($id);
 
 
+
     public function store(StoreEventRequest $storeEventRequest, StoreImageRequest $storeImageRequest);
 }

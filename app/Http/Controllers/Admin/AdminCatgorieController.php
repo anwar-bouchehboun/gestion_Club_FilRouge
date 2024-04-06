@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Club;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use App\Services\CateogireServices;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CategorieRequest;
 use App\Http\Requests\UpdateCategorieRequest;
-use App\Services\CateogireServices;
 
 class AdminCatgorieController extends Controller
 {
@@ -23,18 +24,17 @@ class AdminCatgorieController extends Controller
 
     public function index()
     {
-
+        if(Auth::User()->role=="admin"){
         $categories = $this->cateogireServices->all();
         $clubs = $this->cateogireServices->club();
-        // $clubs = $data['clubs'];
-        // $categories = $data['categories'];
+        }
 
-        // dd($categories);
         return view('admin.categorie.categorie', compact('clubs', 'categories'));
     }
     public function store(CategorieRequest $categorieRequest)
     {
         try {
+            if(Auth::User()->role=="admin"){
             $data = $categorieRequest->validated();
             if ($categorieRequest->hasFile('image')) {
                 $data['image'] = $categorieRequest->file('image')->store('image', 'public');
@@ -47,6 +47,7 @@ class AdminCatgorieController extends Controller
                     'success' => true,
                 ]);
             }
+        }
         } catch (\Throwable $th) {
             return redirect()->back()->with([
                 'message' => 'Une erreur s\'est  lors de la création du categorie. Veuillez réessayer.',
@@ -62,6 +63,7 @@ class AdminCatgorieController extends Controller
     {
 
         try {
+            if(Auth::User()->role=="admin"){
             $data = $categorieRequest->validated();
             if ($categorieRequest->hasFile('image')) {
                 $data['image'] = $categorieRequest->file('image')->store('image', 'public');
@@ -77,6 +79,7 @@ class AdminCatgorieController extends Controller
                     'success' => true,
                 ]);
             }
+        }
         } catch (\Throwable $th) {
             return redirect()->back()->with([
                 'message' => 'Une erreur s\'est  lors de la Modifiection du categorie. Veuillez réessayer.',
@@ -90,12 +93,14 @@ class AdminCatgorieController extends Controller
     {
 
         try {
+            if(Auth::User()->role=="admin"){
             $this->cateogireServices->delete($categorie->id);
-
+            }
             return redirect()->route('categorie.index')->with([
                 'message' => 'Catégorie Suppimer avec succès',
                 'success' => true,
             ]);
+
         } catch (\Throwable $th) {
             return redirect()->route('categorie.index')->with([
                 'message' => 'Une erreur s\'est  lors de la Supprimer  du club. Veuillez réessayer.',

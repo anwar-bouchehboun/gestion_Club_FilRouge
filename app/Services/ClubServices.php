@@ -37,7 +37,8 @@ class ClubServices
     {
         return $this->clubtRepository->all();
     }
-    public function dataClub(){
+    public function dataClub()
+    {
         return $this->clubtRepository->dataClub();
     }
 
@@ -49,6 +50,18 @@ class ClubServices
     public function categorie($id)
     {
         return $this->clubtRepository->categorie($id);
+    }
+    public function event($id)
+    {
+        $event = $this->clubtRepository->event($id);
+        return $event;
+
+    }
+    public function image($id)
+    {
+
+        $event = $this->clubtRepository->image($id);
+        return $event;
     }
 
 

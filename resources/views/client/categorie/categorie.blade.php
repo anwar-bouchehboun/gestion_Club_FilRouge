@@ -159,23 +159,52 @@
 
             <div class="grid md:grid-cols-2 gap-4 items-center md:max-h-[475px] overflow-hidden">
                 <div class="p-6">
-                    <h1 class="text-2xl font-bold md:text-4xl text-[#24B49A]">MUSIC Event</h1>
-                    <p class="mt-4 text-sm font-semibold leading-9 text-black">Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit. Duis
-                        accumsan, nuncet
-                        tempus blandit, metus mi consectetur nibh, a pharetra felis turpis vitae ligula. Etiam laoreet
-                        velit nec
-                        neque
-                        ultrices, non consequat mauris tincidunt.Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. Duis
-                        accumsan, nuncet
-                        tempus blandit, metus mi consectetur nibh.</p>
 
+                    <h1 class="text-2xl font-bold md:text-4xl text-[#24B49A]">{{ $events->name }}</h1>
+                    <div class="flex items-center mt-2.5 mb-2.5 ">
+                        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+
+                    </div>
+                    <p class="mt-4 text-sm font-semibold leading-9 text-black"> {{ $events->discrption }}</p>
+                    <div class="flex px-5">
+
+
+                    </div>
                     <div class="flex justify-between px-2 ">
                         <div>
-                            <p class="mt-3 text-sm italic text-black ">Localisation - <span
-                                    class="text-[#24B49A]">12-12-2024</span></p>
-                            <p class="mt-3 italic text-black">Price : <span class="text-[#24B49A]">500</span>$</p>
+                            <p class="mt-3 text-sm italic text-black ">{{ $events->local }} - <span
+                                    class="text-[#24B49A]">{{ $events->date }}</span></p>
+                            <p class="mt-3 italic text-black">Price : <span
+                                    class="text-[#24B49A]">{{ $events->prix }}</span>$</p>
                         </div>
                         <div>
                             <form action="{{ route('session') }}" method="post">
@@ -195,26 +224,11 @@
                 <div id="default-carousel" class="relative w-full" data-carousel="slide">
                     <!-- Carousel wrapper -->
                     <div class="relative h-56 overflow-hidden md:h-96">
-                        <!-- Item 1 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://readymadeui.com/team-image.webp"
-                                class="object-cover w-full h-full shrink-0" />
-                        </div>
-                        <!-- Item 2 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://readymadeui.com/team-image.webp"
-                                class="object-cover w-full h-full shrink-0" />
-                        </div>
-                        <!-- Item 3 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://readymadeui.com/team-image.webp"
-                                class="object-cover w-full h-full shrink-0" />
-                        </div>
-                        <!-- Item 4 -->
-                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                            <img src="https://readymadeui.com/team-image.webp"
-                                class="object-cover w-full h-full shrink-0" />
-                        </div>
+                        @foreach ($images as $image)
+                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                <img src="../storage/{{ $image->image }}" class="object-fill w-full h-full " />
+                            </div>
+                        @endforeach
                     </div>
 
                     <!-- Slider controls -->
@@ -252,7 +266,7 @@
         {{-- commentaire --}}
         <section class="">
             <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Comentaire</h2>
-
+            <hr class="w-32 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
             <div class="container py-5 mx-auto my-5">
                 <div class="flex justify-center">
                     <div class="w-full md:w-10/12 lg:w-8/12">

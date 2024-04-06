@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Club;
+use App\Models\Event;
+use App\Models\Image;
 use App\Models\Categorie;
 use App\Interface\ClubInterface;
 
@@ -52,6 +54,21 @@ class ClubRepository implements ClubInterface
         $club = $this->club->findOrFail($id);
         $club->delete();
         return $club;
+    }
+    public function event($id)
+    {
+        return Event::with('club')
+            ->where('club_id', $id)
+            ->orderBy('id', 'desc')
+            ->firstOrFail();
+
+
+    }
+    public function image($id)
+    {
+        return  Image::where('event_id', $id)->get();
+
+
     }
 
 }
