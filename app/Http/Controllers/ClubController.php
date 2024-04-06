@@ -2,17 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Club;
 use Illuminate\Http\Request;
+use App\Services\ClubServices;
 
 class ClubController extends Controller
 {
-    //
 
-    public function index(){
-        return view('client.club');
+    public function __construct(
+        protected ClubServices $clubService
+    ) {
     }
-  
-    // public function show(){
-    //     return view('client.categorie.categorie');
-    // }
+
+    public function index()
+    {
+        $clubs = $this->clubService->dataClub();
+
+        return view('client.club.club', compact('clubs'));
+    }
+
+    public function show($id)
+    {
+        $clubs = $this->clubService->find($id);
+        $cateogires=$this->clubService->categorie($id);
+        // dd($clubs);
+        return view('client.categorie.categorie', compact('cateogires','clubs'));
+    }
+
+
 }

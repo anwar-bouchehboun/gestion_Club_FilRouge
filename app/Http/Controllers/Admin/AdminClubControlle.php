@@ -80,6 +80,7 @@ class AdminClubControlle extends Controller
 
 
     }
+
     // delete club
     public function destroy(Club $club)
     {
@@ -99,4 +100,5 @@ class AdminClubControlle extends Controller
 
 
     }
+  
 }

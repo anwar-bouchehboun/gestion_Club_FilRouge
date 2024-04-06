@@ -2,8 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Interface\ClubInterface;
 use App\Models\Club;
+use App\Models\Categorie;
+use App\Interface\ClubInterface;
 
 
 class ClubRepository implements ClubInterface
@@ -17,10 +18,21 @@ class ClubRepository implements ClubInterface
     {
         return Club::orderBy('id', 'desc')->paginate(4);
     }
+    public function dataClub()
+    {
+        return Club::paginate(6);
+    }
 
     public function find($id)
     {
-        return $this->club->find($id);
+        $club = Club::where('id', $id)->first();
+
+        return $club;
+
+    }
+    public function categorie($id)
+    {
+        return Categorie::where('club_id', $id)->get();
     }
 
     public function create(array $data)

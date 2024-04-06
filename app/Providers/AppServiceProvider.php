@@ -2,23 +2,24 @@
 
 namespace App\Providers;
 
-use App\Interface\AuthInterface;
-use App\Interface\CategorieInterface;
-use App\Interface\ClubInterface;
-use App\Interface\EventInterface;
-use App\Interface\SousCategorieInterface;
-use App\Repositories\CategorieRepository;
-use App\Repositories\ClubRepository;
-use App\Repositories\EventRepositroy;
-use App\Repositories\SousCategorieRepository;
 use App\Services\UserService;
 use App\Services\ClubServices;
-use App\Repositories\UserRepository;
-use App\Services\CateogireServices;
 use App\Services\EventServices;
+use App\Interface\AuthInterface;
+use App\Interface\ClubInterface;
+use App\Interface\EventInterface;
+use App\Services\CateogireServices;
+use App\Repositories\ClubRepository;
+use App\Repositories\UserRepository;
+use Illuminate\Pagination\Paginator;
+use App\Interface\CategorieInterface;
+use App\Repositories\EventRepositroy;
 use App\Services\SousCategorieServices;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use App\Interface\SousCategorieInterface;
+use App\Repositories\CategorieRepository;
+use App\Repositories\SousCategorieRepository;
 
 // use App\Repositories\RepositoryInterface;
 
@@ -62,5 +63,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::defaultView('vendor.pagination.tailwind');
+        Paginator::defaultSimpleView('vendor.pagination.simple-tailwind');
     }
 }

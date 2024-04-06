@@ -17,7 +17,7 @@
 
 <body>
     @include('layouts.nav');
-    <x-hero />
+    
 
     {{-- @yield('content') --}}
 

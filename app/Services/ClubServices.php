@@ -37,10 +37,18 @@ class ClubServices
     {
         return $this->clubtRepository->all();
     }
+    public function dataClub(){
+        return $this->clubtRepository->dataClub();
+    }
 
     public function find($id)
     {
+
         return $this->clubtRepository->find($id);
+    }
+    public function categorie($id)
+    {
+        return $this->clubtRepository->categorie($id);
     }
 
 
