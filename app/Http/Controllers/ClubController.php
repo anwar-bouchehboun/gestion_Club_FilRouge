@@ -18,18 +18,27 @@ class ClubController extends Controller
     {
         $clubs = $this->clubService->dataClub();
 
+
         return view('client.club.club', compact('clubs'));
     }
 
     public function show($id)
     {
-        $clubs = $this->clubService->find($id);
-        $cateogires=$this->clubService->categorie($id);
-        $events=$this->clubService->event($id);
-        $images=$this->clubService->image($id);
+        // try {
+            $clubs = $this->clubService->find($id);
 
-              return view('client.categorie.categorie', compact('cateogires','clubs','events','images'));
+            $categories = $this->clubService->categorie($clubs->id);
+             $events = $this->clubService->event($clubs->id);
+             $images = null;
+           if($events){
+            $images = $this->clubService->image($events->id);
+           }
+
+            return view('client.categorie.categorie', compact('clubs', 'categories','events','images'));
+
+
     }
+
 
 
 }

@@ -1,5 +1,5 @@
 <x-platform-layout>
-    <x-slot name="solt">
+    <x-slot name="slot">
         {{-- section catagrorie --}}
         <section class= "mt-3 body-font md:mt-0">
             <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Sous Categorie</h2>

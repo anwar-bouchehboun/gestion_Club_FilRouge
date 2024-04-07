@@ -1,5 +1,5 @@
 <x-platform-layout>
-    <x-slot name="solt">
+    <x-slot name="slot">
         {{-- section catagrorie --}}
 
         <section class= "mt-3 body-font md:mt-0">

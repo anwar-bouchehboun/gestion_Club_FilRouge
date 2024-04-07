@@ -34,6 +34,7 @@ class ClubRepository implements ClubInterface
     }
     public function categorie($id)
     {
+
         return Categorie::where('club_id', $id)->get();
     }
 
@@ -57,10 +58,11 @@ class ClubRepository implements ClubInterface
     }
     public function event($id)
     {
+
         return Event::with('club')
             ->where('club_id', $id)
             ->orderBy('id', 'desc')
-            ->firstOrFail();
+            ->first();
 
 
     }
