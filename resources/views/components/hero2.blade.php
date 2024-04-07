@@ -1,4 +1,4 @@
-<section class="mt-10 ">
+<section class="mt-8 ">
     <div class="md:ps-24 md:my-0">
         <div class="font-sans text-[#333] max-w-6xl max-md:max-w-md mx-auto">
             <div class="grid items-center md:grid-cols-2 md:gap-12">
