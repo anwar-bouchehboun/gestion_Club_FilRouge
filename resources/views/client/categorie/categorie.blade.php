@@ -38,7 +38,7 @@
                         </div>
                         <div
                             class="lg:h-[550px] md:h-[650px] flex items-center relative max-md:before:hidden before:absolute md:ms-16 ms-0 before:h-[120%] before:w-[120%] before:right-0 before:z-0">
-                            <img src="../storage/{{ $clubs->image }} " class="relative z-50 rounded-md lg:w-4/5"
+                            <img src="../storage/{{ $clubs->image }} " class="relative z-50 rounded-md lg:w-4/5 "
                                 alt="Logo club" />
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                             <div class="w-full p-4 sm:w-1/2 md:w-1/3">
                                 <div
                                     class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
-                                    <img src="../storage/{{ $categorie->image }}" alt="{{ $categorie->image }}">
+                                    <img src="../storage/{{ $categorie->image }}" alt="{{ $categorie->image }}" class="w-full h-56">
                                     <div class="flex px-5">
 
                                         <div class="flex items-center mt-2.5 mb-2.5 ">
@@ -212,6 +212,7 @@
                         </div>
                         <div class="flex justify-between px-2 ">
                             <div>
+                                
                                 <p class="mt-3 text-sm italic text-black ">{{ $events->local }} - <span
                                         class="text-[#24B49A]">{{ $events->date }}</span></p>
                                 <p class="mt-3 italic text-black">Price : <span

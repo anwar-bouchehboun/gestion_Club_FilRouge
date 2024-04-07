@@ -12,7 +12,7 @@
                     <button type='button'
                         class="bg-[#24B49A]  border-2 border-[#24B49A] mt-10 transition-all text-black font-bold text-sm rounded-md px-6 py-2.5">Learn
                         More</button>
-                    {{-- <div class="mt-10">
+                    <div class="mt-10">
                   <div class="grid items-center gap-4 sm:grid-cols-3">
                     <div class="flex flex-col items-center text-center">
                       <h5 class="mb-1 text-xl font-bold">10+</h5>
@@ -27,7 +27,7 @@
                       <p>Business Partners</p>
                     </div>
                   </div>
-                </div> --}}
+                </div>
                 </div>
                 <div
                     class="lg:h-[550px] md:h-[650px] flex items-center relative max-md:before:hidden before:absolute md:ms-16 ms-0 before:h-[120%] before:w-[120%] before:right-0 before:z-0">

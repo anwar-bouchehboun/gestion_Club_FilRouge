@@ -27,7 +27,7 @@ class StoreEventRequest extends FormRequest
            'date'=> 'required|date|after:today',
             'local' => 'required|string',
             'club_id' => 'required|exists:clubs,id',
-            'discrption' => 'required|regex:/^[a-zA-Z-\w_\s\W]+$/',
+            'discrption' => 'required|regex:/^[a-zA-Z-0-9\w_\s\'\W]+$/|max:2000',
         ];
     }
 }
