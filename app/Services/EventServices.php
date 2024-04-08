@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Request;
 use App\Interface\EventInterface;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\StoreImageRequest;
@@ -40,9 +41,12 @@ class EventServices
     }
 
 
-    public function find($id)
+    public function find(Request $request)
     {
-        return $this->eventInterface->find($id);
+        return $this->eventInterface->find($request);
     }
 
+    public function reserveevent($request){
+       return $this->eventInterface->reserveevent($request);
+    }
 }

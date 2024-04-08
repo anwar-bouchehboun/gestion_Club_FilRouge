@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Event extends Model
@@ -32,5 +33,9 @@ class Event extends Model
     }
     public function club(){
         return $this->belongsTo(Club::class,'club_id');
+    }
+    public function reserves(): MorphMany
+    {
+        return $this->morphMany(Reservation::class, 'reservable');
     }
 }

@@ -212,7 +212,7 @@
                         </div>
                         <div class="flex justify-between px-2 ">
                             <div>
-                                
+
                                 <p class="mt-3 text-sm italic text-black ">{{ $events->local }} - <span
                                         class="text-[#24B49A]">{{ $events->date }}</span></p>
                                 <p class="mt-3 italic text-black">Price : <span
@@ -221,7 +221,7 @@
                             <div>
                                 <form action="{{ route('session') }}" method="post">
                                     @csrf
-                                    <input type="text" name="price" value="500" hidden>
+                                    <input type="hidden" name="event" value="{{$events->id}}" >
                                     <button type="submit"
                                         class=" px-9 py-3 mt-10 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none ">Reservé</button>
                                 </form>

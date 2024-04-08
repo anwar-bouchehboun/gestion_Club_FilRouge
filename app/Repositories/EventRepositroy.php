@@ -4,7 +4,10 @@ namespace App\Repositories;
 use App\Models\Club;
 use App\Models\Event;
 use App\Models\Image;
+use App\Models\Reservation;
+use Illuminate\Http\Request;
 use App\Interface\EventInterface;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateEventRequest;
@@ -27,8 +30,10 @@ class EventRepositroy implements EventInterface
     {
         return Club::all();
     }
-    public function find($id)
+    public function find(Request $request)
     {
+
+      return Event::where('id',$request->event)->first();
 
     }
 
@@ -80,6 +85,19 @@ class EventRepositroy implements EventInterface
 
         }
 
+    }
+    public function reserveevent($eventId){
+
+        $event = Event::find($eventId);
+        $user_id = Auth::user()->id;
+        $reservation = new Reservation();
+        $reservation->user_id = $user_id;
+        $reservation->reservable()->associate($event);
+        $reservation->save();
+        if ($reservation) {
+               $reservation=Reservation::with('reservable')->where('id',$reservation->id)->first();
+               return $reservation;
+        }
     }
 
 

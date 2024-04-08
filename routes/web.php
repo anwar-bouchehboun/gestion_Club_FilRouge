@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminClubControlle;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeConroller;
 use App\Http\Controllers\ClubController;
@@ -51,6 +52,8 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/success', [StripeController::class, 'success'])->name('success');
 
 });
+
+
 
 
 
