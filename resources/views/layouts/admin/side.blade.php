@@ -1,13 +1,13 @@
 <!-- component -->
 
 <aside
-    class="bg-[#24B49A] -translate-x-80 fixed inset-0 z-50 h-[calc(200vh-32px)] w-72  transition-transform duration-300 xl:translate-x-0">
-    <div class="relative border-b border-white/20">
+class="bg-[#24B49A] -translate-x-80 fixed inset-0 z-50 h-[calc(200vh-32px)] w-72  transition-transform duration-300 xl:translate-x-0">
+<div class="relative border-b border-white/20">
         <a class="flex items-center gap-4 px-8 py-6" href="/Dashbord">
             <h6 class="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-white">
                 PHONIXCLUB</h6>
         </a>
-        <button
+        {{-- <button
             class="middle none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-8 max-w-[32px] h-8 max-h-[32px] rounded-lg text-xs text-white hover:bg-white/10 active:bg-white/30 absolute right-0 top-0 grid rounded-br-none rounded-tl-none xl:hidden"
             type="button">
             <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -16,7 +16,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </span>
-        </button>
+        </button> --}}
     </div>
     <div class="m-4">
         <ul class="flex flex-col gap-1 mb-4">

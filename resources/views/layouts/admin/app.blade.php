@@ -53,3 +53,4 @@
     }
 
 </script>
+<script src="/assets/js/toggle.js"></script>
