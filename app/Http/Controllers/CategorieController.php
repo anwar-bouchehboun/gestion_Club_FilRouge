@@ -11,10 +11,10 @@ class CategorieController extends Controller
 
     }
     public function index(){
-        return view('client.categorie.categorie');
+        //  return view('client.finpayment');
     }
     public function show($id){
-        
+
         $categories=  $this->sousCategorieServices->shwocategorie($id);
 
       $souscategories=  $this->sousCategorieServices->find($categories->id);
