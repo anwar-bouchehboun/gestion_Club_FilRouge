@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use Illuminate\Http\Request;
 use App\Interface\SousCategorieInterface;
 
 class SousCategorieServices
@@ -37,5 +38,24 @@ class SousCategorieServices
     public function find($id)
     {
         return $this->sousCategorieInterface->find($id);
+    }
+    public function shwocategorie($id){
+        return $this->sousCategorieInterface->shwocategorie($id);
+    }
+    public function showsouscategorie($id){
+        return $this->sousCategorieInterface->showsouscategorie($id);
+
+    }
+    public function reservesous($request){
+
+     
+        return $this->sousCategorieInterface->reservesous($request);
+
+
+    }
+    public function findFail(Request $request)
+    {
+        // dd($request);
+        return $this->sousCategorieInterface->findFail($request);
     }
 }

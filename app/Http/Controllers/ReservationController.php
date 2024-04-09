@@ -3,63 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Services\SousCategorieServices;
 use Illuminate\Http\Request;
+use Stripe\Checkout\Session;
+
+
 
 class ReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+    public function __construct(protected SousCategorieServices $sousCategorieServices){
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        dd($request->get('price'));
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Reservation $reservation)
+    public function session(Request $request)
     {
-        //
+
+        $sous =$this->sousCategorieServices->findFail($request);
+
+        if (!$sous) {
+            abort(404, 'Sous Categorie not found');
+        }
+
+        \Stripe\Stripe::setApiKey(config('stripe.sk'));
+        $totalprice = $sous->price;
+        $two0 = "00";
+        $total = "$totalprice$two0";
+        $session = Session::create([
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'USD',
+                        'product_data' => [
+                            "name" => $sous->name,
+                        ],
+                        'unit_amount' => $total,
+                    ],
+                    'quantity' => 1,
+                ],
+
+            ],
+            'mode' => 'payment',
+
+            'success_url' => route('successsous', ['sous_id' => $sous->id]),
+            //  'cancel_url' => route(''),
+        ]);
+
+        if ($session) {
+
+            return redirect()->away($session->url);
+        }
+
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Reservation $reservation)
+    public function successsous(Request $request,$sous_id)
     {
-        //
+        $sousId = $request->route('sous_id');
+
+        $reservationId = $this->save($sousId);
+
+        if ($reservationId) {
+            return "Thanks for your order. You have just completed your payment. The seller will reach out to you as soon as possible.";
+        }
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Reservation $reservation)
-    {
-        //
+    protected  function save($sousId){
+     
+       return  $this->sousCategorieServices->reservesous($sousId);
     }
 }

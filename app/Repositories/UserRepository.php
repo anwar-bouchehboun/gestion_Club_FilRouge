@@ -31,7 +31,7 @@ class UserRepository implements AuthInterface
         return $this->user->create($data);
     }
 
-    public function update($id, array $data)
+    public function update(array $data,$id)
     {
         $user = $this->user->findOrFail($id);
         $user->update($data);

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Souscategorie extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
-
+    protected $cascadeDeletes = ['reserves'];
     protected $fillable = [
         'name',
         'image',

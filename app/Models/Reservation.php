@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class Reservation extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
-    protected $cascadeDeletes = ['reserve'];
-    protected $dates = ['deleted_at'];
+    // protected $cascadeDeletes = ['reserve'];
+    // protected $dates = ['deleted_at'];
 
     protected $fillable = [
 

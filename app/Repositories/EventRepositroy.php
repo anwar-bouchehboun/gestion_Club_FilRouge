@@ -87,11 +87,11 @@ class EventRepositroy implements EventInterface
 
     }
     public function reserveevent($eventId){
-
         $event = Event::find($eventId);
         $user_id = Auth::user()->id;
         $reservation = new Reservation();
         $reservation->user_id = $user_id;
+        $reservation->status = 1;
         $reservation->reservable()->associate($event);
         $reservation->save();
         if ($reservation) {

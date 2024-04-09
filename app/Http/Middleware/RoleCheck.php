@@ -23,12 +23,12 @@ class RoleCheck
 
             return $next($request);
         }
-        // else
-        // {
-        //     if (!Auth::check() || Auth::user()->role !== $role) {
-        //         abort(403, 'Unauthorized action.');
-        //     }
-        // }
+        else
+        {
+            if (!Auth::check() || Auth::user()->role !== $role) {
+                abort(403, 'Unauthorized action.');
+            }
+        }
         return back();
 
 

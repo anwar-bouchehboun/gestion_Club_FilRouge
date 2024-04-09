@@ -28,8 +28,9 @@ Route::get('/', [HomeConroller::class, 'index'])->name('home');
 
 Route::get('club', [ClubController::class, 'index'])->name('club');
 Route::get('club/{id}', [ClubController::class, 'show'])->name('categorie');
-Route::get('souscategorie', [SouscategorieController::class, 'index'])->name('souscategorie');
-Route::get('souscategorie/show', [SouscategorieController::class, 'show']);
+Route::get('categorie', [CategorieController::class, 'index'])->name('categorie.data');
+Route::get('categorie/{id}', [CategorieController::class, 'show'])->name('souscategorie');
+Route::get('souscategorie/show/{id}', [SouscategorieController::class, 'show'])->name('show.reseve');
 
 // admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -44,14 +45,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 // logout
 Route::middleware('auth')->group(function () {
     Route::post('logout', [LoginController::class, 'destroy'])
-    ->name('logout');
+        ->name('logout');
 });
 // client
 Route::middleware(['auth', 'role:client'])->group(function () {
     Route::post('/session', [StripeController::class, 'session'])->name('session');
-    Route::get('/success', [StripeController::class, 'success'])->name('success');
+    Route::get('/success/{event_id}', [StripeController::class, 'success'])->name('success');
+    Route::post('/session/sous', [ReservationController::class, 'session'])->name('sessionsous');
+    Route::get('/successsous/{sous_id}', [ReservationController::class, 'successsous'])->name('successsous');
 
 });
+
 
 
 

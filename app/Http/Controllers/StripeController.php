@@ -22,9 +22,7 @@ class StripeController extends Controller
         if (!$event) {
             abort(404, 'Event not found');
         }
-        // dd($event);
-        //    $data=$this->eventServices->reserveevent($request);
-        // dd($data->reservable->prix);
+
         \Stripe\Stripe::setApiKey(config('stripe.sk'));
         $totalprice = $event->prix;
         $two0 = "00";
@@ -45,21 +43,30 @@ class StripeController extends Controller
 
             ],
             'mode' => 'payment',
-            'success_url' => route('success'),
-            //  'cancel_url' => route(''),
+            'success_url' => route('success', ['event_id' => $event->id]),
+                //   'cancel_url' => back(),
         ]);
 
+
         if ($session) {
-        $this->save($event->id);
             return redirect()->away($session->url);
+
         }
 
     }
-    public function success()
+    public function success(Request $request, $event_id)
     {
-        return "Thanks for you order You have just completed your payment. The seeler will reach out to you as soon as possible";
+        $eventId = $request->route('event_id');
+       
+        $reservationId = $this->save($eventId);
+
+        if ($reservationId) {
+            return "Thanks for your order. You have just completed your payment. The seller will reach out to you as soon as possible.";
+        }
     }
-    protected  function save($eventId){
-      return  $this->eventServices->reserveevent($eventId);
+
+    protected function save($eventId)
+    {
+        return $this->eventServices->reserveevent($eventId);
     }
 }

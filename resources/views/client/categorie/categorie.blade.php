@@ -1,7 +1,8 @@
 <x-platform-layout>
     <x-slot name="slot">
+        <x-sweet-alert />
         <section class="mt-10 ">
-            <x-sweet-alert />
+
 
             <div class="md:ps-24 md:my-0">
                 <div class="font-sans text-[#333] max-w-6xl max-md:max-w-md mx-auto">
@@ -93,7 +94,7 @@
             <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Categorie</h2>
             <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
 
-            <div class="container px-5 mx-auto md:py-12 py-11">
+            <div class="container mx-auto px-9 md:py-12 py-11">
                 <div class="flex flex-wrap -m-4 text-center">
 
                         @forelse ($categories as  $categorie)
@@ -139,7 +140,7 @@
                                                 5.0</div>
                                         </div>
                                     </div>
-                                    <a href="#">
+                                    <a href="{{ route('souscategorie',$categorie->id) }}">
                                         <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">
                                             {{ $categorie->name }}</h2>
                                     </a>

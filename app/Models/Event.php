@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Event extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
-    protected $cascadeDeletes = ['image'];
+    protected $cascadeDeletes = ['image','reserves'];
 
     protected $dates = ['deleted_at'];
 
