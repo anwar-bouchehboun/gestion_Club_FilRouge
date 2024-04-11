@@ -3,7 +3,7 @@
         @if (Auth::User()->role == 'client')
             <x-sweet-alert />
         @endif
-        <section class="mt-10 ">
+        <section class="mx-2 mt-10 md:mx-0">
 
 
             <div class="md:ps-24 md:my-0">
@@ -309,81 +309,90 @@
         </div>
 
         {{-- commentaire --}}
-        <section class="">
-            <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Comentaire</h2>
-            <hr class="w-32 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
-            <div class="container py-5 mx-auto my-5">
-                <div class="flex justify-center">
-                    <div class="w-full md:w-10/12 lg:w-8/12">
-                        <div class="bg-white rounded-lg shadow-md">
-                            <div class="p-4">
-                                <div class="flex items-center">
-                                    <img class="w-16 mr-3 rounded-full shadow-md md:w-20 lg:w-24"
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
-                                        alt="avatar">
-                                    <div>
-                                        <h6 class="mb-1 font-bold text-primary">Lily Coleman</h6>
-                                        <p class="mb-0 text-sm text-[#24B49A]">Shared publicly - Jan 2020</p>
-                                    </div>
-                                </div>
 
-                                <p class="pb-2 mt-3 mb-4">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
-                                </p>
-
-
-                            </div>
-                            <div class="p-4">
-                                <div class="flex items-center">
-                                    <img class="w-16 mr-3 rounded-full shadow-md md:w-20 lg:w-24"
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
-                                        alt="avatar">
-                                    <div>
-                                        <h6 class="mb-1 font-bold text-primary">Lily Coleman</h6>
-                                        <p class="mb-0 text-sm text-[#24B49A]">Shared publicly - Jan 2020</p>
-                                    </div>
-                                </div>
-
-                                <p class="pb-2 mt-3 mb-4">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
-                                </p>
-
-
-                            </div>
-
-                            <div class="px-4 py-3 bg-gray-100">
-                                <form action="">
-                                    <div class="flex items-center">
-                                        <img class="w-10 h-10 mr-3 rounded-full shadow-md md:w-12 md:h-12 lg:w-16 lg:h-16"
-                                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
-                                            alt="avatar">
-
-
-
-                                        <div class="w-full">
-                                            <textarea
-                                                class="w-full h-24 bg-white border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
-                                                id="textAreaExample" rows="4"></textarea>
-                                            <label class="sr-only" for="textAreaExample">Message</label>
-                                        </div>
-                                    </div>
-                                    <div class="pt-1 mt-2 text-right">
-                                        <button type="button"
-                                            class="px-4 py-2 mr-2 text-white bg-[#24B49A] rounded-md">Post
-                                            comment</button>
-                                        <button type="button"
-                                            class="px-4 py-2 text-[#24B49A] border border-[#24B49A] rounded-md">Cancel</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+        {{-- -------------------------------------- --}}
+        <section class="antialiased bg-white dark:bg-gray-900">
+            <div class="max-w-5xl px-2 mx-auto">
+                <div class="flex items-center justify-between mb-1">
+                    <h2 class="text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">Discussion</h2>
                 </div>
+                <form id="commentForm" class="mb-6">
+                    @csrf
+                    <button type="button" id="submitComment"
+                        class="inline-flex items-center py-2.5 px-4 my-1 text-xs font-medium text-center text-white bg-[#24B49A] rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                        Post comment
+                    </button>
+                    <input type="hidden" name="event_id" value="{{ $events->id }}">
+                    <input type="hidden" name="club_id" value="{{ $clubs->id }}">
+                    <div
+                        class="px-4 py-2 mb-4 bg-white border border-gray-200 rounded-lg rounded-t-lg dark:bg-gray-800 dark:border-gray-700">
+                        <label for="comment" class="sr-only">Your comment</label>
+                        <textarea id="comment" rows="6" name="contenu"
+                            class="w-full px-0 text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                            placeholder="Write a comment..."></textarea>
+                    </div>
+                </form>
+                <article class="p-6 text-base bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900">
+                    <footer class="flex items-center justify-between mb-2">
+                        <div class="flex items-center">
+                            <p
+                                class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white">
+                                <img class="w-6 h-6 mr-2 rounded-full"
+                                    src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                    alt="Michael Gough">Michael Gough
+                            </p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><time pubdate datetime="2022-02-08"
+                                    title="February 8th, 2022">Feb. 8, 2022</time></p>
+                        </div>
+                        <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
+                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                            type="button">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 16 3">
+                                <path
+                                    d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                            </svg>
+                            {{-- <span class="sr-only">Comment settings</span> --}}
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div id="dropdownComment1"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-36 dark:bg-gray-700 dark:divide-gray-600">
+                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownMenuIconHorizontalButton">
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Remove</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </footer>
+                    <div class="">
+                        <p class="text-gray-500 dark:text-gray-400">Very straight-to-point article. Really worth time
+                            reading. Thank you! But tools are just the
+                            instruments for the UX designers. The knowledge of the design tools are as important as the
+                            creation of the design strategy.</p>
+                        {{-- <div class="flex items-center mt-4 space-x-4">
+                        <button type="button"
+                            class="flex items-center text-sm font-medium text-gray-500 hover:underline dark:text-gray-400">
+                            <svg class="mr-1.5 w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 18">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5h5M5 8h2m6-3h2m-5 3h6m2-7H2a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h3v5l5-5h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1Z"/>
+                            </svg>
+                            Reply
+                        </button>
+                    </div> --}}
+                    </div>
+
+                </article>
+
             </div>
         </section>
+
     </x-slot>
+
 </x-platform-layout>
+

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Event extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
-    protected $cascadeDeletes = ['image','reserves'];
+    protected $cascadeDeletes = ['image', 'reserves', 'comntaire'];
 
     protected $dates = ['deleted_at'];
 
@@ -28,14 +28,20 @@ class Event extends Model
 
 
 
-    public function image(){
-        return $this->hasMany(Image::class,'event_id');
+    public function image()
+    {
+        return $this->hasMany(Image::class, 'event_id');
     }
-    public function club(){
-        return $this->belongsTo(Club::class,'club_id');
+    public function club()
+    {
+        return $this->belongsTo(Club::class, 'club_id');
     }
     public function reserves(): MorphMany
     {
         return $this->morphMany(Reservation::class, 'reservable');
+    }
+    public function comntaire(): MorphMany
+    {
+        return $this->morphMany(Comentaire::class, 'commentireable');
     }
 }

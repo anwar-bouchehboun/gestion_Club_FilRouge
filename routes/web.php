@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Members\ComentaireController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeConroller;
 use App\Http\Controllers\ClubController;
@@ -8,7 +9,6 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Admin\AdminControlle;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ReservationController;
-// use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SouscategorieController;
 use App\Http\Controllers\Admin\AdminClubControlle;
@@ -54,19 +54,9 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/success/{event_id}', [StripeController::class, 'success'])->name('success');
     Route::post('/session/sous', [ReservationController::class, 'session'])->name('sessionsous');
     Route::get('/successsous/{sous_id}', [ReservationController::class, 'successsous'])->name('successsous');
-
+    Route::resource('/membereShips', MemberController::class);
+    Route::resource('/comentaire', ComentaireController::class);
 });
-Route::resource('/membereShips', MemberController::class);
-
-
-
-
-
-
-
-
-
-
 
 
 //guest
