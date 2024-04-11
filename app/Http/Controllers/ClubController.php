@@ -33,8 +33,10 @@ class ClubController extends Controller
            if($events){
             $images = $this->clubService->image($events->id);
            }
+        $commentaires= $this->clubService->commentaire($id,$events->id);
 
-            return view('client.categorie.categorie', compact('clubs', 'categories','events','images'));
+        //   dd($commentaires);
+            return view('client.categorie.categorie', compact('clubs', 'categories','events','images','commentaires'));
 
 
     }

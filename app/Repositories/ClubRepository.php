@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Club;
+use App\Models\Comentaire;
 use App\Models\Event;
 use App\Models\Image;
 use App\Models\Categorie;
@@ -68,9 +69,17 @@ class ClubRepository implements ClubInterface
     }
     public function image($id)
     {
-        return  Image::where('event_id', $id)->get();
+        return Image::where('event_id', $id)->get();
 
 
+    }
+
+    public function commentaire($id, $event)
+    {
+        return Comentaire::with('commentireable', 'users')
+            ->where('club_id', $id)
+            ->where('commentireable_id', $event)
+            ->orderBy('id', 'desc')->get();
     }
 
 }

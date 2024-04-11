@@ -53,15 +53,21 @@ class ClubServices
     }
     public function event($id)
     {
-       return  $this->clubtRepository->event($id);
+        return $this->clubtRepository->event($id);
 
 
     }
     public function image($id)
     {
-            return   $this->clubtRepository->image($id);
+        return $this->clubtRepository->image($id);
 
     }
+    public function commentaire($id,$event)
+    {
+        return $this->clubtRepository->commentaire($id,$event);
+
+    }
+
 
 
 }

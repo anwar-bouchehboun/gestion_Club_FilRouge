@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable ,SoftDeletes, CascadeSoftDeletes;
 
-    protected $cascadeDeletes = ['clubs'];
+    protected $cascadeDeletes = ['clubs','commentaires'];
 
     protected $dates = ['deleted_at'];
     /**
@@ -54,5 +54,8 @@ class User extends Authenticatable
     public function clubs()
     {
         return $this->belongsToMany(Club::class,'club_id');
+    }
+    public function commentaires(){
+        return $this->hasMany(Comentaire::class,'user_id');
     }
 }

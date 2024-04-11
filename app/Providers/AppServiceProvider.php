@@ -13,6 +13,7 @@ use App\Repositories\ClubRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Pagination\Paginator;
 use App\Interface\CategorieInterface;
+use App\Interface\ComentaireInterface;
 use App\Interface\MemberInterface;
 use App\Repositories\EventRepositroy;
 use App\Services\SousCategorieServices;
@@ -20,8 +21,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use App\Interface\SousCategorieInterface;
 use App\Repositories\CategorieRepository;
+use App\Repositories\ComentaireRepository;
 use App\Repositories\MemberRepository;
 use App\Repositories\SousCategorieRepository;
+use App\Services\ComentaireServices;
 use App\Services\MemberServices;
 
 // use App\Repositories\RepositoryInterface;
@@ -63,7 +66,11 @@ class AppServiceProvider extends ServiceProvider
         app()->bind(MemberServices::class,function($app){
             return new MemberServices($app->make(MemberInterface::class));
         });
-
+        // commeantire
+        app()->bind(ComentaireInterface::class,ComentaireRepository::class);
+        app()->bind(ComentaireServices::class,function($app){
+            return new ComentaireServices($app->make(ComentaireInterface::class));
+        });
 
     }
 
