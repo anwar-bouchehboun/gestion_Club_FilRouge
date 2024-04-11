@@ -1,23 +1,24 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminClubControlle;
-use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeConroller;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\CategorieController;
-// use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\AdminControlle;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ReservationController;
+// use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SouscategorieController;
+use App\Http\Controllers\Admin\AdminClubControlle;
+use App\Http\Controllers\Members\MemberController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\Admin\AdminCatgorieController;
-use App\Http\Controllers\Admin\AdminSousCategorieController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordLinkController;
+use App\Http\Controllers\Admin\AdminSousCategorieController;
 
 
 
@@ -55,6 +56,7 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/successsous/{sous_id}', [ReservationController::class, 'successsous'])->name('successsous');
 
 });
+Route::resource('/membereShips', MemberController::class);
 
 
 

@@ -1,5 +1,8 @@
 <x-goust-layout>
     <x-slot name="solt">
+        @if (Auth::User()->role == 'client')
+            <x-sweet-alert />
+        @endif
         <div class="py-3 ">
             <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Show Sous Categorie</h2>
             <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
@@ -7,11 +10,13 @@
 
         <div class="  w-full font-[sans-serif] mb-7">
 
-            <div class="grid md:grid-cols-2 gap-2 items-center md:max-h-[475px] overflow-hidden md:mx-4  border border-gray-200 rounded-lg shadow">
+            <div
+                class="grid md:grid-cols-2 gap-2 items-center md:max-h-[475px] overflow-hidden md:mx-4  border border-gray-200 rounded-lg shadow">
 
                 <div class="p-4 w-50 md:w-full ">
 
-                    <img src="/../storage/{{ $souscategories->image }}" class="w-full rounded-2xl" alt="{{ $souscategories->name }}">
+                    <img src="/../storage/{{ $souscategories->image }}" class="w-full rounded-2xl"
+                        alt="{{ $souscategories->name }}">
                     <a href="#">
                     </a>
 
@@ -22,8 +27,10 @@
 
                     <div class="flex justify-between px-2 ">
                         <div>
-                          <h4 class="text-2xl font-bold">Cateogrie  <strong class="text-[#24B49A] italic">  {{ $souscategories->categorie->name }}</strong></h4>
-                            <p class="mt-3 italic text-black">Price : <span class="text-[#24B49A]">{{ $souscategories->price }}</span>$</p>
+                            <h4 class="text-2xl font-bold">Cateogrie <strong class="text-[#24B49A] italic">
+                                    {{ $souscategories->categorie->name }}</strong></h4>
+                            <p class="mt-3 italic text-black">Price : <span
+                                    class="text-[#24B49A]">{{ $souscategories->price }}</span>$</p>
                         </div>
                         <div>
                             <form action="{{ route('sessionsous') }}" method="post">

@@ -1,6 +1,8 @@
 <x-platform-layout>
     <x-slot name="slot">
-        <x-sweet-alert />
+        @if (Auth::User()->role == 'client')
+            <x-sweet-alert />
+        @endif
         <section class="mt-10 ">
 
 
@@ -17,9 +19,19 @@
                                 {{ $clubs->discrption }}
 
                             </p>
-                            <button type='button'
-                                class="bg-[#24B49A]  border-2 border-[#24B49A] mt-10 transition-all text-black font-bold text-sm rounded-md px-6 py-2.5">Learn
-                                More</button>
+                            @if (Auth::User()->role == 'client')
+                                <form action="{{ route('membereShips.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="club_id" value="{{ $clubs->id }}">
+                                    <button type="submit"
+                                        class="bg-[#24B49A] border-2 border-[#24B49A] mt-10 transition-all text-black font-bold text-sm rounded-md px-6 py-2.5">
+                                        Add Members
+                                    </button>
+                                </form>
+                            @endif
+
+
+
                             {{-- <div class="mt-10">
                           <div class="grid items-center gap-4 sm:grid-cols-3">
                             <div class="flex flex-col items-center text-center">
@@ -91,17 +103,18 @@
 
         <section class= "mt-3 body-font md:mt-0">
             @if (count($categories) > 0)
-            <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Categorie</h2>
-            <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
+                <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Categorie</h2>
+                <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
 
-            <div class="container mx-auto px-9 md:py-12 py-11">
-                <div class="flex flex-wrap -m-4 text-center">
+                <div class="container mx-auto px-9 md:py-12 py-11">
+                    <div class="flex flex-wrap -m-4 text-center">
 
                         @forelse ($categories as  $categorie)
                             <div class="w-full p-4 sm:w-1/2 md:w-1/3">
                                 <div
                                     class="px-4 py-6 transition duration-500 transform border-2 border-gray-100 rounded-lg shadow shadow-slate-300 hover:scale-110">
-                                    <img src="../storage/{{ $categorie->image }}" alt="{{ $categorie->image }}" class="w-full h-56">
+                                    <img src="../storage/{{ $categorie->image }}" alt="{{ $categorie->image }}"
+                                        class="w-full h-56">
                                     <div class="flex px-5">
 
                                         <div class="flex items-center mt-2.5 mb-2.5 ">
@@ -140,7 +153,7 @@
                                                 5.0</div>
                                         </div>
                                     </div>
-                                    <a href="{{ route('souscategorie',$categorie->id) }}">
+                                    <a href="{{ route('souscategorie', $categorie->id) }}">
                                         <h2 class="leading-relaxed uppercase text-[#24B49A] text-2xl font-bold ">
                                             {{ $categorie->name }}</h2>
                                     </a>
@@ -160,8 +173,8 @@
 
 
 
-                </div>
-                @endif
+                    </div>
+            @endif
             </div>
         </section>
         {{-- Event --}}
@@ -222,7 +235,7 @@
                             <div>
                                 <form action="{{ route('session') }}" method="post">
                                     @csrf
-                                    <input type="hidden" name="event" value="{{$events->id}}" >
+                                    <input type="hidden" name="event" value="{{ $events->id }}">
                                     <button type="submit"
                                         class=" px-9 py-3 mt-10 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none ">Reservé</button>
                                 </form>

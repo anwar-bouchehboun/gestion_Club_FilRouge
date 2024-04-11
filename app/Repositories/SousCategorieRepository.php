@@ -4,6 +4,7 @@ namespace App\Repositories;
 use
 App\Interface\SousCategorieInterface;
 use App\Models\Categorie;
+use App\Models\Membership;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Souscategorie;
@@ -26,7 +27,7 @@ class SousCategorieRepository implements SousCategorieInterface
     }
     public function categorie()
     {
-       return  Categorie::all();
+        return Categorie::all();
     }
 
 
@@ -50,22 +51,38 @@ class SousCategorieRepository implements SousCategorieInterface
     }
     public function find($id)
     {
-        return Souscategorie::with('categorie')->where('categorie_id',$id)->get();
+        return Souscategorie::with('categorie')->where('categorie_id', $id)->get();
     }
-    public function shwocategorie($id){
-         return Categorie::with('club')->where('id',$id)->first();
+    public function shwocategorie($id)
+    {
+
+        return Categorie::with('club')->where('id', $id)->first();
+
     }
-    public function showsouscategorie($id){
-        return Souscategorie::with('categorie')->where('id',$id)->first();
+    public function showsouscategorie($id)
+    {
+
+        return Souscategorie::with('categorie')->where('id', $id)->first();
 
     }
     public function findFail(Request $request)
     {
+       $sous= Souscategorie::where('id', $request->sous)->first();
 
-        return Souscategorie::where('id',$request->sous)->first();
+       $club=$this->shwocategorie($sous->categorie_id);
+       $member=Membership::where('club_id',$club->club_id)->where('user_id',Auth::User()->id)->count();
+       if($member==0){
+        return 0;
+       }else{
+        return  $sous;
+
+       }
+
+
     }
-    public function reservesous($sousId){
-       
+    public function reservesous($sousId)
+    {
+
         $sous = Souscategorie::find($sousId);
         $user_id = Auth::user()->id;
         $reservation = new Reservation();
@@ -74,8 +91,8 @@ class SousCategorieRepository implements SousCategorieInterface
         $reservation->reservable()->associate($sous);
         $reservation->save();
         if ($reservation) {
-               $reservation=Reservation::with('reservable')->where('id',$reservation->id)->first();
-               return $reservation;
+            $reservation = Reservation::with('reservable')->where('id', $reservation->id)->first();
+            return $reservation;
         }
     }
 

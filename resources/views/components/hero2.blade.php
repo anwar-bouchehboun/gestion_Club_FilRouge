@@ -10,8 +10,10 @@
                     <p class="mt-6 text-base leading-relaxed">A club that brings together members interested in common
                         activities, goals, and interests</p>
                     <button type='button'
-                        class="bg-[#24B49A]  border-2 border-[#24B49A] mt-10 transition-all text-black font-bold text-sm rounded-md px-6 py-2.5">Learn
-                        More</button>
+                        class="bg-[#24B49A]  border-2 border-[#24B49A] mt-10 transition-all text-black font-bold text-sm rounded-md px-6 py-2.5">
+                        Learn
+                        More
+                    </button>
                     {{-- <div class="mt-10">
                   <div class="grid items-center gap-4 sm:grid-cols-3">
                     <div class="flex flex-col items-center text-center">

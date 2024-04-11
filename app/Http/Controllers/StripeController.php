@@ -21,8 +21,11 @@ class StripeController extends Controller
             if (Auth::user()->role == 'client') {
 
                 $event = $this->eventServices->find($request);
-                if (!$event) {
-                    abort(404, 'Event not found');
+                if ($event === 0) {
+                    return redirect()->back()->with([
+                        'message' => 'vous aves create compte pour   Club ',
+                        'success' => false,
+                    ]);
                 }
 
                 \Stripe\Stripe::setApiKey(config('stripe.sk'));

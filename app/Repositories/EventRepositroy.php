@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Models\Club;
 use App\Models\Event;
 use App\Models\Image;
+use App\Models\Membership;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Interface\EventInterface;
@@ -32,8 +33,15 @@ class EventRepositroy implements EventInterface
     }
     public function find(Request $request)
     {
+       $enent=Event::where('id', $request->event)->first();
+       $club= Club ::where('id',$enent->club_id)->first();
+       $member=Membership::where('club_id',$club->id)->where('user_id',Auth::user()->id)->count();
+       if($member==0){
+        return 0;
+       }else{
+        return Event::where('id', $request->event)->first();
 
-      return Event::where('id',$request->event)->first();
+       }
 
     }
 
@@ -44,7 +52,7 @@ class EventRepositroy implements EventInterface
     public function update(UpdateEventRequest $updateEventRequest, StoreImageRequest $storeImageRequest, $id)
     {
         $validatedData = $updateEventRequest->validated();
-       $event=Event::findOrFail($id);
+        $event = Event::findOrFail($id);
 
         $event->update($validatedData);
 
@@ -77,7 +85,7 @@ class EventRepositroy implements EventInterface
             $crateevent = Event::create($validate);
             foreach ($storeImageRequest->file('image') as $image) {
                 $path = $image->store('image', 'public');
-              $crateevent->image()->create([
+                $crateevent->image()->create([
                     // 'path' => $path,
                     'image' => $path,
                 ]);
@@ -86,18 +94,25 @@ class EventRepositroy implements EventInterface
         }
 
     }
-    public function reserveevent($eventId){
+    public function reserveevent($eventId)
+    {
         $event = Event::find($eventId);
+        // $club = Club::where('id', $event->club_id)->get();
         $user_id = Auth::user()->id;
-        $reservation = new Reservation();
-        $reservation->user_id = $user_id;
-        $reservation->status = 1;
-        $reservation->reservable()->associate($event);
-        $reservation->save();
-        if ($reservation) {
-               $reservation=Reservation::with('reservable')->where('id',$reservation->id)->first();
-               return $reservation;
-        }
+        // $idculb = $club[0]['id'];
+        // $member = Membership::where('user_id', $user_id)->where('club_id', $idculb)->first();
+        // if ($member->status) {
+            $reservation = new Reservation();
+            $reservation->user_id = $user_id;
+            $reservation->status = 1;
+            $reservation->reservable()->associate($event);
+            $reservation->save();
+            if ($reservation) {
+                $reservation = Reservation::with('reservable')->where('id', $reservation->id)->first();
+                return $reservation;
+            }
+        // }
+
     }
 
 

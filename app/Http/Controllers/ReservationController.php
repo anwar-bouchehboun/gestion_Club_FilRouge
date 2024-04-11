@@ -23,8 +23,11 @@ class ReservationController extends Controller
             if (Auth::user()->role == 'client') {
                 $sous = $this->sousCategorieServices->findFail($request);
 
-                if (!$sous) {
-                    abort(404, 'Sous Categorie not found');
+                if ($sous === 0) {
+                    return redirect()->back()->with([
+                        'message' => 'vous aves create compte pour   Club ',
+                        'success' => false,
+                    ]);
                 }
 
                 \Stripe\Stripe::setApiKey(config('stripe.sk'));

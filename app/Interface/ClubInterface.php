@@ -18,4 +18,5 @@ interface ClubInterface{
     public function event($id);
 
     public function image($id);
+
 }

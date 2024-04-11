@@ -13,13 +13,16 @@ use App\Repositories\ClubRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Pagination\Paginator;
 use App\Interface\CategorieInterface;
+use App\Interface\MemberInterface;
 use App\Repositories\EventRepositroy;
 use App\Services\SousCategorieServices;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use App\Interface\SousCategorieInterface;
 use App\Repositories\CategorieRepository;
+use App\Repositories\MemberRepository;
 use App\Repositories\SousCategorieRepository;
+use App\Services\MemberServices;
 
 // use App\Repositories\RepositoryInterface;
 
@@ -55,6 +58,12 @@ class AppServiceProvider extends ServiceProvider
         app()->bind(EventServices::class,function($app){
             return new EventServices($app->make(EventInterface::class));
         });
+        // members
+        app()->bind(MemberInterface::class,MemberRepository::class);
+        app()->bind(MemberServices::class,function($app){
+            return new MemberServices($app->make(MemberInterface::class));
+        });
+
 
     }
 
