@@ -12,14 +12,23 @@ class ComentaireServices
 
 
     public function __construct(
-      protected ComentaireInterface $comentaireInterface
+        protected ComentaireInterface $comentaireInterface
     ) {
     }
 
 
 
-   public function store(CometaireRequest $request){
-      $this->comentaireInterface->store($request);
-   }
+    public function store(CometaireRequest $request)
+    {
+        $this->comentaireInterface->store($request);
+    }
+    public function update(array $data, $id)
+    {
+        $this->comentaireInterface->update($data, $id);
 
+
+    }
+   public function destroy($id){
+    $this->comentaireInterface->destroy($id);
+   }
 }

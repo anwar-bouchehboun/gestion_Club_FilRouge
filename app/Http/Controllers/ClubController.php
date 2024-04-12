@@ -24,19 +24,24 @@ class ClubController extends Controller
 
     public function show($id)
     {
-        // try {
-            $clubs = $this->clubService->find($id);
+         // memebership
+         $clubs = $this->clubService->find($id);
+        // club
+        $club = $this->clubService->findfail($id);
 
-            $categories = $this->clubService->categorie($clubs->id);
-             $events = $this->clubService->event($clubs->id);
-             $images = null;
-           if($events){
+        $categories = $this->clubService->categorie($club->id);
+        // dd($categories);
+        $events = $this->clubService->event($club->id);
+        $images = null;
+        $commentaires = null;
+        if ($events) {
             $images = $this->clubService->image($events->id);
-           }
-        $commentaires= $this->clubService->commentaire($id,$events->id);
+            $commentaires = $this->clubService->commentaire($id, $events->id);
 
-        //   dd($commentaires);
-            return view('client.categorie.categorie', compact('clubs', 'categories','events','images','commentaires'));
+        }
+
+        //    dd($commentaires);
+        return view('client.categorie.categorie', compact('club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
 
 
     }

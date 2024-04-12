@@ -5,9 +5,14 @@ namespace App\Interface;
 
 interface ClubInterface{
     public function all();
+
     public function dataClub();
 
     public function find($id);
+
+    public function findfail($id);
+
+
     public function categorie($id);
 
     public function create(array $data);

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CometaireRequest extends FormRequest
+class UpdateCometaireRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,6 @@ class CometaireRequest extends FormRequest
     public function rules(): array
     {
         return [
-             'event_id'=>'required',
             'contenu'=>'required|regex:/^[a-zA-Z-\w_\s\W]+$/'
         ];
     }

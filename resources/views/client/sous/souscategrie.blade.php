@@ -90,166 +90,140 @@
         </section>
 
         {{-- section catagrorie --}}
-        <section class= "mt-3 body-font md:mt-0">
-            <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Sous Categorie</h2>
-            <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
+        @isset($souscategories)
+            <section class="mt-3 body-font md:mt-0">
+                <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Sous Categorie</h2>
+                <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
 
-            <div class="container mx-auto md:py-12 py-11">
-                <div class="flex flex-wrap gap-2 -m-4 text-center justify-evenly gap-y-10">
-                    @foreach ($souscategories as $souscategorie)
-                        <div
-                            class="p-4 bg-white border border-gray-200 rounded-lg shadow w-fit md:w-1/4 sm:w-1/2 dark:bg-gray-800 dark:border-gray-700">
-                            <a href="#" class="">
-                                <img src="../storage/{{ $souscategorie->image }}" alt="{{ $souscategorie->name }}"
-                                    class="w-full h-56">
-                            </a>
-                            <div class="flex justify-center">
-
-                                <div class="flex items-center mt-2.5 mb-2.5 ">
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                        </path>
-                                    </svg>
-                                    <div
-                                        class="ml-10 text-xs font-semibold text-red-800 bg-red-100 rounded dark:bg-red-200 dark:text-red-800 md:ml-26">
-                                        5.0</div>
-                                </div>
-                            </div>
-
-                            <div class="">
-                                <div class="flex gap-5 mt-1 justify-evenly">
-                                    <div class="text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
-                                        {{ $souscategorie->name }}
-                                    </div>
-                                    <div class="text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
-                                        ${{ $souscategorie->price }}</div>
-                                </div>
-                                <div
-                                    class=" md:px-24 py-3 mt-3 px-16 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none ">
-                                    <a href="{{ route('show.reseve',$souscategorie->id) }}">View</a>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                    @endforeach
-
-
-
-
-
-
-
-
-                </div>
-            </div>
-        </section>
-
-
-        {{-- commentaire --}}
-        <section class="">
-            <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Comentaire</h2>
-
-            <div class="container py-5 mx-auto my-5">
-                <div class="flex justify-center">
-                    <div class="w-full md:w-10/12 lg:w-8/12">
-                        <div class="bg-white rounded-lg shadow-md">
-                            <div class="p-4">
-                                <div class="flex items-center">
-                                    <img class="w-16 mr-3 rounded-full shadow-md md:w-20 lg:w-24"
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
-                                        alt="avatar">
-                                    <div>
-                                        <h6 class="mb-1 font-bold text-primary">Lily Coleman</h6>
-                                        <p class="mb-0 text-sm text-[#24B49A]">Shared publicly - Jan 2020</p>
+                <div class="container mx-auto md:py-12 py-11">
+                    <div class="flex flex-wrap gap-2 -m-4 text-center justify-evenly gap-y-10">
+                        @forelse ($souscategories as $souscategorie)
+                            <div
+                                class="p-4 bg-white border border-gray-200 rounded-lg shadow w-fit md:w-1/4 sm:w-1/2 dark:bg-gray-800 dark:border-gray-700">
+                                <a href="#" class="">
+                                    <img src="../storage/{{ $souscategorie->image }}" alt="{{ $souscategorie->name }}"
+                                        class="w-full h-56">
+                                </a>
+                                <div class="flex justify-center">
+                                    <div class="flex items-center mt-2.5 mb-2.5 ">
+                                        <!-- Star icons -->
+                                        @for ($i = 0; $i < 5; $i++)
+                                            <svg class="w-5 h-5 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                                </path>
+                                            </svg>
+                                        @endfor
+                                        <div
+                                            class="ml-10 text-xs font-semibold text-red-800 bg-red-100 rounded dark:bg-red-200 dark:text-red-800 md:ml-26">
+                                            5.0</div>
                                     </div>
                                 </div>
-
-                                <p class="pb-2 mt-3 mb-4">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
-                                </p>
-
-
-                            </div>
-                            <div class="p-4">
-                                <div class="flex items-center">
-                                    <img class="w-16 mr-3 rounded-full shadow-md md:w-20 lg:w-24"
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
-                                        alt="avatar">
-                                    <div>
-                                        <h6 class="mb-1 font-bold text-primary">Lily Coleman</h6>
-                                        <p class="mb-0 text-sm text-[#24B49A]">Shared publicly - Jan 2020</p>
-                                    </div>
-                                </div>
-
-                                <p class="pb-2 mt-3 mb-4">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
-                                </p>
-
-
-                            </div>
-
-                            <div class="px-4 py-3 bg-gray-100">
-                                <form action="">
-                                    <div class="flex items-center">
-                                        <img class="w-10 h-10 mr-3 rounded-full shadow-md md:w-12 md:h-12 lg:w-16 lg:h-16"
-                                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
-                                            alt="avatar">
-
-
-
-                                        <div class="w-full">
-                                            <textarea
-                                                class="w-full h-24 bg-white border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
-                                                id="textAreaExample" rows="4"></textarea>
-                                            <label class="sr-only" for="textAreaExample">Message</label>
+                                <div>
+                                    <div class="flex gap-5 mt-1 justify-evenly">
+                                        <div class="text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
+                                            {{ $souscategorie->name }}
+                                        </div>
+                                        <div class="text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
+                                            ${{ $souscategorie->price }}
                                         </div>
                                     </div>
-                                    <div class="pt-1 mt-2 text-right">
-                                        <button type="button"
-                                            class="px-4 py-2 mr-2 text-white bg-[#24B49A] rounded-md">Post
-                                            comment</button>
-                                        <button type="button"
-                                            class="px-4 py-2 text-[#24B49A] border border-[#24B49A] rounded-md">Cancel</button>
+                                    <div
+                                        class="md:px-24 py-3 mt-3 px-16 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none">
+                                        <a href="{{ route('show.reseve', $souscategorie->id) }}">View</a>
                                     </div>
-                                </form>
+                                </div>
+                            </div>
+                        @empty
+                            <p>No subcategories available.</p>
+                        @endforelse
+                    </div>
+                </div>
+            </section>
+        @else
+            <div>
+                <!-- Handle case where $souscategories is not set -->
+            </div>
+        @endisset
+
+        {{-- commentaire --}}
+        {{-- <section class="">
+    <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Comentaire</h2>
+
+    <div class="container py-5 mx-auto my-5">
+        <div class="flex justify-center">
+            <div class="w-full md:w-10/12 lg:w-8/12">
+                <div class="bg-white rounded-lg shadow-md">
+                    <div class="p-4">
+                        <div class="flex items-center">
+                            <img class="w-16 mr-3 rounded-full shadow-md md:w-20 lg:w-24"
+                                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
+                                alt="avatar">
+                            <div>
+                                <h6 class="mb-1 font-bold text-primary">Lily Coleman</h6>
+                                <p class="mb-0 text-sm text-[#24B49A]">Shared publicly - Jan 2020</p>
                             </div>
                         </div>
+
+                        <p class="pb-2 mt-3 mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
+                        </p>
+
+
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center">
+                            <img class="w-16 mr-3 rounded-full shadow-md md:w-20 lg:w-24"
+                                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
+                                alt="avatar">
+                            <div>
+                                <h6 class="mb-1 font-bold text-primary">Lily Coleman</h6>
+                                <p class="mb-0 text-sm text-[#24B49A]">Shared publicly - Jan 2020</p>
+                            </div>
+                        </div>
+
+                        <p class="pb-2 mt-3 mb-4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
+                        </p>
+
+
+                    </div>
+
+                    <div class="px-4 py-3 bg-gray-100">
+                        <form action="">
+                            <div class="flex items-center">
+                                <img class="w-10 h-10 mr-3 rounded-full shadow-md md:w-12 md:h-12 lg:w-16 lg:h-16"
+                                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
+                                    alt="avatar">
+
+
+
+                                <div class="w-full">
+                                    <textarea
+                                        class="w-full h-24 bg-white border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:ring-opacity-50"
+                                        id="textAreaExample" rows="4"></textarea>
+                                    <label class="sr-only" for="textAreaExample">Message</label>
+                                </div>
+                            </div>
+                            <div class="pt-1 mt-2 text-right">
+                                <button type="button"
+                                    class="px-4 py-2 mr-2 text-white bg-[#24B49A] rounded-md">Post
+                                    comment</button>
+                                <button type="button"
+                                    class="px-4 py-2 text-[#24B49A] border border-[#24B49A] rounded-md">Cancel</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section> --}}
 
     </x-slot>
 </x-platform-layout>

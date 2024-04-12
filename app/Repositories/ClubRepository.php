@@ -8,7 +8,7 @@ use App\Models\Event;
 use App\Models\Image;
 use App\Models\Categorie;
 use App\Interface\ClubInterface;
-
+use App\Models\Membership;
 
 class ClubRepository implements ClubInterface
 {
@@ -28,10 +28,14 @@ class ClubRepository implements ClubInterface
 
     public function find($id)
     {
-        $club = Club::where('id', $id)->first();
+        $club = Membership::with('club', 'user')->where('club_id', $id)->first();
 
         return $club;
 
+    }
+    public function findfail($id)
+    {
+            return Club::where('id',$id)->first();
     }
     public function categorie($id)
     {

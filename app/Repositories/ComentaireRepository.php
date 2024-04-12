@@ -14,6 +14,11 @@ use App\Http\Requests\CometaireRequest;
 
 class ComentaireRepository implements ComentaireInterface
 {
+    protected $comentaire;
+    public function __construct(Comentaire $comentaire)
+    {
+        $this->comentaire = $comentaire;
+    }
     public function store(CometaireRequest $request)
     {
         $valide = $request->validated();
@@ -29,9 +34,30 @@ class ComentaireRepository implements ComentaireInterface
             $comentaire->contenu = $valide['contenu'];
             $comentaire->commentireable()->associate($event);
             $comentaire->save();
+            return 1;
         } else {
 
             return 0;
+        }
+    }
+    public function update(array $data, $id)
+    {
+
+        $comentaire = $this->comentaire->findOrFail($id);
+        if ($comentaire->user_id === Auth::user()->id) {
+            $comentaire->contenu = $data['contenu'];
+            $comentaire->save();
+            return $comentaire;
+        }
+
+
+
+    }
+    public function destroy($id){
+        $comentaire = $this->comentaire->findOrFail($id);
+        if ($comentaire->user_id === Auth::user()->id) {
+        $comentaire->delete();
+        return $comentaire;
         }
     }
 }

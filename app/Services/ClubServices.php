@@ -67,7 +67,10 @@ class ClubServices
         return $this->clubtRepository->commentaire($id,$event);
 
     }
-
+    public function findfail($id)
+    {
+        return $this->clubtRepository->findfail($id);
+    }
 
 
 }
