@@ -1,9 +1,11 @@
 <x-platform-layout>
     <x-slot name="slot">
+        @auth
+            @if (Auth::User()->role == 'client')
+                <x-sweet-alert />
+            @endif
+        @endauth
 
-        @if (Auth::User()->role == 'client')
-            <x-sweet-alert />
-        @endif
         <section class="mx-2 mt-10 md:mx-0">
 
 
@@ -20,23 +22,36 @@
                                 {{ $club->discrption }}
 
                             </p>
-                            @if (Auth::user()->role == 'client')
-
-                                @if ($clubs && $clubs->user && $clubs->user->id == Auth::user()->id)
-                                    <div>
-                                        <!-- Content to display when the club's user is the authenticated user -->
-                                    </div>
-                                @else
-                                    <form action="{{ route('membereShips.store') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="club_id" value="{{ $club->id }}">
-                                        <button type="submit"
-                                            class="bg-[#24B49A] border-2 border-[#24B49A] mt-10 transition-all text-black font-bold text-sm rounded-md px-6 py-2.5">
-                                            Add Members
-                                        </button>
-                                    </form>
+                            @auth
+                                @if (Auth::user()->role == 'client')
+                                    @if ($clubs && $clubs->user && $clubs->user->id == Auth::user()->id)
+                                        <div>
+                                            <!-- Content to display when the club's user is the authenticated user -->
+                                        </div>
+                                    @else
+                                        <form action="{{ route('membereShips.store') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="club_id" value="{{ $club->id }}">
+                                            <button type="submit"
+                                                class="bg-[#24B49A] border-2 border-[#24B49A] mt-10 transition-all text-black font-bold text-sm rounded-md px-6 py-2.5">
+                                                Add Members
+                                            </button>
+                                        </form>
+                                    @endif
                                 @endif
-                            @endif
+                            @else
+                                <form action="{{ route('membereShips.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="club_id" value="{{ $club->id }}">
+                                    <button type="submit"
+                                        class="bg-[#24B49A] border-2 border-[#24B49A] mt-10 transition-all text-black font-bold text-sm rounded-md px-6 py-2.5">
+                                        Add Members
+                                    </button>
+                                </form>
+                            @endauth
+
+
+
 
 
 
@@ -334,33 +349,35 @@
         @if ($events && $commentaires)
             <section class="antialiased dark:bg-gray-900">
                 <div class="max-w-5xl px-2 mx-auto">
-                    @if ($events->reserves()->where('user_id', Auth::user()->id)->exists())
-                        <div class="flex items-center justify-between mb-1">
-                            <h2 class="text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">Discussion</h2>
-                        </div>
-                        <form id="commentForm" class="mb-6" method="POST"
-                            action="{{ route('comentaire.store') }}">
-                            @csrf
-
-                            <button type="submit" id="submitComment"
-                                class="inline-flex items-center py-2.5 px-4 my-1 text-xs font-medium text-center text-white bg-[#24B49A] rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-                                Post comment
-                            </button>
-
-                            <input type="hidden" name="event_id" value="{{ $events->id }}">
-                            <input type="hidden" name="club_id" value="{{ $clubs->id }}">
-                            <div
-                                class="px-4 py-2 mb-4 bg-white border border-gray-200 rounded-lg rounded-t-lg dark:bg-gray-800 dark:border-gray-700">
-                                <label for="comment" class="sr-only">Your comment</label>
-                                <textarea id="comment" rows="6" name="contenu"
-                                    class="w-full px-0 text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-                                    placeholder="Write a comment..."></textarea>
+                    @auth
+                        @if ($events->reserves()->where('user_id', Auth::user()->id)->exists())
+                            <div class="flex items-center justify-between mb-1">
+                                <h2 class="text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">Discussion</h2>
                             </div>
-                        </form>
-                    @endif
+                            <form id="commentForm" class="mb-6">
+                                @csrf
 
-                    <div class="rounded-lg shadow ">
-                        @foreach ($commentaires as $commentaire)
+                                <button type='button' id="submitComment"
+                                    class="inline-flex items-center py-2.5 px-4 my-1 text-xs font-medium text-center text-white bg-[#24B49A] rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                                    Post comment
+                                </button>
+
+                                <input type="hidden" name="event_id" value="{{ $events->id }}">
+                                <input type="hidden" name="club_id" value="{{ $club->id }}">
+                                <div
+                                    class="px-4 py-2 mb-4 bg-white border border-gray-200 rounded-lg rounded-t-lg dark:bg-gray-800 dark:border-gray-700">
+                                    <label for="comment" class="sr-only">Your comment</label>
+                                    <textarea id="comment" rows="6" name="contenu"
+                                        class="w-full px-0 text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                                        placeholder="Write a comment..."></textarea>
+                                </div>
+                            </form>
+                        @endif
+                    @endauth
+
+
+                    <div class="rounded-lg shadow " id="contenu">
+                        @foreach ($events->comntaire as $commentaire)
                             <article class="p-6 text-base bg-white dark:bg-gray-900">
                                 <footer class="flex items-center justify-between mb-2">
                                     <div class="flex items-center">
@@ -379,19 +396,22 @@
                                     </div>
                                     <div>
                                         <!-- Bouton pour afficher le menu déroulant -->
-                                        @if (Auth::user()->id === $commentaire->users->id)
-                                            <button id="dropdownComment{{ $commentaire->id }}Button"
-                                                data-dropdown-toggle="dropdownComment{{ $commentaire->id }}"
-                                                class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                                                type="button">
-                                                <svg class="w-4 h-4" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 16 3">
-                                                    <path
-                                                        d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-                                                </svg>
-                                            </button>
-                                        @endif
+                                        @auth
+                                            @if (Auth::user()->id === $commentaire->users->id)
+                                                <button id="dropdownComment{{ $commentaire->id }}Button"
+                                                    data-dropdown-toggle="dropdownComment{{ $commentaire->id }}"
+                                                    class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                                    type="button">
+                                                    <svg class="w-4 h-4" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                        viewBox="0 0 16 3">
+                                                        <path
+                                                            d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                                                    </svg>
+                                                </button>
+                                            @endif
+                                        @endauth
+
                                         <!-- Menu déroulant pour modifier et supprimer le commentaire -->
                                         <div id="dropdownComment{{ $commentaire->id }}"
                                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-36 dark:bg-gray-700 dark:divide-gray-600">
@@ -411,8 +431,8 @@
                                         </div>
                                     </div>
                                 </footer>
-                                <div>
-                                    <p class="text-gray-500 dark:text-gray-400">
+                                <div id="commentaire">
+                                    <p class="text-gray-500 dark:text-gray-400" >
                                         {{ $commentaire->contenu }}
                                     </p>
                                 </div>

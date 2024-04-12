@@ -22,8 +22,10 @@ class ComentaireController extends Controller
     public function store(CometaireRequest $request)
     {
         try {
-            $this->comentaireServices->store($request);
-            return redirect()->back();
+
+     $comentaire=  $this->comentaireServices->store($request);
+         return response()->json($comentaire);
+
         } catch (\Throwable $th) {
             return redirect()->back()->with([
                 'message' => ' Erorr ',

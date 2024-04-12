@@ -34,7 +34,9 @@ class ComentaireRepository implements ComentaireInterface
             $comentaire->contenu = $valide['contenu'];
             $comentaire->commentireable()->associate($event);
             $comentaire->save();
-            return 1;
+            $data=Comentaire::with('users')->where('id',$comentaire->id)->first();
+          
+            return $data;
         } else {
 
             return 0;

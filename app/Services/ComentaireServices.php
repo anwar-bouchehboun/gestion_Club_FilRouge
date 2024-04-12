@@ -20,15 +20,15 @@ class ComentaireServices
 
     public function store(CometaireRequest $request)
     {
-        $this->comentaireInterface->store($request);
+        return $this->comentaireInterface->store($request);
     }
     public function update(array $data, $id)
     {
-        $this->comentaireInterface->update($data, $id);
+        return  $this->comentaireInterface->update($data, $id);
 
 
     }
    public function destroy($id){
-    $this->comentaireInterface->destroy($id);
+    return  $this->comentaireInterface->destroy($id);
    }
 }

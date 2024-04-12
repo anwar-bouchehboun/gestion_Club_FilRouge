@@ -76,6 +76,8 @@ class StripeController extends Controller
 
     protected function save($eventId)
     {
-        return $this->eventServices->reserveevent($eventId);
+      return  $this->eventServices->reserveevent($eventId);
+
+
     }
 }

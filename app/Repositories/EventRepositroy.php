@@ -97,11 +97,12 @@ class EventRepositroy implements EventInterface
     public function reserveevent($eventId)
     {
         $event = Event::find($eventId);
-        // $club = Club::where('id', $event->club_id)->get();
+         $club = Club::where('id', $event->club_id)->first();
         $user_id = Auth::user()->id;
-        // $idculb = $club[0]['id'];
-        // $member = Membership::where('user_id', $user_id)->where('club_id', $idculb)->first();
-        // if ($member->status) {
+    //  $idculb = $club[0]['id'];
+
+        // $member = Membership::where('user_id', $user_id)->where('club_id', $club->id)->count();
+        //  if ($member) {
             $reservation = new Reservation();
             $reservation->user_id = $user_id;
             $reservation->status = 1;
@@ -111,7 +112,9 @@ class EventRepositroy implements EventInterface
                 $reservation = Reservation::with('reservable')->where('id', $reservation->id)->first();
                 return $reservation;
             }
-        // }
+        //  }else{
+        //     return 0;
+        //  }
 
     }
 
