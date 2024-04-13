@@ -395,7 +395,6 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <!-- Bouton pour afficher le menu déroulant -->
                                         @auth
                                             @if (Auth::user()->id === $commentaire->users->id)
                                                 <button id="dropdownComment{{ $commentaire->id }}Button"

@@ -7,41 +7,44 @@ use App\Models\Event;
 use App\Models\Comentaire;
 use App\Models\Membership;
 use Illuminate\Support\Facades\Auth;
-use App\Interface\ComentaireInterface;
-use App\Http\Requests\CometaireRequest;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
+use App\Interface\ComentaireSousInterface;
+use App\Models\Souscategorie;
+use Illuminate\Http\Request as HttpRequest;
 
-class ComentaireRepository implements ComentaireInterface
+class ComentaireSousRepository implements ComentaireSousInterface
 {
     protected $comentaire;
     public function __construct(Comentaire $comentaire)
     {
         $this->comentaire = $comentaire;
     }
-    public function store(CometaireRequest $request)
+    public function store(Request $request)
     {
-        $valide = $request->validated();
+        $valide = $request->all();
+        // dd($valide);
+        $sous = Souscategorie::find($valide['sous_id']);
+        $club = Club::find($valide['club_id']);
+        // dd($sous,$club,$valide);
 
-        $event = Event::find($valide['event_id']);
-        $club = Club::where('id', $event->club_id)->first();
-        $member = Membership::where('club_id', $club->id)->where('user_id', Auth::user()->id)->count();
+        // $member = Membership::where('club_id', $club->id)->where('user_id', Auth::user()->id)->count();
 
-        if ($member === 1) {
+        // if ($member === 1) {
             $comentaire = new Comentaire();
             $comentaire->user_id = Auth::User()->id;
             $comentaire->club_id = $club->id;
             $comentaire->contenu = $valide['contenu'];
-            $comentaire->commentireable()->associate($event);
+            $comentaire->commentireable()->associate($sous);
             $comentaire->save();
             $data=Comentaire::with('users')->where('id',$comentaire->id)->first();
 
             return $data;
-        } else {
+        // } else {
 
-            return 0;
-        }
+        //     return 0;
+        // }
     }
- 
+
     public function update(array $data, $id)
     {
 

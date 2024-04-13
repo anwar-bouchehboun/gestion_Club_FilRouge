@@ -7,25 +7,28 @@ use App\Services\ClubServices;
 use App\Services\EventServices;
 use App\Interface\AuthInterface;
 use App\Interface\ClubInterface;
+use App\Services\MemberServices;
 use App\Interface\EventInterface;
+use App\Interface\MemberInterface;
 use App\Services\CateogireServices;
 use App\Repositories\ClubRepository;
 use App\Repositories\UserRepository;
+use App\Services\ComentaireServices;
 use Illuminate\Pagination\Paginator;
 use App\Interface\CategorieInterface;
-use App\Interface\ComentaireInterface;
-use App\Interface\MemberInterface;
 use App\Repositories\EventRepositroy;
+use App\Interface\ComentaireInterface;
+use App\Repositories\MemberRepository;
 use App\Services\SousCategorieServices;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use App\Services\ComentaireSousServices;
 use App\Interface\SousCategorieInterface;
 use App\Repositories\CategorieRepository;
+use App\Interface\ComentaireSousInterface;
 use App\Repositories\ComentaireRepository;
-use App\Repositories\MemberRepository;
 use App\Repositories\SousCategorieRepository;
-use App\Services\ComentaireServices;
-use App\Services\MemberServices;
+use App\Repositories\ComentaireSousRepository;
 
 // use App\Repositories\RepositoryInterface;
 
@@ -71,6 +74,11 @@ class AppServiceProvider extends ServiceProvider
         app()->bind(ComentaireServices::class,function($app){
             return new ComentaireServices($app->make(ComentaireInterface::class));
         });
+            // commeantireSous
+            app()->bind(ComentaireSousInterface::class,ComentaireSousRepository::class);
+            app()->bind(ComentaireSousServices::class,function($app){
+                return new ComentaireSousServices($app->make(ComentaireSousInterface::class));
+            });
 
     }
 

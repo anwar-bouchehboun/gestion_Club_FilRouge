@@ -19,9 +19,7 @@ use App\Http\Controllers\Admin\AdminCatgorieController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 use App\Http\Controllers\Admin\AdminSousCategorieController;
-
-
-
+use App\Http\Controllers\Members\ComentaireSousController;
 
 // visteur
 
@@ -56,6 +54,9 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/successsous/{sous_id}', [ReservationController::class, 'successsous'])->name('successsous');
     Route::resource('/membereShips', MemberController::class);
     Route::resource('/comentaire', ComentaireController::class);
+    Route::resource('/comentairesous', ComentaireSousController::class);
+
+
 });
 
 
