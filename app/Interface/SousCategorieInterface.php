@@ -25,4 +25,6 @@ interface SousCategorieInterface
 
     public function findFail(Request $request);
 
+    public function MembershipValidtion($clubid);
+
 }

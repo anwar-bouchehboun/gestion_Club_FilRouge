@@ -48,7 +48,7 @@ class SousCategorieServices
     }
     public function reservesous($request){
 
-     
+
         return $this->sousCategorieInterface->reservesous($request);
 
 
@@ -57,5 +57,9 @@ class SousCategorieServices
     {
         // dd($request);
         return $this->sousCategorieInterface->findFail($request);
+    }
+    public function MembershipValidtion($clubid){
+        return $this->sousCategorieInterface->MembershipValidtion($clubid);
+
     }
 }

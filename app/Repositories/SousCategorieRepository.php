@@ -70,7 +70,9 @@ class SousCategorieRepository implements SousCategorieInterface
        $sous= Souscategorie::where('id', $request->sous)->first();
 
        $club=$this->shwocategorie($sous->categorie_id);
-       $member=Membership::where('club_id',$club->club_id)->where('user_id',Auth::User()->id)->count();
+
+    $member= $this->MembershipValidtion($club->club_id);
+
        if($member==0){
         return 0;
        }else{
@@ -95,7 +97,12 @@ class SousCategorieRepository implements SousCategorieInterface
             return $reservation;
         }
     }
+    public function MembershipValidtion($clubid){
 
+        $member=Membership::where('club_id',$clubid)->where('user_id',Auth::User()->id)->count();
+
+        return $member ;
+    }
 
 
 }

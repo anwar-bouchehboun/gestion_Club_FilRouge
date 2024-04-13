@@ -24,43 +24,38 @@ class ComentaireSousController extends Controller
                  return response($comentaire, 200)->header('Content-Type', 'text/plain');
         } catch (\Throwable $th) {
             return redirect()->back()->with([
-                'message' => ' Erorr ',
+                'message' => ' Erorr ADD commentaire ',
                 'success' => false,
             ]);
         }
 
     }
 
-    public function update(UpdateCometaireRequest $request, Comentaire $comentaire)
+    public function update(UpdateCometaireRequest $request, Comentaire $comentairesou)
     {
 
-        try {
+        // try {
             $data = $request->validated();
-            $this->comentaireServices->update($data, $comentaire->id);
+  
+           $comentaire= $this->comentaireServices->update($data, $comentairesou->id);
 
-                 return redirect()->back()->with([
-                     'message' => 'Commentire on a modifier',
-                     'success' => true,
-                 ]);
-        } catch (\Throwable $th) {
-            return redirect()->back()->with([
-                'message' => ' Erorr ',
-                'success' => false,
-            ]);
-        }
+             return response($comentaire, 200)->header('Content-Type', 'text/plain');
+        // } catch (\Throwable $th) {
+        //     return redirect()->back()->with([
+        //         'message' => ' Erorr  update Commentaire',
+        //         'success' => false,
+        //     ]);
+        // }
 
 
 
 
 
     }
-    public function destroy(Comentaire $comentaire)
+    public function destroy(Comentaire $comentairesou)
     {
-        $this->comentaireServices->destroy($comentaire->id);
-        return redirect()->back()->with([
-            'message' => 'Commentire on a Supprimer',
-            'success' => true,
-        ]);
+        $this->comentaireServices->destroy($comentairesou->id);
+        return response()->json(['commentId' => $comentairesou->id], 200);
 
     }
 }

@@ -27,9 +27,9 @@ class ComentaireSousRepository implements ComentaireSousInterface
         $club = Club::find($valide['club_id']);
         // dd($sous,$club,$valide);
 
-        // $member = Membership::where('club_id', $club->id)->where('user_id', Auth::user()->id)->count();
+        $member = Membership::where('club_id', $club->id)->where('user_id', Auth::user()->id)->count();
 
-        // if ($member === 1) {
+        if ($member === 1) {
             $comentaire = new Comentaire();
             $comentaire->user_id = Auth::User()->id;
             $comentaire->club_id = $club->id;
@@ -39,10 +39,10 @@ class ComentaireSousRepository implements ComentaireSousInterface
             $data=Comentaire::with('users')->where('id',$comentaire->id)->first();
 
             return $data;
-        // } else {
+        } else {
 
-        //     return 0;
-        // }
+            return 0;
+        }
     }
 
     public function update(array $data, $id)

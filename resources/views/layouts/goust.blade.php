@@ -33,3 +33,7 @@
 
 </html>
 <script src="/assets/js/Sotrecommentiaresous.js"></script>
+@push('vite')
+    @vite('resources/js/editCommentaireSous.js')
+    {{-- @vite('resources/js/deleteCommenteire.js') --}}
+@endpush
