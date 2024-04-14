@@ -22,9 +22,10 @@
                                 {{ $club->discrption }}
 
                             </p>
+                            {{-- @dd($clubs->user_id) --}}
                             @auth
                                 @if (Auth::user()->role == 'client')
-                                    @if ($clubs && $clubs->user && $clubs->user->id == Auth::user()->id)
+                                    @if ($clubs>0)
                                         <div>
                                             <!-- Content to display when the club's user is the authenticated user -->
                                         </div>
@@ -40,14 +41,14 @@
                                     @endif
                                 @endif
                             @else
-                                <form action="{{ route('membereShips.store') }}" method="POST">
+                                {{-- <form action="{{ route('membereShips.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="club_id" value="{{ $club->id }}">
                                     <button type="submit"
                                         class="bg-[#24B49A] border-2 border-[#24B49A] mt-10 transition-all text-black font-bold text-sm rounded-md px-6 py-2.5">
                                         Add Members
                                     </button>
-                                </form>
+                                </form> --}}
                             @endauth
 
 

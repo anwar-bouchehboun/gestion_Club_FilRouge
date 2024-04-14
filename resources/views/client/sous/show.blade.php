@@ -93,7 +93,7 @@
                                         </p>
                                     </div>
                                     @auth
-                                        @if (Auth::user()->id === $commentaire->users->id)
+                                        @if (Auth::check() && Auth::user()->id === $commentaire->users->id)
                                             <button id="dropdownComment{{ $commentaire->id }}Button"
                                                 data-dropdown-toggle="dropdownComment{{ $commentaire->id }}"
                                                 class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
