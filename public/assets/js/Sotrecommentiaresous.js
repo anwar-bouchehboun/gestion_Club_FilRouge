@@ -16,7 +16,7 @@ function submitComment() {
             console.log("Commentaire enregistré avec succès");
             var response = JSON.parse(xhr.responseText);
             console.log(response.club_id, response.commentireable_id);
-
+            // location.reload();
             const container = document.getElementById("contenu");
 
             let article = document.createElement("article");
@@ -51,6 +51,9 @@ function submitComment() {
         } else {
             console.error("Erreur lors de l'enregistrement du commentaire");
         }
+        setInterval(function() {
+            location.reload();
+        }, 3000);
     };
 
     xhr.send(formData);

@@ -31,7 +31,7 @@
                         {{-- @if (Auth::check() && Auth::user()->role === 'client') --}}
 
                         <li>
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" action="{{ route('logout') }}" class=" mx-28 md:mx-0">
                                 @csrf
                                 <button type="submit"
                                     class=" rounded text-center sm:mb-2 block uppercase focus:outline-none text-white bg-[#24B49A] hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium text-sm px-6 py-1.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 md:mx-2  my-2">LogOut</button>

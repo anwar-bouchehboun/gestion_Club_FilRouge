@@ -21,7 +21,8 @@ class ComentaireSousController extends Controller
     {
         try {
                $comentaire=  $this->comentaireServices->store($request);
-                 return response($comentaire, 200)->header('Content-Type', 'text/plain');
+            //    $data= $this->comentaireServices->all($comentaire->commentireable_id);
+            return response($comentaire, 200)->header('Content-Type', 'text/plain');
         } catch (\Throwable $th) {
             return redirect()->back()->with([
                 'message' => ' Erorr ADD commentaire ',
@@ -36,11 +37,9 @@ class ComentaireSousController extends Controller
 
         // try {
             $data = $request->validated();
-  
-           $comentaire= $this->comentaireServices->update($data, $comentairesou->id);
 
-             return response($comentaire, 200)->header('Content-Type', 'text/plain');
-        // } catch (\Throwable $th) {
+           $comentaire= $this->comentaireServices->update($data, $comentairesou->id);
+           return response($comentaire, 200)->header('Content-Type', 'text/plain');           // } catch (\Throwable $th) {
         //     return redirect()->back()->with([
         //         'message' => ' Erorr  update Commentaire',
         //         'success' => false,
@@ -58,4 +57,5 @@ class ComentaireSousController extends Controller
         return response()->json(['commentId' => $comentairesou->id], 200);
 
     }
+
 }

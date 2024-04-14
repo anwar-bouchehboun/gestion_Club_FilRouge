@@ -30,4 +30,8 @@ class ComentaireSousServices
    public function destroy($id){
     return  $this->comentaireInterface->destroy($id);
    }
+   public function all($id){
+    return  $this->comentaireInterface->all($id);
+
+   }
 }

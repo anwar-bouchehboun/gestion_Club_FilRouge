@@ -50,12 +50,13 @@
 
             </div>
 
-            @if ($member>0)
+
             <div class="py-2 antialiased bg-[#FFF] dark:bg-gray-900 lg:py-3">
                 <div class="max-w-5xl px-4 mx-auto">
                     <div class="flex items-center justify-between mb-6">
                         <h2 class="text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">Discussion</h2>
                     </div>
+                    @if ($member>0)
                     <form class="mb-2 " id="commentForm">
                         <div
                             class="px-4 py-2 mb-2 bg-[#FFF] border border-[#24B49A] rounded-lg rounded-t-lg dark:bg-gray-800 dark:border-gray-700">
@@ -71,9 +72,11 @@
                             Post comment
                         </button>
                     </form>
+                    @else
+
                     <div class="rounded-lg shadow bg-[#24B49A]" id="contenu">
                         @foreach ($souscategories->comntaire as $commentaire)
-                            <article class="p-6 text-base dark:bg-gray-900">
+                            <article class="p-6 text-base dark:bg-gray-900" id="containerid{{ $commentaire->id }}">
                                 <footer class="flex items-center justify-between mb-2">
                                     <div class="flex items-center">
                                         <p
@@ -122,7 +125,7 @@
                                         </ul>
                                     </div>
                                 </footer>
-                                <div id="commentaire">
+                                <div id="commentaire{{ $commentaire->id }}">
                                     <p class="text-white dark:text-gray-400">
                                         {{ $commentaire->contenu }}
                                     </p>
@@ -132,15 +135,12 @@
                         @endforeach
 
                     </div>
-
+                    @endif
 
                 </div>
             </div>
-            @else
-            <div>
 
-            </div>
-        @endif
+
 
 
 

@@ -26,6 +26,7 @@ class ComentaireSousRepository implements ComentaireSousInterface
         $sous = Souscategorie::find($valide['sous_id']);
         $club = Club::find($valide['club_id']);
         // dd($sous,$club,$valide);
+        $this->all($valide['sous_id']);
 
         $member = Membership::where('club_id', $club->id)->where('user_id', Auth::user()->id)->count();
 
@@ -36,6 +37,7 @@ class ComentaireSousRepository implements ComentaireSousInterface
             $comentaire->contenu = $valide['contenu'];
             $comentaire->commentireable()->associate($sous);
             $comentaire->save();
+
             $data=Comentaire::with('users')->where('id',$comentaire->id)->first();
 
             return $data;
@@ -60,9 +62,13 @@ class ComentaireSousRepository implements ComentaireSousInterface
     }
     public function destroy($id){
         $comentaire = $this->comentaire->findOrFail($id);
-        if ($comentaire->user_id === Auth::user()->id) {
+        if ($comentaire->user_id === Auth::user()->id && Auth::check()) {
         $comentaire->delete();
         return $comentaire;
         }
     }
+    public function all($id){
+       return Comentaire::with('users')->where('commentireable_id',$id)->orderBy('id','desc')->get();
+    }
+
 }

@@ -33,15 +33,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
                         var response = JSON.parse(xhr.responseText);
-                        var commentaireDiv = document.getElementById("commentaire");
-                        commentaireDiv.innerHTML = '<p class="text-white dark:text-gray-400">' + response.contenu + '</p>';
-
-                        // Close the modal
+                        var commentaireDiv = document.getElementById(
+                            "commentaire" + response.id
+                        );
+                        console.log(response.id);
+                        commentaireDiv.innerHTML =
+                            '<p class="text-white dark:text-gray-400">' +
+                            response.contenu +
+                            "</p>";
                         modal.hide();
                     } else {
                         console.error("Error:", xhr.status);
                     }
                 }
+                setInterval(function () {
+                    location.reload();
+                }, 2000);
             };
 
             xhr.send(formData);
