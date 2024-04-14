@@ -25,7 +25,8 @@
                             {{-- @dd($clubs->user_id) --}}
                             @auth
                                 @if (Auth::user()->role == 'client')
-                                    @if ($clubs>0)
+                                    @if (isset($clubs->user) && $clubs->user->id === Auth::user()->id)
+                                        {{-- Display content when the club's user is the authenticated user --}}
                                         <div>
                                             <!-- Content to display when the club's user is the authenticated user -->
                                         </div>
@@ -39,9 +40,8 @@
                                             </button>
                                         </form>
                                     @endif
-                                @endif
-                            @else
-                                {{-- <form action="{{ route('membereShips.store') }}" method="POST">
+                                @else
+                                    {{-- <form action="{{ route('membereShips.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="club_id" value="{{ $club->id }}">
                                     <button type="submit"
@@ -49,6 +49,7 @@
                                         Add Members
                                     </button>
                                 </form> --}}
+                                @endif
                             @endauth
 
 
@@ -432,7 +433,7 @@
                                     </div>
                                 </footer>
                                 <div id="commentaire">
-                                    <p class="text-gray-500 dark:text-gray-400" >
+                                    <p class="text-gray-500 dark:text-gray-400">
                                         {{ $commentaire->contenu }}
                                     </p>
                                 </div>

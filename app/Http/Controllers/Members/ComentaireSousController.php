@@ -20,9 +20,12 @@ class ComentaireSousController extends Controller
     public function store(Request $request)
     {
         try {
-               $comentaire=  $this->comentaireServices->store($request);
-            //    $data= $this->comentaireServices->all($comentaire->commentireable_id);
-            return response($comentaire, 200)->header('Content-Type', 'text/plain');
+            if(Auth::check()){
+                $comentaire=  $this->comentaireServices->store($request);
+                return response($comentaire, 200)->header('Content-Type', 'text/plain');
+            }
+          
+
         } catch (\Throwable $th) {
             return redirect()->back()->with([
                 'message' => ' Erorr ADD commentaire ',

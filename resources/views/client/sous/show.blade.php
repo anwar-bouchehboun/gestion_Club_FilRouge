@@ -1,9 +1,10 @@
 <x-goust-layout>
     <x-slot name="solt">
 
-        @if (Auth::User()->role == 'client')
-            <x-sweet-alert />
-        @endif
+        <x-sweet-alert />
+
+
+
         <div class="py-3 ">
             <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Show Sous Categorie</h2>
             <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
@@ -53,26 +54,34 @@
 
             <div class="py-2 antialiased bg-[#FFF] dark:bg-gray-900 lg:py-3">
                 <div class="max-w-5xl px-4 mx-auto">
-                    <div class="flex items-center justify-between mb-6">
-                        <h2 class="text-lg font-bold text-gray-900 lg:text-2xl dark:text-white">Discussion</h2>
-                    </div>
-                    @if ($member>0)
-                    <form class="mb-2 " id="commentForm">
-                        <div
-                            class="px-4 py-2 mb-2 bg-[#FFF] border border-[#24B49A] rounded-lg rounded-t-lg dark:bg-gray-800 dark:border-gray-700">
-                            <label for="comment" class="sr-only">Your comment</label>
-                            <input type="hidden" name="sous_id" value="{{ $souscategories->id }}">
-                            <input type="hidden" name="club_id" value="{{ $souscategories->categorie->club_id }}">
-                            <textarea id="comment" rows="6" name="contenu"
-                                class="w-full px-0 text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
-                                placeholder="Write a comment..."></textarea>
-                        </div>
-                        <button type="button" id="submitComment"
-                            class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-[#24B49A] rounded-lg   ">
-                            Post comment
-                        </button>
-                    </form>
-                    @else
+                 
+
+                    {{-- @if ($member > 0) --}}
+                    @auth
+                        @if (Auth::User()->role == 'client')
+                            @if ($souscategories->reserves()->where('user_id', Auth::user()->id)->exists())
+                                <form class="mb-2 " id="commentForm">
+                                    <div
+                                        class="px-4 py-2 mb-2 bg-[#FFF] border border-[#24B49A] rounded-lg rounded-t-lg dark:bg-gray-800 dark:border-gray-700">
+                                        <label for="comment" class="sr-only">Your comment</label>
+                                        <input type="hidden" name="sous_id" value="{{ $souscategories->id }}">
+                                        <input type="hidden" name="club_id"
+                                            value="{{ $souscategories->categorie->club_id }}">
+                                        <textarea id="comment" rows="6" name="contenu"
+                                            class="w-full px-0 text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                                            placeholder="Write a comment..."></textarea>
+                                    </div>
+                                    <button type="button" id="submitComment"
+                                        class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-[#24B49A] rounded-lg   ">
+                                        Post comment
+                                    </button>
+                                </form>
+                            @endif
+                        @endif
+                    @endauth
+
+
+                    {{-- @else --}}
 
                     <div class="rounded-lg shadow bg-[#24B49A]" id="contenu">
                         @foreach ($souscategories->comntaire as $commentaire)
@@ -135,7 +144,7 @@
                         @endforeach
 
                     </div>
-                    @endif
+                    {{-- @endif --}}
 
                 </div>
             </div>

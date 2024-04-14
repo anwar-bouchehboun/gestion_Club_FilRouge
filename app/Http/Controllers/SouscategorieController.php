@@ -22,8 +22,8 @@ class SouscategorieController extends Controller
 
         $categories = $this->sousCategorieServices->shwocategorie($souscategories->categorie_id);
 
-        $member = $this->sousCategorieServices->MembershipValidtion($categories->club_id);
+        // $member = $this->sousCategorieServices->MembershipValidtion($categories->club_id);
 
-        return view('client.sous.show', compact('souscategories','member'));
+        return view('client.sous.show', compact('souscategories'));
     }
 }
