@@ -1,17 +1,21 @@
 <?php
 namespace App\Interface;
 
+use Illuminate\Http\Request;
+
 
 
 interface AuthInterface{
 
-    public function all();
+    public function all(Request $request);
+    // public function search(Request $request);
 
-    public function find($id);
+    // public function find($id);
 
-    public function create(array $data);
+    // public function create(array $data);
 
-    public function update(array $data, $id);
+    // public function update(array $data, $id);
 
-    public function delete($id);
+
+    // public function delete($id);
 }

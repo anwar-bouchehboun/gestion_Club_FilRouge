@@ -38,6 +38,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('/Dashbord/souscategorie', AdminSousCategorieController::class);
     Route::resource('/Dashbord/event', AdminEventController::class);
     Route::resource('/Dashbord/user', AdminUserController::class);
+    Route::get('user/search', [AdminUserController::class, 'search']);
     Route::resource('/Dashbord/club', AdminClubControlle::class);
 
 });

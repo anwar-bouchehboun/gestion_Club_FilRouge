@@ -28,5 +28,9 @@ class Reservation extends Model
     {
         return $this->morphTo();
     }
+    public function users()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 
 }

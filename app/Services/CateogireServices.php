@@ -3,7 +3,7 @@ namespace App\Services;
 
 use App\Interface\CategorieInterface;
 
-class CateogireServices
+class CateogireServices 
 {
     public function __construct(protected CategorieInterface $categorieInterface)
     {

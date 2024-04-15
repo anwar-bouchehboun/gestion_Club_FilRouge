@@ -45,7 +45,7 @@
                 </nav>
                 <div class="px-0 mb-0 border-0 rounded-t ">
 
-                    <form class="max-w-md mx-auto">
+                    {{-- <form class="max-w-md mx-auto"> --}}
                         <label for="default-search"
                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div class="relative">
@@ -56,13 +56,12 @@
                                         stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                 </svg>
                             </div>
-                            <input type="search" id="default-search"
+                            <input type="text" id="searchInput"
                                 class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Search.." required />
-                            <button type="submit"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-[#24B49A]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+
                         </div>
-                    </form>
+                    {{-- </form> --}}
 
 
                 </div>
@@ -85,67 +84,59 @@
                                 <th class="px-6 py-3 text-sm font-semibold text-left text-black">
                                     Email
                                 </th>
-                                <th class="px-6 py-3 text-sm font-semibold text-left text-black">
-                                    Club
-                                </th>
-                                <th class="px-6 py-3 text-sm font-semibold text-left text-black">
-                                    Categorie
-                                </th>
+
                                 <th class="px-6 py-3 text-sm font-semibold text-left text-black">
                                     SousCategorie
                                 </th>
                                 <th class="px-6 py-3 text-sm font-semibold text-left text-black">
-                                    Action
+                                    Picture
                                 </th>
+
 
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody id="content_tr">
+                            {{-- @foreach ($users as $user)
+                                <tr>
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ $user->id }}</th>
+                                    <td class="px-6 py-4">{{ $user->users->name }}</td>
+                                    <td class="px-6 py-4">
+                                        {{ $user->users->email }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $user->reservable->name }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <img src="../storage/{{ $user->reservable->image }}"
+                                            alt="{{ $user->reservable->image }}"
+                                            class="w-16 h-16 mb-3 rounded-full shadow-lg ">
+                                    </td>
+                                    <td class="flex px-6 py-4">
 
-                            <tr class="bg-white dark:bg-gray-800">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Magic Mouse 2
-                                </th>
-                                <td class="px-6 py-4">
-                                    Black
-                                </td>
-                                <td class="px-6 py-4">
-                                    Black
-                                </td>
-                                <td class="px-6 py-4">
-                                    Black
-                                </td>
-                                <td class="px-6 py-4">
-                                    Black
-                                </td>
-                                <td class="px-6 py-4">
-                                    Black
-                                </td>
-
-
-
-
-                                <td class="flex px-6 py-4">
-
-                                    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                                        class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
-                                            <path
-                                                d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
-                                                data-original="#000000" />
-                                            <path
-                                                d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
-                                                data-original="#000000" />
-                                        </svg>
-                                    </button>
+                                        <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
+                                            class="mr-4 text-blue-500 hover:text-blue-700" title="Edit">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="w-5 fill-red-500 hover:fill-red-700" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
+                                                    data-original="#000000" />
+                                                <path
+                                                    d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
+                                                    data-original="#000000" />
+                                            </svg>
+                                        </button>
 
 
 
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endforeach --}}
+
+
+
                         </tbody>
                     </table>
                 </div>
@@ -153,16 +144,12 @@
             </div>
         </div>
 
-        {{-- modal edit --}}
-
-
-        <!-- Modal toggle -->
 
 
 
         {{-- Delete --}}
 
-        <div id="popup-modal" tabindex="-1"
+        {{-- <div id="popup-modal" tabindex="-1"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-md max-h-full p-4">
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -179,8 +166,8 @@
                     <div class="p-4 text-center md:p-5">
                         <svg class="w-12 h-12 mx-auto mb-4 text-gray-400 dark:text-gray-200" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
                         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to
                             delete this Club?</h3>
@@ -199,8 +186,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
 
     </x-slot>
 </x-app-layout>
+
+<script src="/assets/js/UserdataSous.js"></script>

@@ -58,4 +58,8 @@ class User extends Authenticatable
     public function commentaires(){
         return $this->hasMany(Comentaire::class,'user_id');
     }
+    public function reservation(){
+        return $this->hasMany(Reservation::class,'user_id');
+
+    }
 }
