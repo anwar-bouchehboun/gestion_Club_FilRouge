@@ -30,6 +30,57 @@ class UserService
     {
         return $this->clientRepository->all($request);
     }
+    public function Count(){
+        return $this->clientRepository->Count();
+
+    }
+    public function ClientCount(){
+        return $this->clientRepository->ClientCount();
+    }
+
+    public function NowClient(){
+        return $this->clientRepository->NowClient();
+
+    }
+    public function YesterdayClient(){
+        return $this->clientRepository->YesterdayClient();
+
+    }
+
+    public function CountClientSousYesterdayCount(){
+        return $this->clientRepository->CountClientSousYesterdayCount();
+
+    }
+
+    public function CountClientSous(){
+        return $this->clientRepository->CountClientSous();
+
+    }
+    public function CountClientEvent(){
+        return $this->clientRepository->CountClientEvent();
+
+
+    }
+    public function CountClientEventYesterdayCount(){
+        return $this->clientRepository->CountClientEventYesterdayCount();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // public function search(Request $request){
     //     return $this->clientRepository->search($request);

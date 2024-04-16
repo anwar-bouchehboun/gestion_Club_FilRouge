@@ -11,6 +11,24 @@ interface AuthInterface{
     // public function search(Request $request);
 
     // public function find($id);
+    public function Count();
+
+    public function ClientCount();
+   
+
+    public function NowClient();
+
+    public function YesterdayClient();
+
+    public function CountClientSousYesterdayCount();
+
+    public function CountClientSous();
+
+    public function CountClientEvent();
+
+    public function CountClientEventYesterdayCount();
+
+
 
      public function create(array $data);
 
@@ -18,4 +36,6 @@ interface AuthInterface{
 
 
     public function delete($id);
+
+
 }
