@@ -24,14 +24,7 @@
                     </div>
                     <div class="flex items-center">
                         <div class="mr-auto md:mr-4 md:w-56">
-                            <div class="relative w-full min-w-[200px] h-10">
-                                <input
-                                    class="peer w-full h-full bg-transparent text-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-blue-500"
-                                    placeholder=" ">
-                                <label
-                                    class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-blue-gray-400 peer-focus:text-blue-500 before:border-blue-gray-200 peer-focus:before:border-blue-500 after:border-blue-gray-200 peer-focus:after:border-blue-500">Type
-                                    here</label>
-                            </div>
+
                         </div>
                         <button
                             class="relative middle none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-10 max-w-[40px] h-10 max-h-[40px] rounded-lg text-xs text-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 grid xl:hidden"
@@ -70,15 +63,17 @@
                         <div class="p-4 text-right">
                             <p
                                 class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-600">
-                                Today's Money</p>
+                                Evenments</p>
                             <h4
                                 class="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                                $53k</h4>
+                                {{ $CountClientEvent }}
+                            </h4>
                         </div>
                         <div class="p-4 border-t border-blue-gray-50">
                             <p
                                 class="block font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-600">
-                                <strong class="text-green-500">+55%</strong>&nbsp;than last week
+                                <strong class="text-green-500"> {{ $CountClientEventYesterdayCount }}</strong>&nbsp;than
+                                yesterday
                             </p>
                         </div>
                     </div>
@@ -95,17 +90,20 @@
                         <div class="p-4 text-right">
                             <p
                                 class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-600">
-                                Today's Users</p>
+                                Users</p>
                             <h4
                                 class="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                                2,300</h4>
+                                {{ $client }}
+                            </h4>
+
                         </div>
                         <div class="p-4 border-t border-blue-gray-50">
                             <p
                                 class="block font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-600">
-                                <strong class="text-green-500">+3%</strong>&nbsp;than last month
+                                <strong class="text-green-500"> {{ $MemberClient }} </strong>MemberShip CLub
                             </p>
                         </div>
+
                     </div>
                     <div class="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl">
                         <div
@@ -123,12 +121,13 @@
                                 New Clients</p>
                             <h4
                                 class="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                                3,462</h4>
+                                {{ $newClientsCount }}</h4>
                         </div>
                         <div class="p-4 border-t border-blue-gray-50">
                             <p
                                 class="block font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-600">
-                                <strong class="text-red-500">-2%</strong>&nbsp;than yesterday
+                                <strong class="text-green-500">{{ $newClientsYesterdayCount }}</strong>&nbsp;than
+                                yesterday
                             </p>
                         </div>
                     </div>
@@ -145,15 +144,16 @@
                         <div class="p-4 text-right">
                             <p
                                 class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-600">
-                                Sales</p>
+                                Client </p>
                             <h4
                                 class="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-                                $103,430</h4>
+                                {{ $CountClientSous }}</h4>
                         </div>
                         <div class="p-4 border-t border-blue-gray-50">
                             <p
                                 class="block font-sans text-base antialiased font-normal leading-relaxed text-blue-gray-600">
-                                <strong class="text-green-500">+5%</strong>&nbsp;than yesterday
+                                <strong
+                                    class="text-green-500">{{ $CountClientSousYesterdayCount }}</strong>&nbsp;SousCateogrie
                             </p>
                         </div>
                     </div>
@@ -161,27 +161,16 @@
 
 
             </div>
-            <div class="flex flex-wrap md:flex-row">
-                <div class=" md:max-w-50 max-w-44">
-                    {{-- <div class=""> --}}
-                    {{-- <div class="col-md-2"> --}}
-                    {{-- <div class="card"> --}}
-
-
-                    <div class="card-body">
-                        <div id="piechart_3d" style="width: 350px; height: 300px;"></div>
-
-                        {{-- <h1 class="text-[#24B49A] text-2xl font-medium uppercase">{{ $clients->options['chart_title'] }}</h1>
-                                    {!! $clients->renderHtml() !!} --}}
-
-                    </div>
-
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- {!! $clients->renderChartJsLibrary() !!}
-                    {!! $clients->renderJs() !!} --}}
+            <div class="flex flex-wrap justify-evenly">
+                <div class="card-body">
+                    <div id="piechart_3d" style="width: 350px; height: 300px;"></div>
                 </div>
+
+                <div class="">
+                    <div id="CHART3d" style="width: 350px; height: 300px;"></div>
+
+                </div>
+
 
 
             </div>
@@ -194,24 +183,27 @@
     google.charts.load("current", {
         packages: ["corechart"]
     });
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawFirstChart);
+    // google.charts.setOnLoadCallback(drawSecondChart);
 
-    function drawChart() {
+    function drawFirstChart() {
         var data = google.visualization.arrayToDataTable([
             ['club', 'STATSITIQUE'],
             <?php echo $data; ?>
         ]);
 
         var options = {
-            title: 'Satistique Club',
+            title: 'STATSITIQUE CLUB',
             is3D: true,
             curveType: 'function',
-          legend: { position: 'bottom' },
-
-
+            legend: {
+                position: 'bottom'
+            }
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
         chart.draw(data, options);
     }
+
+    
 </script>

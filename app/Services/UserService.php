@@ -11,20 +11,20 @@ class UserService
     ) {
     }
 
-    // public function create(array $data)
-    // {
-    //     return $this->clientRepository->create($data);
-    // }
+    public function create(array $data)
+    {
+        return $this->clientRepository->create($data);
+    }
 
-    // public function update($id,array $data)
-    // {
-    //     return $this->clientRepository->update($data, $id);
-    // }
+    public function update($id,array $data)
+    {
+        return $this->clientRepository->update($data, $id);
+    }
 
-    // public function delete($id)
-    // {
-    //     return $this->clientRepository->delete($id);
-    // }
+    public function delete($id)
+    {
+        return $this->clientRepository->delete($id);
+    }
 
     public function all(Request $request)
     {

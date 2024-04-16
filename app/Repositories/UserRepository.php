@@ -66,22 +66,22 @@ class UserRepository implements AuthInterface
     //     return $this->user->find($id);
     // }
 
-    // public function create(array $data)
-    // {
-    //     return $this->user->create($data);
-    // }
+    public function create(array $data)
+    {
+        return $this->user->create($data);
+    }
 
-    // public function update(array $data,$id)
-    // {
-    //     $user = $this->user->findOrFail($id);
-    //     $user->update($data);
-    //     return $user;
-    // }
+    public function update(array $data,$id)
+    {
+        $user = $this->user->findOrFail($id);
+        $user->update($data);
+        return $user;
+    }
 
-    // public function delete($id)
-    // {
-    //     $user = $this->user->findOrFail($id);
-    //     $user->delete();
-    //     return $user;
-    // }
+    public function delete($id)
+    {
+        $user = $this->user->findOrFail($id);
+        $user->delete();
+        return $user;
+    }
 }
