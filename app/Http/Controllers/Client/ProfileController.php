@@ -51,38 +51,21 @@ class ProfileController extends Controller
     }
 
 
-    public function update(UpdateProfileRequest $request)
+    public function updateprofile(UpdateProfileRequest $request)
     {
-
-        $validatedData = $request->validated();
-
-        if ($validatedData) {
-            $userId = Auth::user()->id;
-            $user = User::find($userId);
-
-            $user->update($validatedData);
+   
+       $this->userService->updateprofile($request);
 
             return response()->json(['message' => 'Profile updated successfully'], 200);
 
 
-        } else {
-            return response()->json(['message' => 'Profile Error successfully'], 500);
-
-        }
 
     }
 
     public function Set_Pssword(Request $request)
     {
-        $userId = auth()->user()->id;
-        $validPasswoed = $request->validate([
-            'password' => ['required', 'confirmed', Password::defaults()],
-        ]);
-        if (isset($validPasswoed['password'])) {
-            $validPasswoed['password'] = Hash::make($validPasswoed['password']);
-        }
-        $profile = User::where('id', $userId)->firstOrFail();
-        $profile->update($validPasswoed);
+
+        $this->userService->Set_Pssword($request);
         return redirect()->back()->with([
             'message' => 'Votre profil a été mis à jour avec succès.',
             'success' => true,

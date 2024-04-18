@@ -3,6 +3,7 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use App\Interface\AuthInterface;
+use App\Http\Requests\UpdateProfileRequest;
 
 class UserService
 {
@@ -69,6 +70,16 @@ class UserService
         return $this->clientRepository->get_User();
 
     }
+    public function Set_Pssword(Request $request){
+        return $this->clientRepository->Set_Pssword($request);
+
+    }
+    public function updateprofile(UpdateProfileRequest $request){
+      
+        return $this->clientRepository->updateprofile($request);
+
+    }
+
 
 
 

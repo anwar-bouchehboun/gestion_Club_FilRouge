@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 use App\Models\Souscategorie;
 use App\Interface\AuthInterface;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
+use App\Http\Requests\UpdateProfileRequest;
+
 
 
 class UserRepository implements AuthInterface
@@ -147,6 +151,34 @@ class UserRepository implements AuthInterface
     public function get_User()
     {
         return User::where('id', Auth::User()->id)->first();
+    }
+
+    public function Set_Pssword(Request $request)
+    {
+
+        $userId = auth()->user()->id;
+        $validPasswoed = $request->validate([
+            'password' => ['required', 'confirmed', Password::defaults()],
+        ]);
+        if (isset($validPasswoed['password'])) {
+            $validPasswoed['password'] = Hash::make($validPasswoed['password']);
+        }
+        $profile = User::where('id', $userId)->firstOrFail();
+        return $profile->update($validPasswoed);
+    }
+
+
+    public function updateprofile(UpdateProfileRequest $request)
+    {
+        
+        $validatedData = $request->validated();
+
+
+        $userId = Auth::user()->id;
+        $user = User::find($userId);
+
+        return $user->update($validatedData);
+
     }
 
 }

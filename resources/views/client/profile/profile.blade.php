@@ -139,6 +139,7 @@
                             text: 'Profile updated successfully',
                             timer: 4000,
                             timerProgressBar: true,
+                            showConfirmButton: false,
                             didClose: () => {
                                 window.location.reload();
                             }

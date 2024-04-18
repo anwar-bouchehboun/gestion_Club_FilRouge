@@ -2,6 +2,7 @@
 namespace App\Interface;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateProfileRequest;
 
 
 
@@ -38,6 +39,10 @@ interface AuthInterface{
     public function delete($id);
 
     public function get_User();
+
+    public function Set_Pssword(Request $request);
+
+    public function updateprofile(UpdateProfileRequest $request);
 
 
 }
