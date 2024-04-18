@@ -25,6 +25,7 @@ class AdminControlle extends Controller
     }
     public function index()
     {
+        
         //Stistique Chart js
      $data=$this->userService->Count();
 

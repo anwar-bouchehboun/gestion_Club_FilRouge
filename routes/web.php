@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Members\ComentaireController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeConroller;
 use App\Http\Controllers\ClubController;
@@ -12,14 +11,16 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SouscategorieController;
 use App\Http\Controllers\Admin\AdminClubControlle;
+use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Members\MemberController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminEventController;
+use App\Http\Controllers\Members\ComentaireController;
 use App\Http\Controllers\Admin\AdminCatgorieController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Members\ComentaireSousController;
 use App\Http\Controllers\Auth\ForgotPasswordLinkController;
 use App\Http\Controllers\Admin\AdminSousCategorieController;
-use App\Http\Controllers\Members\ComentaireSousController;
 
 // visteur
 
@@ -56,8 +57,8 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::resource('/membereShips', MemberController::class);
     Route::resource('/comentaire', ComentaireController::class);
     Route::resource('/comentairesous', ComentaireSousController::class);
-
-
+    Route::get('/profile',[ProfileController::class,'index'])->name('profile.index');
+    Route::post('/profile/update', [ProfileController::class,'update']);
 });
 
 

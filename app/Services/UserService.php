@@ -65,7 +65,10 @@ class UserService
         return $this->clientRepository->CountClientEventYesterdayCount();
 
     }
+    public function get_User(){
+        return $this->clientRepository->get_User();
 
+    }
 
 
 

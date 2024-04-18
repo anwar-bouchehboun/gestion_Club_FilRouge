@@ -14,7 +14,7 @@ interface AuthInterface{
     public function Count();
 
     public function ClientCount();
-   
+
 
     public function NowClient();
 
@@ -36,6 +36,8 @@ interface AuthInterface{
 
 
     public function delete($id);
+
+    public function get_User();
 
 
 }

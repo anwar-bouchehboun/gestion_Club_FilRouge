@@ -12,6 +12,7 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Souscategorie;
 use App\Interface\AuthInterface;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserRepository implements AuthInterface
@@ -75,7 +76,7 @@ class UserRepository implements AuthInterface
         return $this->user->create($data);
     }
 
-    public function update(array $data,$id)
+    public function update(array $data, $id)
     {
         $user = $this->user->findOrFail($id);
         $user->update($data);
@@ -89,52 +90,63 @@ class UserRepository implements AuthInterface
         return $user;
     }
 
-    public function Count(){
+    public function Count()
+    {
         $clubs = Club::count();
         $events = Event::count();
         $categorie = Categorie::count();
         $Souscategorie = Souscategorie::count();
-        $data="['club',".$clubs."],['categorie',".$categorie."],['Souscategorie',".$Souscategorie."],['Events',".$events."]";
+        $data = "['club'," . $clubs . "],['categorie'," . $categorie . "],['Souscategorie'," . $Souscategorie . "],['Events'," . $events . "]";
         return $data;
 
     }
-    public function ClientCount(){
-         return Client::count();
+    public function ClientCount()
+    {
+        return Client::count();
     }
 
 
     public function NowClient()
     {
-       $currentDate = Carbon::today();
+        $currentDate = Carbon::today();
         $newClientsCount = Client::whereDate('created_at', '=', $currentDate)->count();
         return $newClientsCount;
     }
 
-    public function YesterdayClient(){
+    public function YesterdayClient()
+    {
         $newClientsYesterdayCount = Client::whereDate('created_at', Carbon::yesterday())->count();
         return $newClientsYesterdayCount;
 
     }
 
-    public function CountClientSousYesterdayCount(){
-        $CountClientSousYesterdayCount = Reservation::with('users')->whereDate('created_at', Carbon::yesterday())->where('reservable_type','App\Models\Souscategorie')->count();
+    public function CountClientSousYesterdayCount()
+    {
+        $CountClientSousYesterdayCount = Reservation::with('users')->whereDate('created_at', Carbon::yesterday())->where('reservable_type', 'App\Models\Souscategorie')->count();
         return $CountClientSousYesterdayCount;
     }
 
-    public function CountClientSous(){
-        $CountClientSous=Reservation::with('users')->where('reservable_type','App\Models\Souscategorie')->count();
+    public function CountClientSous()
+    {
+        $CountClientSous = Reservation::with('users')->where('reservable_type', 'App\Models\Souscategorie')->count();
         return $CountClientSous;
 
     }
 
-    public function CountClientEvent(){
-        $CountClientEvent=Reservation::with('users')->where('reservable_type','App\Models\Event')->count();
+    public function CountClientEvent()
+    {
+        $CountClientEvent = Reservation::with('users')->where('reservable_type', 'App\Models\Event')->count();
         return $CountClientEvent;
     }
 
-    public function CountClientEventYesterdayCount(){
-        $CountClientEventYesterdayCount = Reservation::with('users')->whereDate('created_at', Carbon::yesterday())->where('reservable_type','App\Models\Event')->count();
+    public function CountClientEventYesterdayCount()
+    {
+        $CountClientEventYesterdayCount = Reservation::with('users')->whereDate('created_at', Carbon::yesterday())->where('reservable_type', 'App\Models\Event')->count();
         return $CountClientEventYesterdayCount;
+    }
+    public function get_User()
+    {
+        return User::where('id', Auth::User()->id)->first();
     }
 
 }

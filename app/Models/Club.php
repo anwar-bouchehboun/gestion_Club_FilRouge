@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Club extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
-    protected $cascadeDeletes = ['categorie','event','users'];
+    protected $cascadeDeletes = ['categorie','event','clubs'];
 
     protected $dates = ['deleted_at'];
 
@@ -25,8 +25,8 @@ class Club extends Model
     public function event(){
         return $this->hasMany(Event::class,'club_id');
     }
-    public function users()
+    public function clubs()
     {
-        return $this->belongsToMany(User::class,'user_id');
+        return $this->hasMany(Membership::class);
     }
 }

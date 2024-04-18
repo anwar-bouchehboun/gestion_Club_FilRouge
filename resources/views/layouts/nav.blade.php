@@ -28,8 +28,13 @@
                     </li>
                     @auth
 
-                        {{-- @if (Auth::check() && Auth::user()->role === 'client') --}}
-
+                        @if (Auth::check() && Auth::user()->role === 'client')
+                        <li>
+                            <a href="{{ route('profile.index') }}"
+                                class="text-center block uppercase py-2 px-3 text-white hover:bg-[#24B49A] md:hover:bg-transparent md:border-0 md:hover:text-[#24B49A] md:p-1 dark:text-white my-2">
+                                Profile</a>
+                        </li>
+                             @endif
                         <li>
                             <form method="POST" action="{{ route('logout') }}" class=" mx-28 md:mx-0">
                                 @csrf
@@ -38,7 +43,7 @@
                             </form>
                         </li>
 
-                        {{-- @endif --}}
+
                     @else
                         <li>
                             <a href="{{ route('login.index') }}" type="button"
