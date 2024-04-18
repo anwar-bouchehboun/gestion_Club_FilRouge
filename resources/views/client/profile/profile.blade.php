@@ -1,6 +1,6 @@
 <x-goust-layout>
     <x-slot name="solt">
-
+        <x-sweet-alert />
         <div class="relative w-full overflow-hidden rounded shadow-2xl">
             {{-- <a href=""
                 class="fixed z-50 flex items-center justify-center w-12 h-12 duration-150 rounded-full bg-white/50 hover:bg-white top-10 left-10 animate-pulse"><i
@@ -11,7 +11,7 @@
                     alt="" class="absolute z-0 object-cover object-center w-full h-full ">
                 <div class="relative flex flex-col items-center justify-center h-full text-white bg-black bg-opacity-50">
                     <i class='bx bxs-user-circle text-9xl'></i>
-                    <img class="w-20 h-20 rounded-full" src="./storage/{{ $profile->image }}" alt="">
+                    <img class="w-20 h-20 rounded-full" src="../storage/{{ $profile->image }}" alt="">
                     <h1 class="text-2xl font-semibold">{{ $profile->name }}</h1>
                 </div>
             </div>
@@ -74,26 +74,30 @@
 
                         <h3 class="pb-1 text-lg font-semibold text-center md:text-2xl">Update Password</h3>
                         <div class="h-[1px] bg-[#24B49A] "></div>
-                        <form action="">
+                        <form action="{{ route('update.password') }}" method="POST">
+                            @csrf
                             <div class=" w-[80%] mx-auto grid md:grid-cols-2 text-black    md:gap-x-5    mb-5 mt-6">
                                 <div class="w-full col-span-2 pb-3 form-item">
                                     <label class="font-semibold text-black md:text-xl text-md ">Email</label>
-                                    <input type="text" value="{{ $profile->email }}"
+                                    <input type="text" value="{{ $profile->email }}" name="email"
                                         class="w-full px-2 py-2 mr-2 text-opacity-50 rounded shadow appearance-none focus:outline-none focus:shadow-outline focus:border-blue-200 ">
                                 </div>
                                 <div class="w-full col-span-2 pb-3 md:col-span-1 form-item">
-                                    <label class="font-semibold text-black md:text-xl text-md ">New Password</label>
-                                    <input type="text" value=""
+                                    <label class="font-semibold text-black md:text-xl text-md">New Password</label>
+                                    <input type="password" name="password" value="{{ old('password') }}"
                                         class="w-full px-2 py-2 mr-2 text-opacity-50 rounded shadow appearance-none focus:outline-none focus:shadow-outline focus:border-blue-200 ">
                                 </div>
+
 
 
                                 <div class="w-full col-span-1 form-item">
                                     <label class="font-semibold text-black md:text-xl text-md ">Confirme
                                         Password</label>
-                                    <input type="text" value=""
+                                    <input type="password" name="password_confirmation"
                                         class="w-full px-2 py-2 mr-2 text-opacity-50 rounded shadow appearance-none focus:outline-none focus:shadow-outline focus:border-blue-200 ">
+
                                 </div>
+
 
                             </div>
                             <div class="flex w-full mb-1 justify-evenly">
