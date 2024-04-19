@@ -26,4 +26,6 @@ interface ClubInterface{
     public function image($id);
 
     public function commentaire($id,$event);
+
+    public function existingReservation($events);
 }

@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Models\Categorie;
 use App\Models\Comentaire;
 use App\Models\Membership;
+use App\Models\Reservation;
 use App\Interface\ClubInterface;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,14 +30,19 @@ class ClubRepository implements ClubInterface
 
     public function find($id)
     {
-        $club = Membership::with('club', 'user')->where('club_id', $id)->where('user_id',Auth::User()->id)->first();
+       if(Auth::check()){
+        $club = Membership::with('club', 'user')->where('club_id', $id)->where('user_id', Auth::User()->id)->first();
 
         return $club;
+       }
+       return null;
+
+
 
     }
     public function findfail($id)
     {
-            return Club::where('id',$id)->first();
+        return Club::where('id', $id)->first();
     }
     public function categorie($id)
     {
@@ -86,5 +92,19 @@ class ClubRepository implements ClubInterface
             ->where('commentireable_id', $event)
             ->orderBy('id', 'desc')->get();
     }
+    public function existingReservation($events)
+    {
+        if(Auth::check()){
+            $existingReservation = Reservation::where('user_id', Auth::User()->id)
+            ->where('reservable_id', $events)
+            ->where('reservable_type', 'App\Models\Event')
+            ->count();
+            return $existingReservation;
+        }
+        return null;
+
+    }
+
+
 
 }

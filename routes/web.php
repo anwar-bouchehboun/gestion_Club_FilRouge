@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\AdminSousCategorieController;
 Route::get('/', [HomeConroller::class, 'index'])->name('home');
 
 Route::get('club', [ClubController::class, 'index'])->name('club');
+Route::get('search', [ClubController::class, 'search']);
 Route::get('club/{id}', [ClubController::class, 'show'])->name('categorie');
 Route::get('categorie', [CategorieController::class, 'index'])->name('categorie.data');
 Route::get('categorie/{id}', [CategorieController::class, 'show'])->name('souscategorie');

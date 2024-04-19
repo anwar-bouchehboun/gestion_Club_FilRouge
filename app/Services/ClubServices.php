@@ -71,6 +71,9 @@ class ClubServices
     {
         return $this->clubtRepository->findfail($id);
     }
+    public function existingReservation($events){
+        return $this->clubtRepository->existingReservation($events);
 
+    }
 
 }

@@ -17,17 +17,29 @@ class ClubController extends Controller
 
     public function index()
     {
-        $clubs = $this->clubService->dataClub();
 
 
-        return view('client.club.club', compact('clubs'));
+        return view('client.club.club');
     }
+
+
+    public function search(Request $request)
+    {
+
+            $clubs = $this->clubService->dataClub();
+            return response()->json($clubs);
+
+
+
+    }
+
 
     public function show($id)
     {
+
         // memebership
         $clubs = $this->clubService->find($id);
-        //  dd($clubs);
+
         //  frsit club
         $club = $this->clubService->findfail($id);
 
@@ -37,15 +49,13 @@ class ClubController extends Controller
         $images = null;
         $commentaires = null;
         $existingReservation=null;
-        $user = auth()->user();
+
 
 
 
         if ($events) {
-            $existingReservation = Reservation::where('user_id', $user->id)
-                ->where('reservable_id', $events->id)
-                ->where('reservable_type', 'App\Models\Event')
-                ->count();
+         $existingReservation=   $this->clubService->existingReservation($events->id);
+
             $images = $this->clubService->image($events->id);
             $commentaires = $this->clubService->commentaire($id, $events->id);
 
