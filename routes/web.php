@@ -60,7 +60,8 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/update', [ProfileController::class, 'updateprofile']);
     Route::post('/profile/password', [ProfileController::class, 'Set_Pssword'])->name('update.password');
-
+     //user
+    Route::post('/profile/delete', [ProfileController::class, 'deleteclub']);
 
 });
 

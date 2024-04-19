@@ -28,28 +28,8 @@ class ProfileController extends Controller
     }
 
 
-    public function create()
-    {
-
-    }
 
 
-    public function store(Request $request)
-    {
-
-    }
-
-
-    public function show(string $id)
-    {
-
-    }
-
-
-    public function edit(string $id)
-    {
-
-    }
 
 
     public function updateprofile(UpdateProfileRequest $request)
@@ -76,8 +56,12 @@ class ProfileController extends Controller
     }
 
 
-    public function destroy(string $id)
+    public function deleteclub(Request $request)
     {
+
+       $this->userService->deleteclub($request);
+       return response()->json(['message' => 'Profile Delete Club  successfully'], 200);
+
 
     }
 }

@@ -25,8 +25,8 @@ class ClubController extends Controller
 
     public function show($id)
     {
-         // memebership
-         $clubs = $this->clubService->find($id);
+        // memebership
+        $clubs = $this->clubService->find($id);
 
         //  frsit club
         $club = $this->clubService->findfail($id);
@@ -36,22 +36,23 @@ class ClubController extends Controller
         $events = $this->clubService->event($club->id);
         $images = null;
         $commentaires = null;
+        $existingReservation=null;
         $user = auth()->user();
 
-        $existingReservation = Reservation::where('user_id', $user->id)
-                                            ->where('reservable_id', $events->id)
-                                            ->where('reservable_type', 'App\Models\Event')
-                                            ->count();
 
 
         if ($events) {
+            $existingReservation = Reservation::where('user_id', $user->id)
+                ->where('reservable_id', $events->id)
+                ->where('reservable_type', 'App\Models\Event')
+                ->count();
             $images = $this->clubService->image($events->id);
             $commentaires = $this->clubService->commentaire($id, $events->id);
 
         }
 
         //    dd($commentaires);
-        return view('client.categorie.categorie', compact('existingReservation','club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
+        return view('client.categorie.categorie', compact('existingReservation', 'club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
 
 
     }

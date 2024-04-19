@@ -17,7 +17,7 @@ class UserService
         return $this->clientRepository->create($data);
     }
 
-    public function update($id,array $data)
+    public function update($id, array $data)
     {
         return $this->clientRepository->update($data, $id);
     }
@@ -31,57 +31,73 @@ class UserService
     {
         return $this->clientRepository->all($request);
     }
-    public function Count(){
+    public function Count()
+    {
         return $this->clientRepository->Count();
 
     }
-    public function ClientCount(){
+    public function ClientCount()
+    {
         return $this->clientRepository->ClientCount();
     }
 
-    public function NowClient(){
+    public function NowClient()
+    {
         return $this->clientRepository->NowClient();
 
     }
-    public function YesterdayClient(){
+    public function YesterdayClient()
+    {
         return $this->clientRepository->YesterdayClient();
 
     }
 
-    public function CountClientSousYesterdayCount(){
+    public function CountClientSousYesterdayCount()
+    {
         return $this->clientRepository->CountClientSousYesterdayCount();
 
     }
 
-    public function CountClientSous(){
+    public function CountClientSous()
+    {
         return $this->clientRepository->CountClientSous();
 
     }
-    public function CountClientEvent(){
+    public function CountClientEvent()
+    {
         return $this->clientRepository->CountClientEvent();
 
 
     }
-    public function CountClientEventYesterdayCount(){
+    public function CountClientEventYesterdayCount()
+    {
         return $this->clientRepository->CountClientEventYesterdayCount();
 
     }
-    public function get_User(){
+    public function get_User()
+    {
         return $this->clientRepository->get_User();
 
     }
-    public function Set_Pssword(Request $request){
+    public function Set_Pssword(Request $request)
+    {
         return $this->clientRepository->Set_Pssword($request);
 
     }
-    public function updateprofile(UpdateProfileRequest $request){
+    public function updateprofile(UpdateProfileRequest $request)
+    {
 
         return $this->clientRepository->updateprofile($request);
 
     }
-    public function get_User_Club(){
+    public function get_User_Club()
+    {
         return $this->clientRepository->get_User_Club();
 
+    }
+    public function deleteclub(Request $request)
+    {
+        return $this->clientRepository->deleteclub($request);
     }
 
 

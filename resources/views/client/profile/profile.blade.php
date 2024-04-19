@@ -52,7 +52,7 @@
                                                 </button>
                                                 <div class="p-4 md:p-5">
                                                     <img src="../storage/{{ $user->club->image }}"
-                                                        alt="{{ $user->club->image }}" class="mx-auto  w-60">
+                                                        alt="{{ $user->club->image }}" class="mx-auto w-60">
 
                                                     <h2 class="mb-3 text-lg font-semibold text-[#24B49A]  ">
                                                         {{ $user->club->club }}
@@ -65,7 +65,12 @@
                                                         <strong class="font-light "> Club Created At:</strong>
                                                         {{ $user->club->created_at->format('Y-m-d') }}
                                                     </span>
-
+                                                    <form id="deleteForm{{ $user->id }}">
+                                                        @csrf
+                                                        <button id="deleteButton{{ $user->id }}" onclick="deleteUser({{ $user->id }})" type="button"
+                                                            class="p-2 text-white bg-red-700 rounded float-end">Delete Club</button>
+                                                    </form>
+                                                
                                                 </div>
                                             </div>
                                         </div>
@@ -225,3 +230,5 @@
         });
     });
 </script>
+
+<script src="/assets/js/deleteClubuser.js"></script>

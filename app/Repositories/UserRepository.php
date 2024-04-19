@@ -179,10 +179,18 @@ class UserRepository implements AuthInterface
         return $user->update($validatedData);
 
     }
-    public function get_User_Club(){
+    public function get_User_Club()
+    {
 
-        $memberUser=Membership::with('user','club')->where('user_id',Auth::User()->id)->get();
+        $memberUser = Membership::with('user', 'club')->where('user_id', Auth::User()->id)->get();
         return $memberUser;
+    }
+    public function deleteclub(Request $request)
+    {
+        $userId = $request->userId;
+        $membership = Membership::where('user_id', Auth::user()->id)->findOrFail($userId);
+        return $membership->delete();
+
     }
 
 }

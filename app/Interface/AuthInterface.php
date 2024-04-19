@@ -43,7 +43,8 @@ interface AuthInterface{
     public function Set_Pssword(Request $request);
 
     public function updateprofile(UpdateProfileRequest $request);
-    
+
     public function get_User_Club();
+    public function deleteclub(Request $request);
 
 }
