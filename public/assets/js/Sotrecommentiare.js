@@ -53,9 +53,13 @@ document.getElementById("submitComment").addEventListener("click", function () {
             container.appendChild(article);
 
             document.getElementById("comment").value = "";
+            setInterval(function() {
+                location.reload();
+            }, 2000);
         } else {
             console.error("Erreur lors de l'enregistrement du commentaire");
         }
+
     };
 
     xhr.send(formData);

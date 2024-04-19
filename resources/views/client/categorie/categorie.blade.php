@@ -270,12 +270,19 @@
                                         class="text-[#24B49A]">{{ $events->prix }}</span>$</p>
                             </div>
                             <div>
-                                <form action="{{ route('session') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="event" value="{{ $events->id }}">
-                                    <button type="submit"
-                                        class=" px-9 py-3 mt-10 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none ">Reservé</button>
-                                </form>
+                                @if ($existingReservation == 0)
+                                    <form action="{{ route('session') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="event" value="{{ $events->id }}">
+                                        <button type="submit"
+                                            class=" px-9 py-3 mt-10 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none ">Reservé</button>
+                                    </form>
+                                @else
+                                <div>
+                                    
+                                </div>
+                                @endif
+
 
                             </div>
 

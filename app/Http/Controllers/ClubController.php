@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Club;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Services\ClubServices;
 
@@ -26,7 +27,7 @@ class ClubController extends Controller
     {
          // memebership
          $clubs = $this->clubService->find($id);
-        
+
         //  frsit club
         $club = $this->clubService->findfail($id);
 
@@ -35,6 +36,14 @@ class ClubController extends Controller
         $events = $this->clubService->event($club->id);
         $images = null;
         $commentaires = null;
+        $user = auth()->user();
+
+        $existingReservation = Reservation::where('user_id', $user->id)
+                                            ->where('reservable_id', $events->id)
+                                            ->where('reservable_type', 'App\Models\Event')
+                                            ->count();
+
+
         if ($events) {
             $images = $this->clubService->image($events->id);
             $commentaires = $this->clubService->commentaire($id, $events->id);
@@ -42,7 +51,7 @@ class ClubController extends Controller
         }
 
         //    dd($commentaires);
-        return view('client.categorie.categorie', compact('club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
+        return view('client.categorie.categorie', compact('existingReservation','club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
 
 
     }
