@@ -26,11 +26,17 @@ class ClubController extends Controller
     public function search(Request $request)
     {
 
+        $searchTerm = $request->input('search');
+        if ($searchTerm) {
+            $clubs = Club::where('club', 'LIKE', "%{$searchTerm}%")->get();
+
+        } else {
+
             $clubs = $this->clubService->dataClub();
-            return response()->json($clubs);
+        }
 
-
-
+     
+        return response()->json($clubs);
     }
 
 
@@ -44,24 +50,23 @@ class ClubController extends Controller
         $club = $this->clubService->findfail($id);
 
         $categories = $this->clubService->categorie($club->id);
-        // dd($categories);
         $events = $this->clubService->event($club->id);
         $images = null;
         $commentaires = null;
-        $existingReservation=null;
+        $existingReservation = null;
 
 
 
 
         if ($events) {
-         $existingReservation=   $this->clubService->existingReservation($events->id);
+            $existingReservation = $this->clubService->existingReservation($events->id);
 
             $images = $this->clubService->image($events->id);
             $commentaires = $this->clubService->commentaire($id, $events->id);
 
         }
 
-        //    dd($commentaires);
+
         return view('client.categorie.categorie', compact('existingReservation', 'club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
 
 

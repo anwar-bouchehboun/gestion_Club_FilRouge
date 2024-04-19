@@ -25,7 +25,8 @@ class ClubRepository implements ClubInterface
     }
     public function dataClub()
     {
-        return Club::paginate(6);
+      
+        return Club::all();
     }
 
     public function find($id)
