@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use App\Http\Requests\UpdateProfileRequest;
-
-
+use App\Models\Membership;
 
 class UserRepository implements AuthInterface
 {
@@ -170,7 +169,7 @@ class UserRepository implements AuthInterface
 
     public function updateprofile(UpdateProfileRequest $request)
     {
-        
+
         $validatedData = $request->validated();
 
 
@@ -179,6 +178,11 @@ class UserRepository implements AuthInterface
 
         return $user->update($validatedData);
 
+    }
+    public function get_User_Club(){
+
+        $memberUser=Membership::with('user','club')->where('user_id',Auth::User()->id)->get();
+        return $memberUser;
     }
 
 }

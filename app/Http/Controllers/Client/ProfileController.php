@@ -22,8 +22,9 @@ class ProfileController extends Controller
     public function index()
     {
         $profile = $this->userService->get_User();
-
-        return view('client.profile.profile', compact('profile'));
+        $club_User=$this->userService->get_User_Club();
+        //   dd($club_User);
+        return view('client.profile.profile', compact('profile','club_User'));
     }
 
 
@@ -53,7 +54,7 @@ class ProfileController extends Controller
 
     public function updateprofile(UpdateProfileRequest $request)
     {
-   
+
        $this->userService->updateprofile($request);
 
             return response()->json(['message' => 'Profile updated successfully'], 200);
@@ -73,6 +74,7 @@ class ProfileController extends Controller
 
 
     }
+
 
     public function destroy(string $id)
     {

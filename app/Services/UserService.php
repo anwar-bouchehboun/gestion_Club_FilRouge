@@ -75,8 +75,12 @@ class UserService
 
     }
     public function updateprofile(UpdateProfileRequest $request){
-      
+
         return $this->clientRepository->updateprofile($request);
+
+    }
+    public function get_User_Club(){
+        return $this->clientRepository->get_User_Club();
 
     }
 

@@ -24,9 +24,9 @@ class AdminCatgorieController extends Controller
 
     public function index()
     {
-        if(Auth::User()->role=="admin"){
-        $categories = $this->cateogireServices->all();
-        $clubs = $this->cateogireServices->club();
+        if (Auth::User()->role == "admin") {
+            $categories = $this->cateogireServices->all();
+            $clubs = $this->cateogireServices->club();
         }
 
         return view('admin.categorie.categorie', compact('clubs', 'categories'));
@@ -34,20 +34,20 @@ class AdminCatgorieController extends Controller
     public function store(CategorieRequest $categorieRequest)
     {
         try {
-            if(Auth::User()->role=="admin"){
-            $data = $categorieRequest->validated();
-            if ($categorieRequest->hasFile('image')) {
-                $data['image'] = $categorieRequest->file('image')->store('image', 'public');
+            if (Auth::User()->role == "admin") {
+                $data = $categorieRequest->validated();
+                if ($categorieRequest->hasFile('image')) {
+                    $data['image'] = $categorieRequest->file('image')->store('image', 'public');
 
+                }
+                $createClub = $this->cateogireServices->create($data);
+                if ($createClub) {
+                    return redirect()->back()->with([
+                        'message' => 'Catégorie créée avec succès',
+                        'success' => true,
+                    ]);
+                }
             }
-            $createClub = $this->cateogireServices->create($data);
-            if ($createClub) {
-                return redirect()->back()->with([
-                    'message' => 'Catégorie créée avec succès',
-                    'success' => true,
-                ]);
-            }
-        }
         } catch (\Throwable $th) {
             return redirect()->back()->with([
                 'message' => 'Une erreur s\'est  lors de la création du categorie. Veuillez réessayer.',
@@ -63,23 +63,23 @@ class AdminCatgorieController extends Controller
     {
 
         try {
-            if(Auth::User()->role=="admin"){
-            $data = $categorieRequest->validated();
-            if ($categorieRequest->hasFile('image')) {
-                $data['image'] = $categorieRequest->file('image')->store('image', 'public');
+            if (Auth::User()->role == "admin") {
+                $data = $categorieRequest->validated();
+                if ($categorieRequest->hasFile('image')) {
+                    $data['image'] = $categorieRequest->file('image')->store('image', 'public');
 
-            } else {
-                $data['image'] = $categorieRequest->input('image');
-            }
-            $updateCategorie = $this->cateogireServices->update($data, $categorie->id);
+                } else {
+                    $data['image'] = $categorieRequest->input('image');
+                }
+                $updateCategorie = $this->cateogireServices->update($data, $categorie->id);
 
-            if ($updateCategorie) {
-                return redirect()->back()->with([
-                    'message' => 'Catégorie modifiée avec succès',
-                    'success' => true,
-                ]);
+                if ($updateCategorie) {
+                    return redirect()->back()->with([
+                        'message' => 'Catégorie modifiée avec succès',
+                        'success' => true,
+                    ]);
+                }
             }
-        }
         } catch (\Throwable $th) {
             return redirect()->back()->with([
                 'message' => 'Une erreur s\'est  lors de la Modifiection du categorie. Veuillez réessayer.',
@@ -93,8 +93,8 @@ class AdminCatgorieController extends Controller
     {
 
         try {
-            if(Auth::User()->role=="admin"){
-            $this->cateogireServices->delete($categorie->id);
+            if (Auth::User()->role == "admin") {
+                $this->cateogireServices->delete($categorie->id);
             }
             return redirect()->route('categorie.index')->with([
                 'message' => 'Catégorie Suppimer avec succès',
