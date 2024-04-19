@@ -3,12 +3,13 @@
 namespace App\Repositories;
 
 use App\Models\Club;
-use App\Models\Comentaire;
 use App\Models\Event;
 use App\Models\Image;
 use App\Models\Categorie;
-use App\Interface\ClubInterface;
+use App\Models\Comentaire;
 use App\Models\Membership;
+use App\Interface\ClubInterface;
+use Illuminate\Support\Facades\Auth;
 
 class ClubRepository implements ClubInterface
 {
@@ -28,7 +29,7 @@ class ClubRepository implements ClubInterface
 
     public function find($id)
     {
-        $club = Membership::with('club', 'user')->where('club_id', $id)->first();
+        $club = Membership::with('club', 'user')->where('club_id', $id)->where('user_id',Auth::User()->id)->first();
 
         return $club;
 

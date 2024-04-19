@@ -27,7 +27,7 @@ class ClubController extends Controller
     {
         // memebership
         $clubs = $this->clubService->find($id);
-
+        //  dd($clubs);
         //  frsit club
         $club = $this->clubService->findfail($id);
 

@@ -25,7 +25,8 @@
                             {{-- @dd($clubs->user_id) --}}
                             @auth
                                 @if (Auth::user()->role == 'client')
-                                    @if (isset($clubs->user) && $clubs->user->id === Auth::user()->id)
+                                {{-- @dd((isset($clubs->user) && $clubs->user_id === Auth::user()->id)) --}}
+                                    @if (isset($clubs->user) && $clubs->user_id === Auth::user()->id)
                                         {{-- Display content when the club's user is the authenticated user --}}
                                         <div>
                                             <!-- Content to display when the club's user is the authenticated user -->
@@ -279,7 +280,7 @@
                                     </form>
                                 @else
                                 <div>
-                                    
+
                                 </div>
                                 @endif
 
