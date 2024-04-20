@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Reservation;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Interface\AuthInterface;
+use App\Http\Controllers\Controller;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class AdminUserController extends Controller
@@ -27,5 +28,13 @@ class AdminUserController extends Controller
         $user = $this->authInterface->all($request);
         // dd(response()->json($user));
         return response()->json($user);
+    }
+    public function destroy($id)
+    {
+        $userDelete = Reservation::findOrFail($id);
+         $userDelete->delete();
+
+        return response()->json($userDelete);
+
     }
 }

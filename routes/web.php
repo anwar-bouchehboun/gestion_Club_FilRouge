@@ -42,7 +42,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('/Dashbord/user', AdminUserController::class);
     Route::get('user/search', [AdminUserController::class, 'search']);
     Route::resource('/Dashbord/club', AdminClubControlle::class);
-
+    Route::delete('/user/{id}', [AdminUserController::class, 'destroy']);
 });
 // logout
 Route::middleware('auth')->group(function () {
