@@ -80,7 +80,7 @@ class UserRepository implements AuthInterface
     }
 
     public function update(array $data, $id)
-    {
+    {    //profile
         $user = $this->user->findOrFail($id);
         $user->update($data);
         return $user;
@@ -190,6 +190,13 @@ class UserRepository implements AuthInterface
         $userId = $request->userId;
         $membership = Membership::where('user_id', Auth::user()->id)->findOrFail($userId);
         return $membership->delete();
+
+    }
+    public function destroy($id){
+      //  for Sous Categorie
+      $userDelete = Reservation::findOrFail($id);
+      return   $userDelete->delete();
+
 
     }
 

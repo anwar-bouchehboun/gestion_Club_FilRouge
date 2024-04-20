@@ -45,6 +45,8 @@ interface AuthInterface{
     public function updateprofile(UpdateProfileRequest $request);
 
     public function get_User_Club();
+
     public function deleteclub(Request $request);
+    public function destroy($id);
 
 }

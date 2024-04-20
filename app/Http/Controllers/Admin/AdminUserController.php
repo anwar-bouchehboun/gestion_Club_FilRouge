@@ -31,9 +31,7 @@ class AdminUserController extends Controller
     }
     public function destroy($id)
     {
-        $userDelete = Reservation::findOrFail($id);
-         $userDelete->delete();
-
+        $userDelete =$this->authInterface->destroy($id);
         return response()->json($userDelete);
 
     }

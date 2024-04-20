@@ -99,6 +99,9 @@ class UserService
     {
         return $this->clientRepository->deleteclub($request);
     }
+    public function destroy($id){
+        return $this->clientRepository->destroy($id);
+    }
 
 
 
