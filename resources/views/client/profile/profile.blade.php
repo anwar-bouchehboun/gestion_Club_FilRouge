@@ -18,7 +18,7 @@
             <div class="grid grid-cols-12 text-black bg-white">
 
                 <div
-                    class="flex justify-center w-full col-span-12 px-3 py-5 space-x-4 md:space-x-0 md:space-y-4 md:flex-col md:col-span-3 md:justify-start ">
+                    class="flex flex-col justify-center w-full col-span-12 px-3 py-5 space-x-4 md:space-x-0 md:space-y-4 md:col-span-3 md:justify-start ">
                     {{-- CLUB CHAQUE USERS --}}
                     <div>
                         <h3 class="text-lg font-semibold text-center uppercase md:text-2xl">Liked Clubs</h3>

@@ -126,6 +126,7 @@ class UserRepository implements AuthInterface
     public function CountClientSousYesterdayCount()
     {
         $CountClientSousYesterdayCount = Reservation::with('users')->whereDate('created_at', Carbon::yesterday())->where('reservable_type', 'App\Models\Souscategorie')->count();
+        // dd($CountClientSousYesterdayCount);
         return $CountClientSousYesterdayCount;
     }
 
