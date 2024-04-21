@@ -24,7 +24,7 @@ class ComentaireSousController extends Controller
                 $comentaire=  $this->comentaireServices->store($request);
                 return response($comentaire, 200)->header('Content-Type', 'text/plain');
             }
-          
+
 
         } catch (\Throwable $th) {
             return redirect()->back()->with([
@@ -56,8 +56,17 @@ class ComentaireSousController extends Controller
     }
     public function destroy(Comentaire $comentairesou)
     {
-        $this->comentaireServices->destroy($comentairesou->id);
-        return response()->json(['commentId' => $comentairesou->id], 200);
+        try{
+            $this->comentaireServices->destroy($comentairesou->id);
+            return response()->json(['commentId' => $comentairesou->id], 200);
+
+        }catch(\Throwable $th){
+            return redirect()->back()->with([
+                'message' => ' Erorr Delete commentaire ',
+                'success' => false,
+            ]);
+        }
+
 
     }
 

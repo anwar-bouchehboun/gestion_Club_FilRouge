@@ -9,6 +9,7 @@ use App\Models\Membership;
 use Illuminate\Support\Facades\Auth;
 use App\Interface\ComentaireInterface;
 use App\Http\Requests\CometaireRequest;
+use App\Models\Reservation;
 use GuzzleHttp\Psr7\Request;
 
 class ComentaireRepository implements ComentaireInterface
@@ -21,27 +22,37 @@ class ComentaireRepository implements ComentaireInterface
     public function store(CometaireRequest $request)
     {
         $valide = $request->validated();
+        $event_id = $valide['event_id'];
 
-        $event = Event::find($valide['event_id']);
-        $club = Club::where('id', $event->club_id)->first();
-        $member = Membership::where('club_id', $club->id)->where('user_id', Auth::user()->id)->count();
+        $event = Event::find($event_id);
 
-        if ($member === 1) {
-            $comentaire = new Comentaire();
-            $comentaire->user_id = Auth::User()->id;
-            $comentaire->club_id = $club->id;
-            $comentaire->contenu = $valide['contenu'];
-            $comentaire->commentireable()->associate($event);
-            $comentaire->save();
-            $data=Comentaire::with('users')->where('id',$comentaire->id)->first();
+        if ($event) {
+            $club = Club::where('id', $event->club_id)->first();
+            $member = Reservation::where('reservable_id', $event->id)
+                ->where('user_id', Auth::user()->id)
+                ->count();
+            if ($member === 1) {
+                $comentaire = new Comentaire();
+                $comentaire->user_id = Auth::User()->id;
+                $comentaire->club_id = $club->id;
+                $comentaire->contenu = $valide['contenu'];
+                $comentaire->commentireable()->associate($event);
+                $comentaire->save();
+                $data = Comentaire::with('users')->where('id', $comentaire->id)->first();
 
-            return $data;
-        } else {
+                return $data;
+            } else {
 
-            return 0;
+                return 0;
+            }
+
         }
+
+
+        // $member = Membership::where('club_id', $club->id)->where('user_id', Auth::user()->id)->count();
+
     }
- 
+
     public function update(array $data, $id)
     {
 
@@ -55,11 +66,17 @@ class ComentaireRepository implements ComentaireInterface
 
 
     }
-    public function destroy($id){
-        $comentaire = $this->comentaire->findOrFail($id);
+    public function destroy($id)
+    {
+        $comentaire = Comentaire::find($id);
+
+
+
         if ($comentaire->user_id === Auth::user()->id) {
-        $comentaire->delete();
-        return $comentaire;
+            return $comentaire->delete();
+        } else {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
     }
+
 }

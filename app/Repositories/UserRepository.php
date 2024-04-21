@@ -183,7 +183,7 @@ class UserRepository implements AuthInterface
     public function get_User_Club()
     {
 
-        $memberUser = Membership::with('user', 'club')->where('user_id', Auth::User()->id)->get();
+        $memberUser = Membership::with('users', 'club')->where('user_id', Auth::User()->id)->get();
         return $memberUser;
     }
     public function deleteclub(Request $request)

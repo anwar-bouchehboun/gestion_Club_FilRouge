@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Event extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
-    protected $cascadeDeletes = ['image', 'reserves', 'comntaire'];
+    protected $cascadeDeletes = ['image', 'reserves','commentaires'];
 
     protected $dates = ['deleted_at'];
 
@@ -40,7 +40,7 @@ class Event extends Model
     {
         return $this->morphMany(Reservation::class, 'reservable');
     }
-    public function comntaire(): MorphMany
+    public function commentaires(): MorphMany
     {
         return $this->morphMany(Comentaire::class, 'commentireable');
     }

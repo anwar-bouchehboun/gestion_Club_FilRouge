@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Souscategorie extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
-    protected $cascadeDeletes = ['reserves', 'comntaire'];
+    protected $cascadeDeletes = ['reserves','commentaires'];
     protected $fillable = [
         'name',
         'image',
@@ -28,7 +28,7 @@ class Souscategorie extends Model
         return $this->morphMany(Reservation::class, 'reservable');
     }
 
-    public function comntaire(): MorphMany
+    public function commentaires(): MorphMany
     {
         return $this->morphMany(Comentaire::class, 'commentireable');
     }

@@ -35,7 +35,7 @@ class ClubController extends Controller
             $clubs = $this->clubService->dataClub();
         }
 
-     
+
         return response()->json($clubs);
     }
 

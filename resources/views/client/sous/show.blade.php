@@ -54,7 +54,7 @@
 
             <div class="py-2 antialiased bg-[#FFF] dark:bg-gray-900 lg:py-3">
                 <div class="max-w-5xl px-4 mx-auto">
-                 
+
 
                     {{-- @if ($member > 0) --}}
                     @auth
@@ -84,7 +84,7 @@
                     {{-- @else --}}
 
                     <div class="rounded-lg shadow bg-[#24B49A]" id="contenu">
-                        @foreach ($souscategories->comntaire as $commentaire)
+                        @foreach ($souscategories->commentaires as $commentaire)
                             <article class="p-6 text-base dark:bg-gray-900" id="containerid{{ $commentaire->id }}">
                                 <footer class="flex items-center justify-between mb-2">
                                     <div class="flex items-center">

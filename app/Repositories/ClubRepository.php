@@ -25,18 +25,21 @@ class ClubRepository implements ClubInterface
     }
     public function dataClub()
     {
-      
+
         return Club::all();
     }
 
     public function find($id)
     {
-       if(Auth::check()){
-        $club = Membership::with('club', 'user')->where('club_id', $id)->where('user_id', Auth::User()->id)->first();
+
+
+        $club = Membership::with('club', 'users')
+            ->where('club_id', $id)
+            ->where('user_id', Auth::user()->id)
+            ->count();
 
         return $club;
-       }
-       return null;
+
 
 
 
@@ -95,11 +98,11 @@ class ClubRepository implements ClubInterface
     }
     public function existingReservation($events)
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             $existingReservation = Reservation::where('user_id', Auth::User()->id)
-            ->where('reservable_id', $events)
-            ->where('reservable_type', 'App\Models\Event')
-            ->count();
+                ->where('reservable_id', $events)
+                ->where('reservable_type', 'App\Models\Event')
+                ->count();
             return $existingReservation;
         }
         return null;

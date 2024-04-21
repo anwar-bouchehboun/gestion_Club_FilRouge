@@ -16,9 +16,9 @@ class Membership extends Model
         'status'
     ];
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class ,'user_id');
     }
 
     public function club()

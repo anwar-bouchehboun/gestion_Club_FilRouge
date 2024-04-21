@@ -23,8 +23,8 @@ class ComentaireController extends Controller
     {
         try {
 
-     $comentaire=  $this->comentaireServices->store($request);
-         return response()->json($comentaire);
+            $comentaire = $this->comentaireServices->store($request);
+            return response()->json($comentaire);
 
         } catch (\Throwable $th) {
             return redirect()->back()->with([
@@ -40,12 +40,9 @@ class ComentaireController extends Controller
 
         try {
             $data = $request->validated();
-            $this->comentaireServices->update($data, $comentaire->id);
+            $comentaire = $this->comentaireServices->update($data, $comentaire->id);
 
-                 return redirect()->back()->with([
-                     'message' => 'Commentire on a modifier',
-                     'success' => true,
-                 ]);
+            return response($comentaire, 200)->header('Content-Type', 'text/plain');
         } catch (\Throwable $th) {
             return redirect()->back()->with([
                 'message' => ' Erorr ',
@@ -60,11 +57,17 @@ class ComentaireController extends Controller
     }
     public function destroy(Comentaire $comentaire)
     {
-        $this->comentaireServices->destroy($comentaire->id);
-        return redirect()->back()->with([
-            'message' => 'Commentire on a Supprimer',
-            'success' => true,
-        ]);
+   try {
+    $this->comentaireServices->destroy($comentaire->id);
+    return response()->json(['commentId' => $comentaire->id], 200);
+
+   } catch (\Throwable $th) {
+    return redirect()->back()->with([
+        'message' => 'Commentire ne pas Supprime Supprimer',
+        'success' => false,
+    ]);
+   }
+
 
     }
 }

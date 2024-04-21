@@ -1,5 +1,6 @@
 <x-platform-layout>
     <x-slot name="slot">
+
         @auth
             @if (Auth::User()->role == 'client')
                 <x-sweet-alert />
@@ -25,8 +26,7 @@
                             {{-- @dd($clubs->user_id) --}}
                             @auth
                                 @if (Auth::user()->role == 'client')
-                                {{-- @dd((isset($clubs->user) && $clubs->user_id === Auth::user()->id)) --}}
-                                    @if (isset($clubs->user) && $clubs->user_id === Auth::user()->id)
+                                    @if ($clubs > 0)
                                         {{-- Display content when the club's user is the authenticated user --}}
                                         <div>
                                             <!-- Content to display when the club's user is the authenticated user -->
@@ -279,9 +279,9 @@
                                             class=" px-9 py-3 mt-10 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none ">Reservé</button>
                                     </form>
                                 @else
-                                <div>
+                                    <div>
 
-                                </div>
+                                    </div>
                                 @endif
 
 
@@ -387,8 +387,9 @@
 
 
                     <div class="rounded-lg shadow " id="contenu">
-                        @foreach ($events->comntaire as $commentaire)
-                            <article class="p-6 text-base bg-white dark:bg-gray-900">
+                        @foreach ($events->commentaires as $commentaire)
+                            <article class="p-6 text-base bg-white dark:bg-gray-900"
+                                id="containerid{{ $commentaire->id }}">
                                 <footer class="flex items-center justify-between mb-2">
                                     <div class="flex items-center">
                                         <p
@@ -440,7 +441,7 @@
                                         </div>
                                     </div>
                                 </footer>
-                                <div id="commentaire">
+                                <div id="commentaire{{ $commentaire->id }}">
                                     <p class="text-gray-500 dark:text-gray-400">
                                         {{ $commentaire->contenu }}
                                     </p>
@@ -486,7 +487,7 @@
                     </div>
                     <!-- Modal body -->
 
-                    <form id="edit-form" action="" method="POST" class="p-4 md:p-5">
+                    <form id="edit-form" action="" method="" class="p-4 md:p-5">
                         @csrf
                         @method('PATCH')
                         <div class="grid grid-cols-2 gap-4 mb-4">
@@ -537,14 +538,13 @@
                         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to
                             delete this Commentaire?</h3>
 
-                        <form id="deleteForm" action="" method="POST">
+                        <form id="deleteForm" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" data-modal-hide="popup-modal" type="button"
+                            <button id="deleteButton" type="button" data-modal-hide="popup-modal" type="button"
                                 class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                 Yes, I'm sure
                             </button>
-
 
                         </form>
 

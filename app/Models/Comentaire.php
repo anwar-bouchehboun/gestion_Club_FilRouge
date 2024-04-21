@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Comentaire extends Model
 {
     use HasFactory, SoftDeletes, CascadeSoftDeletes;
+    // protected $cascadeDeletes = ['users'];
 
+    // protected $dates = ['deleted_at'];
     protected $fillable = [
         'club_id',
         'user_id',
@@ -23,7 +25,7 @@ class Comentaire extends Model
         return $this->morphTo();
     }
     public function users(){
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class ,'user_id');
     }
 
 }

@@ -20,6 +20,7 @@ class ComentaireServices
 
     public function store(CometaireRequest $request)
     {
+    
         return $this->comentaireInterface->store($request);
     }
     public function update(array $data, $id)

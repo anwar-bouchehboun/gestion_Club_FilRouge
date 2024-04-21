@@ -16,3 +16,46 @@ window.editcommentaire = function (
     document.getElementById("contenu_text").value = centenu;
     modal.show();
 };
+document.addEventListener("DOMContentLoaded", function () {
+    document
+        .getElementById("edit-form")
+        .addEventListener("submit", function (event) {
+            event.preventDefault();
+            var form = event.target;
+            var formData = new FormData(form);
+            var action = form.getAttribute("action");
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", action, true);
+            xhr.setRequestHeader(
+                "X-CSRF-TOKEN",
+                document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content")
+            );
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        var commentaireDiv = document.getElementById(
+                            "commentaire" + response.id
+                        );
+                        console.log(response.id);
+                        commentaireDiv.innerHTML =
+                            '<p class="text-white dark:text-gray-400">' +
+                            response.contenu +
+                            "</p>";
+                        modal.hide();
+                    } else {
+                        console.error("Error:", xhr.status);
+                    }
+                }
+                setInterval(function () {
+                    location.reload();
+                }, 1000);
+            };
+
+            xhr.send(formData);
+        });
+});

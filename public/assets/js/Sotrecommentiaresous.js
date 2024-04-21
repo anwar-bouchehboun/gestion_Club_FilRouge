@@ -15,8 +15,9 @@ function submitComment() {
         if (xhr.status >= 200 && xhr.status < 300) {
             console.log("Commentaire enregistré avec succès");
             var response = JSON.parse(xhr.responseText);
+            console.log(response);
             console.log(response.club_id, response.commentireable_id);
-            // location.reload();
+
             const container = document.getElementById("contenu");
 
             let article = document.createElement("article");
@@ -51,7 +52,7 @@ function submitComment() {
         } else {
             console.error("Erreur lors de l'enregistrement du commentaire");
         }
-        setInterval(function() {
+        setInterval(function () {
             location.reload();
         }, 3000);
     };
