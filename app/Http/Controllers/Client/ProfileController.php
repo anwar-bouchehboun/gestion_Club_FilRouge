@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 use App\Http\Requests\UpdateProfileRequest;
+use App\Models\Reservation;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class ProfileController extends Controller
@@ -23,8 +24,10 @@ class ProfileController extends Controller
     {
         $profile = $this->userService->get_User();
         $club_User=$this->userService->get_User_Club();
-        //   dd($club_User);
-        return view('client.profile.profile', compact('profile','club_User'));
+        $SousUser=$this->userService->get_DataUser_Souscategorie();
+
+
+        return view('client.profile.profile', compact('profile','club_User','SousUser'));
     }
 
 

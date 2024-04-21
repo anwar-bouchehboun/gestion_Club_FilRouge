@@ -47,6 +47,9 @@ interface AuthInterface{
     public function get_User_Club();
 
     public function deleteclub(Request $request);
+
     public function destroy($id);
+
+    public function get_DataUser_Souscategorie();
 
 }

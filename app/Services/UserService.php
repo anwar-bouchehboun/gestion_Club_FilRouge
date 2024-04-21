@@ -99,8 +99,15 @@ class UserService
     {
         return $this->clientRepository->deleteclub($request);
     }
-    public function destroy($id){
+    public function destroy($id)
+    {
         return $this->clientRepository->destroy($id);
+    }
+
+    public function get_DataUser_Souscategorie()
+    {
+        return $this->clientRepository->get_DataUser_Souscategorie();
+
     }
 
 

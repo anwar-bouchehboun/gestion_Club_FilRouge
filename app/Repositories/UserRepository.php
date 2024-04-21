@@ -192,12 +192,19 @@ class UserRepository implements AuthInterface
         return $membership->delete();
 
     }
-    public function destroy($id){
-      //  for Sous Categorie
-      $userDelete = Reservation::findOrFail($id);
-      return   $userDelete->delete();
+    public function destroy($id)
+    {
+        //  for Sous Categorie
+        $userDelete = Reservation::findOrFail($id);
+        return $userDelete->delete();
 
 
+    }
+
+    public function get_DataUser_Souscategorie()
+    {
+       return Reservation::with('users', 'reservable')->where('user_id',Auth::User()->id)
+       ->where('reservable_type', 'App\Models\Souscategorie')->get();
     }
 
 }
