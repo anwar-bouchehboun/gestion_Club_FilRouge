@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Club;
+use Illuminate\Http\Request;
 use App\Interface\ClubInterface;
 
 
@@ -76,4 +77,14 @@ class ClubServices
 
     }
 
+    public function storerating(Request $request){
+        return $this->clubtRepository->storerating($request);
+
+    }
+      public function rating_User($id){
+        return $this->clubtRepository->rating_User($id);
+      }
+      public function rating_club_Avg($id){
+        return $this->clubtRepository->rating_club_Avg($id);
+      }
 }

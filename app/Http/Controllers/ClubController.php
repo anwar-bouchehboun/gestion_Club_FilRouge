@@ -68,14 +68,12 @@ class ClubController extends Controller
 
         }
 
-        $rating = null;
+        $rating_percentage=$this->clubService->rating_club_Avg($id);
 
-        if (Auth::check()) {
-            $user = Auth::user();
-            $rating=Rating::where('user_id',$user->id)->where('club_id', $id)->latest()->first();
-        }
 
-        return view('client.categorie.categorie', compact('rating','existingReservation', 'club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
+        $rating=$this->clubService->rating_User($id);
+
+        return view('client.categorie.categorie', compact('rating_percentage','rating','existingReservation', 'club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
 
 
     }

@@ -1,5 +1,6 @@
 <?php
 namespace App\Interface;
+use Illuminate\Http\Request;
 
 
 
@@ -28,4 +29,10 @@ interface ClubInterface{
     public function commentaire($id,$event);
 
     public function existingReservation($events);
+
+    public function storerating(Request $request);
+
+    public function rating_User($id);
+    
+    public function rating_club_Avg($id);
 }
