@@ -39,7 +39,7 @@
                                 @csrf
                                 <input type="text" name="sous" value="{{ $souscategories->id }}" hidden>
                                 <button type="submit"
-                                    class=" px-9 py-3 mt-10 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none ">Reservé</button>
+                                    class=" px-9 py-3 mt-10 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none ">ADD Sous catégorie</button>
                             </form>
 
                         </div>

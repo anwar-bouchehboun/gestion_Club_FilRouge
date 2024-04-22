@@ -36,9 +36,9 @@
                             </p>
 
 
-                            {{-- @dd($clubs->user_id) --}}
                             @auth
                                 @if (Auth::user()->role == 'client')
+
                                     @if ($clubs > 0)
                                         @if ($rating)
                                             <div class="container mx-auto">

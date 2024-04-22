@@ -19,9 +19,11 @@
     @include('layouts.nav')
 
     <section>
+
         <div class="py-8 text-black ">
             <div class="flex flex-wrap items-center my-12 md:my-24 justify-evenly">
                 <div class="flex flex-col items-start justify-center w-full p-8 lg:w-1/3">
+
                     <h1 class="p-2 text-3xl text-[#24B49A] md:text-5xl tracking-loose font-semibold">PHONIX CLUB
                       </h1>
                     <h2 class="mb-2 text-3xl font-medium leading-relaxed uppercase md:text-5xl md:leading-snug">Space: there is no end

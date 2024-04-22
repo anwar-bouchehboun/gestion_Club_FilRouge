@@ -1,19 +1,22 @@
-<x-goust-layout>
+<x-auth-layout>
     <x-slot name="solt">
         {{-- @include('vendor.sweetalert.alert') --}}
 
 
 
-        <section class="pt-24 pb-32 bg-gray-50 dark:bg-gray-900">
+        <section class="mt-16 mb-20 dark:bg-gray-900">
             <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
                 <div
                     class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+
                         <h1
                             class="text-xl font-bold leading-tight tracking-tight text-center text-gray-900 md:text-2xl dark:text-white">
                             Register
                         </h1>
+
                         <form class="space-y-2 md:space-y-2" action="{{ route('register.store') }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
@@ -70,10 +73,10 @@
                                 <div class="relative ">
                                     <input type="file" name="image" id="image" onchange="validateImage()"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   ">
-                                        <span id="imageIcon"
+                                    <span id="imageIcon"
                                         class="absolute text-gray-400 transform -translate-y-1/2 right-3 top-1/2"></span>
 
-                                    </div>
+                                </div>
 
                                 <x-input-error :messages="$errors->get('image')" class="mt-2" />
 
@@ -81,8 +84,10 @@
                             <button type="submit" class="w-full text-white bg-[#24B49A] py-2 rounded">Register</button>
                             <p class="text-sm font-light text-black">
                                 Don’t have an account yet? <a href="{{ route('login.index') }}"
-                                    class="font-medium text-[#24B49A] hover:underline">Login</a>
-                            </p>
+                                    class="font-medium text-[#24B49A] hover:underline">Login ,</a>
+
+                            <a href="/"
+                                class="font-medium text-[#24B49A] hover:underline ">PHONIXCLUB</a></p>
                         </form>
 
                     </div>
@@ -91,5 +96,5 @@
         </section>
 
     </x-slot>
-</x-goust-layout>
+</x-auth-layout>
 <script src="/assets/js/RegisterVlidation.js"></script>

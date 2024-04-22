@@ -91,23 +91,23 @@
                         <h3 class="text-lg font-semibold text-center uppercase md:text-2xl">Liked SousCategorie</h3>
                         <div class="h-[1px] bg-[#24B49A] "></div>
                         <div class="grid grid-cols-2 p-2 pt-5 gap-x-2 gap-y-3">
-                            @foreach ($SousUser as $user)
+                            @foreach ($SousUser as $user_client)
                                 <div>
-                                    <button data-modal-target="popup-modal-{{ $user->id }}"
-                                        data-modal-toggle="popup-modal-{{ $user->id }}" class=""
+                                    <button data-modal-target="popup-modal-{{ $user_client->id }}"
+                                        data-modal-toggle="popup-modal-{{ $user_client->id }}" class=""
                                         type="button">
-                                        <img src="../storage/{{ $user->reservable->image }}" alt="{{ $user->reservable->image }}">
+                                        <img src="../storage/{{ $user_client->reservable->image }}" alt="{{ $user_client->reservable->image }}">
 
                                     </button>
 
 
-                                    <div id="popup-modal-{{ $user->id }}" tabindex="-1"
+                                    <div id="popup-modal-{{ $user_client->id }}" tabindex="-1"
                                         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                         <div class="relative w-full max-w-md max-h-full p-4">
                                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                                 <button type="button"
                                                     class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                    data-modal-hide="popup-modal-{{ $user->id }}">
+                                                    data-modal-hide="popup-modal-{{ $user_client->id }}">
                                                     <svg class="w-3 h-3" aria-hidden="true"
                                                         xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 14 14">
@@ -118,19 +118,19 @@
                                                     <span class="sr-only">Close modal</span>
                                                 </button>
                                                 <div class="p-4 md:p-5">
-                                                    <img src="../storage/{{ $user->reservable->image }}"
-                                                        alt="{{ $user->reservable->image }}" class="mx-auto w-60">
+                                                    <img src="../storage/{{ $user_client->reservable->image }}"
+                                                        alt="{{ $user_client->reservable->image }}" class="mx-auto w-60">
 
                                                     <h2 class="mb-3 text-lg font-semibold text-[#24B49A]  ">
-                                                        {{ $user->reservable->name }}
+                                                        {{ $user_client->reservable->name }}
 
                                                     </h2>
                                                     <p class="font-bold ">
-                                                        {{ $user->reservable->discrption }}
+                                                        {{ $user_client->reservable->discrption }}
                                                     </p>
                                                     <span class=" my-5 text-lg  font-medium text-[#24B49A] ">
                                                         <strong class="font-light "> Club Created At:</strong>
-                                                        {{ $user->reservable->created_at->format('Y-m-d') }}
+                                                        {{ $user_client->reservable->created_at->format('Y-m-d') }}
                                                     </span>
                                                     {{-- <form id="deleteForm{{ $user->id }}">
                                                         @csrf

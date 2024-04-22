@@ -34,13 +34,16 @@ class ClubRepository implements ClubInterface
     public function find($id)
     {
 
-
-        $club = Membership::with('club', 'users')
+        if(Auth::check()){
+            $club = Membership::with('club', 'users')
             ->where('club_id', $id)
             ->where('user_id', Auth::user()->id)
             ->count();
 
         return $club;
+
+        }
+        return null;
 
 
 
@@ -134,7 +137,7 @@ class ClubRepository implements ClubInterface
         return null;
     }
     public function rating_club_Avg($id){
-        
+
         $rating_club = Rating::where('club_id', $id)->avg('rating');
         $rating_percentage  = number_format($rating_club, 1);
         return $rating_percentage;

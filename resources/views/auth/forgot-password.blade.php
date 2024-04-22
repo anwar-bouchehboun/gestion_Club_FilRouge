@@ -1,4 +1,4 @@
-<x-goust-layout>
+<x-auth-layout>
     <x-slot name="solt">
         <section class="bg-gray-50 dark:bg-gray-900">
             @if (session('status'))
@@ -43,4 +43,4 @@
             </div>
         </section>
     </x-slot>
-</x-goust-layout>
+</x-auth-layout>

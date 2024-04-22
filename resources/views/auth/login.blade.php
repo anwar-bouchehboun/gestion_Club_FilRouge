@@ -1,4 +1,4 @@
-<x-goust-layout>
+<x-auth-layout>
     <x-slot name="solt">
         @if (session('success'))
             <script>
@@ -11,15 +11,20 @@
             </script>
         @endif
         <section class="bg-gray-50 dark:bg-gray-900">
-            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <div class="flex flex-col items-center justify-center px-6 py-6 mx-auto md:flex-row md:h-screen lg:py-0">
 
                 <div
-                    class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    class="w-full bg-white shadow dark:border md:mt-0 sm:max-w-md md:p-0 dark:bg-gray-800 dark:border-gray-700">
+
+                    <div class="p-3 space-y-4 md:space-y-6 sm:p-8">
+
                         <h1
                             class="text-xl font-bold leading-tight tracking-tight text-center text-gray-900 md:text-2xl dark:text-white">
                             Login
                         </h1>
+                        <p class="text-xl text-center text-gray-600">Welcome back! <a href="/"
+                            class="font-medium text-[#24B49A] hover:underline ">PHONIXCLUB</a></p>
+
                         <form class="space-y-4 md:space-y-6" action="{{ route('login.store') }}" method="post">
                             @csrf
                             <div>
@@ -70,8 +75,10 @@
                         </form>
                     </div>
                 </div>
+
+
             </div>
         </section>
     </x-slot>
-</x-goust-layout>
+</x-auth-layout>
 <script src="/assets/js/loginValidation.js"></script>
