@@ -3,19 +3,19 @@
     <div class="container relative h-56 overflow-hidden md:h-96">
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="./storage/image/télécharger (2).jpeg"  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
+            <img src="https://images.pexels.com/photos/7868889/pexels-photo-7868889.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/3 left-1/2" alt="">
         </div>
         <!-- Item 2 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="./storage/image/club.jpg"  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
+            <img src="https://images.pexels.com/photos/995301/pexels-photo-995301.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/3 left-1/2" alt="">
         </div>
         <!-- Item 3 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="./storage/image/télécharger (2).jpeg"  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
+            <img src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/3 left-1/2" alt="">
         </div>
         <!-- Item 4 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="https://image.benq.com/is/image/benqco/165hz-a?$ResponsivePreset$"  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
+            <img src="https://image.benq.com/is/image/benqco/165hz-a?$ResponsivePreset$"  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/3 left-1/2" alt="">
         </div>
 
 
