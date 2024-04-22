@@ -1,7 +1,7 @@
 <nav class="bg-[#000] border-gray-200 dark:bg-gray-900">
     <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
         <a href="{{ route('home') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <span class="self-center text-2xl font-bold text-white whitespace-nowrap">PHONIXCLUB</span>
+            <span class="self-center text-2xl font-bold text-white whitespace-nowrap">PHOENIXCLUB</span>
         </a>
         <button data-collapse-toggle="navbar-default" type="button"
             class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-white rounded-lg md:hidden focus:outline-none focus:ring-2 "

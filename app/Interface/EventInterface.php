@@ -14,11 +14,13 @@ interface EventInterface
 
     public function club();
 
+    public function Event_club($id);
+
     public function update(UpdateEventRequest $updateEventRequest, StoreImageRequest $storeImageRequest, $id);
 
     public function delete($id);
 
     public function reserveevent($eventId);
-    
+
     public function store(StoreEventRequest $storeEventRequest, StoreImageRequest $storeImageRequest);
 }

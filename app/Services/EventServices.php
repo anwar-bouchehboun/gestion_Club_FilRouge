@@ -49,4 +49,8 @@ class EventServices
     public function reserveevent($request){
        return $this->eventInterface->reserveevent($request);
     }
+
+    public function Event_club($id){
+        return $this->eventInterface->Event_club($id);
+    }
 }

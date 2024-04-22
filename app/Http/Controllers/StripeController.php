@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Club;
 use App\Models\Event;
 use App\Models\Reservation;
-use App\Services\EventServices;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
+use App\Services\EventServices;
 use Illuminate\Support\Facades\Auth;
 
 class StripeController extends Controller
@@ -69,8 +70,13 @@ class StripeController extends Controller
 
         $reservationId = $this->save($eventId);
 
+        $culb= $this->eventServices->Event_club($eventId);
+
         if ($reservationId) {
-            return view('client.finpayment');
+            return redirect()->route('categorie',$culb->club_id)->with([
+                'message' => 'Reservation succès',
+                'success' => true,
+            ]);
         }
     }
 
