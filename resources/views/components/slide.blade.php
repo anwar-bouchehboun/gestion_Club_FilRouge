@@ -1,6 +1,6 @@
-<div id="default-carousel" class="relative w-full my-3 md:m-0" data-carousel="slide">
+<div id="default-carousel" class="relative w-full md:m-0" data-carousel="slide">
     <!-- Carousel wrapper -->
-    <div class="relative h-56 overflow-hidden md:h-96">
+    <div class="container relative h-56 overflow-hidden md:h-96">
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
             <img src="./storage/image/télécharger (2).jpeg"  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
@@ -15,7 +15,7 @@
         </div>
         <!-- Item 4 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="./storage/image/club.jpg"  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
+            <img src="https://image.benq.com/is/image/benqco/165hz-a?$ResponsivePreset$"  class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
         </div>
 
 

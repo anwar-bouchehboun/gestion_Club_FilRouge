@@ -18,9 +18,27 @@
 <body>
     @include('layouts.nav')
 
+    <section>
+        <div class="py-8 text-black bg-white ">
+            <div class="flex flex-wrap items-center my-12 md:my-24 justify-evenly">
+                <div class="flex flex-col items-start justify-center w-full p-8 lg:w-1/3">
+                    <h1 class="p-2 text-3xl text-[#24B49A] md:text-5xl tracking-loose font-semibold">PHONIX CLUB
+                      </h1>
+                    <h2 class="mb-2 text-3xl font-medium leading-relaxed uppercase md:text-5xl md:leading-snug">Space: there is no end
+                    </h2>
+                    <p class="mb-4 text-sm md:text-base text-gray-50">Explore your favourite events and
+                        register now to showcase your talent and win exciting prizes.</p>
+                  
+                </div>
+                        <img src="../storage/image/logo.png" class="relative z-50 rounded-md lg:w-1/3" alt="Logo club" />
 
 
-    <x-hero />
+
+            </div>
+        </div>
+    </section>
+
+    {{-- <x-hero /> --}}
     <x-slide />
 
 

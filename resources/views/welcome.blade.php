@@ -4,12 +4,12 @@
 
         <section class="my-3 md:my-10">
             <h2 class="text-2xl font-bold uppercase md:text-4xl md:ms-12 ms-3">Services</h2>
-            <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12">
+            <hr class="w-20 h-1 bg-black ms-3 md:mb-1 mb-9 md:ms-12 md:mb-10">
 
-            <div class="relative z-50 grid gap-4 md:grid-cols-3 md:px-4 max-md:mt-10">
+            <div class="relative z-50 flex flex-wrap gap-4 md:flex-row md:px-4 max-md:mt-10 justify-evenly">
 
 
-                <div class="p-6 bg-white">
+                <div class="p-6 text-center border rounded shadow bg-hite border-spacing-48 w-52">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         class="w-12 mb-4 inline-block bg-[#24B49A] p-3 rounded-md" viewBox="0 0 32 32">
                         <path
@@ -21,7 +21,7 @@
                     <h3 class="mb-2 text-xl font-bold">Customization</h3>
                     <p class="text-sm">Customize your category to suit your needs.</p>
                 </div>
-                <div class="p-6 bg-white">
+                <div class="p-6 text-center border rounded shadow bg-hite border-spacing-48 w-52">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         class="w-12 mb-4 inline-block bg-[#24B49A] p-3 rounded-md" viewBox="0 0 512.001 512.001">
                         <path
@@ -31,7 +31,7 @@
                     <h3 class="mb-2 text-xl font-bold">Support</h3>
                     <p class="text-sm">24/7 customer support for all your inquiries.</p>
                 </div>
-                <div class="p-6 bg-white">
+                <div class="p-6 text-center border rounded shadow bg-hite border-spacing-48 w-52">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         class="w-12 mb-4 inline-block bg-[#24B49A] p-3 rounded-md" viewBox="0 0 24 24">
                         <g fill-rule="evenodd" clip-rule="evenodd">
