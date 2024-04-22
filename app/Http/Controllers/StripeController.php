@@ -63,7 +63,7 @@ class StripeController extends Controller
         }
 
     }
-    public function success(Request $request, $event_id)
+    public function success(Request $request)
     {
         $eventId = $request->route('event_id');
 

@@ -61,7 +61,8 @@
 
             <div>
                 <div class="relative overflow-x-auto">
-                    <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+                    <table id="datatable"
+                        class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
 
                         <thead class="bg-gray-100 whitespace-nowrap">
                             <tr>
@@ -137,7 +138,7 @@
                         </tbody>
 
                     </table>
-                    {{ $clubs->links() }}
+                    {{-- {{ $clubs->links() }} --}}
                 </div>
 
             </div>
@@ -343,3 +344,5 @@
     @endpush
 
 </x-app-layout>
+
+

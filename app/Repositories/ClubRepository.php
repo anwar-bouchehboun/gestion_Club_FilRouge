@@ -21,7 +21,7 @@ class ClubRepository implements ClubInterface
     }
     public function all()
     {
-        return Club::orderBy('id', 'desc')->paginate(4);
+        return Club::orderBy('id', 'desc')->get();
     }
     public function dataClub()
     {

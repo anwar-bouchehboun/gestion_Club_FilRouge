@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeConroller;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\Admin\AdminControlle;
@@ -63,7 +64,7 @@ Route::middleware(['auth', 'role:client'])->group(function () {
     Route::post('/profile/password', [ProfileController::class, 'Set_Pssword'])->name('update.password');
      //user
     Route::post('/profile/delete', [ProfileController::class, 'deleteclub']);
-
+    Route::post('/rating',[RatingController::class,'store']);
 });
 
 

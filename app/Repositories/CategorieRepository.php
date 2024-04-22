@@ -14,7 +14,7 @@ class CategorieRepository implements CategorieInterface
     }
     public function all()
     {
-        return Categorie::with('club')->orderBy('id', 'desc')->paginate(4);
+        return Categorie::with('club')->orderBy('id', 'desc')->get();
 
     }
     public function club()

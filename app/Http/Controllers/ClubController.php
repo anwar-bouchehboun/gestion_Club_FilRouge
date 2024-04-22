@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Club;
+use App\Models\Rating;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Services\ClubServices;
+use Illuminate\Support\Facades\Auth;
 
 class ClubController extends Controller
 {
@@ -66,8 +68,14 @@ class ClubController extends Controller
 
         }
 
+        $rating = null;
 
-        return view('client.categorie.categorie', compact('existingReservation', 'club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
+        if (Auth::check()) {
+            $user = Auth::user();
+            $rating=Rating::where('user_id',$user->id)->where('club_id', $id)->latest()->first();
+        }
+
+        return view('client.categorie.categorie', compact('rating','existingReservation', 'club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
 
 
     }

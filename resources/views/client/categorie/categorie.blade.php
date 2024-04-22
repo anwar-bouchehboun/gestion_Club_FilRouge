@@ -19,15 +19,52 @@
                                     class="text-[#24B49A]">and</span>
                                 Categories
                             </h2>
+
                             <p class="mt-6 text-base leading-relaxed">
                                 {{ $club->discrption }}
 
                             </p>
+
+
                             {{-- @dd($clubs->user_id) --}}
                             @auth
                                 @if (Auth::user()->role == 'client')
                                     @if ($clubs > 0)
-                                        {{-- Display content when the club's user is the authenticated user --}}
+                                        @if ($rating)
+                                            <div class="container mx-auto">
+                                                <input type="hidden" name="club_id" value="{{ $club->id }}"
+                                                    id="club">
+                                                <div class="flex items-center" id="ratingStars">
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                        @if ($i <= $rating->rating)
+                                                            <span class="font-extrabold text-gray-500 etoile"
+                                                                data-value="{{ $i }}">&#9733;</span>
+                                                        @else
+                                                            <span class="font-extrabold text-gray-500 etoile"
+                                                                data-value="{{ $i }}">&#9734;</span>
+                                                        @endif
+                                                    @endfor
+                                                </div>
+                                            </div>
+                                        @else
+                                            <div class="container mx-auto">
+                                                <input type="hidden" name="club_id" value="{{ $club->id }}"
+                                                    id="club">
+                                                <div class="flex items-center" id="ratingStars">
+                                                    <span class="font-extrabold text-gray-700 etoile"
+                                                        data-value="1">&#9734;</span>
+                                                    <span class="font-extrabold text-gray-700 etoile"
+                                                        data-value="2">&#9734;</span>
+                                                    <span class="font-extrabold text-gray-700 etoile"
+                                                        data-value="3">&#9734;</span>
+                                                    <span class="font-extrabold text-gray-700 etoile"
+                                                        data-value="4">&#9734;</span>
+                                                    <span class="font-extrabold text-gray-700 etoile"
+                                                        data-value="5">&#9734;</span>
+                                                </div>
+                                            </div>
+                                        @endif
+
                                         <div>
                                             <!-- Content to display when the club's user is the authenticated user -->
                                         </div>
@@ -558,3 +595,71 @@
         @vite('resources/js/deleteCommenteire.js')
     @endpush
 </x-platform-layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const etoiles = document.querySelectorAll('.etoile');
+        let notation = 0;
+        let club_id = document.getElementById('club').value;
+
+
+        etoiles.forEach(etoile => {
+            etoile.addEventListener('mouseover', function() {
+                const value = etoile.getAttribute('data-value');
+                mettreEnSurbrillance(value);
+            });
+
+            etoile.addEventListener('click', function() {
+                const value = etoile.getAttribute('data-value');
+                notation = value;
+                envoyerNotation(value);
+            });
+
+            etoile.addEventListener('mouseout', function() {
+                mettreEnSurbrillance(notation);
+            });
+        });
+
+        function mettreEnSurbrillance(value) {
+            etoiles.forEach(etoile => {
+                etoile.classList.toggle('text-yellow-400', etoile.getAttribute('data-value') <= value);
+            });
+        }
+
+        function envoyerNotation(value) {
+            if (value < 1 || value > 5) {
+                console.error('La notation doit être comprise entre 1 et 5.');
+                return;
+            }
+
+            console.log('Notation envoyée :', value, club_id);
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/rating', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader(
+                "X-CSRF-TOKEN",
+                document
+                .querySelector('meta[name="csrf-token"]')
+                .getAttribute("content")
+            );
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log('Notation envoyée avec succès.');
+                        setInterval(function() {
+                            location.reload();
+                        }, 1000);
+
+                    } else {
+                        console.error('Erreur lors de l\'envoi de la notation.');
+                    }
+                }
+            };
+            xhr.send(JSON.stringify({
+                club_id: club_id,
+                rating: value
+            }));
+        }
+    });
+</script>

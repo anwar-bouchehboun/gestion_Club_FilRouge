@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable ,SoftDeletes, CascadeSoftDeletes;
 
-    protected $cascadeDeletes = ['reservation','commentaires'];
+    protected $cascadeDeletes = ['reservation','commentaires','rating'];
 
     protected $dates = ['deleted_at'];
     /**
@@ -61,5 +61,9 @@ class User extends Authenticatable
     public function reservation(){
         return $this->hasMany(Reservation::class,'user_id');
 
+    }
+    public function rating()
+    {
+        return $this->hasMany(Rating::class,'user_id');
     }
 }
