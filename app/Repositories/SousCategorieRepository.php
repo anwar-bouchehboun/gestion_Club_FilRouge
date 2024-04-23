@@ -103,7 +103,22 @@ class SousCategorieRepository implements SousCategorieInterface
 
         return $member ;
     }
- 
 
+    public function SouscaegoriePayer($id){
+       return Souscategorie::findOrFail($id);
+    }
+
+    public function existingReservation($sous)
+    {
+        if (Auth::check()) {
+            $existingReservation = Reservation::where('user_id', Auth::User()->id)
+                ->where('reservable_id', $sous)
+                ->where('reservable_type', 'App\Models\Souscategorie')
+                ->count();
+            return $existingReservation;
+        }
+        return null;
+
+    }
 
 }

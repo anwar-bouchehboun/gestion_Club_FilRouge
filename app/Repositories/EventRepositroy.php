@@ -119,7 +119,7 @@ class EventRepositroy implements EventInterface
     }
 
     public function Event_club($id){
-     return   $culb=Event::findOrFail($id);
+     return Event::findOrFail($id);
     }
 
 

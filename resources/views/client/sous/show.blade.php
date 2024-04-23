@@ -35,12 +35,20 @@
                                     class="text-[#24B49A]">{{ $souscategories->price }}</span>$</p>
                         </div>
                         <div>
+                            @if ($existingReservation>0)
+                                  <div>
+                                    
+                                  </div>
+                            @else
                             <form action="{{ route('sessionsous') }}" method="post">
                                 @csrf
                                 <input type="text" name="sous" value="{{ $souscategories->id }}" hidden>
                                 <button type="submit"
                                     class=" px-9 py-3 mt-10 text-sm font-semibold tracking-wider text-white bg-[#24B49A] border-none rounded outline-none ">ADD Sous catégorie</button>
                             </form>
+
+                            @endif
+
 
                         </div>
 

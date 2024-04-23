@@ -62,4 +62,10 @@ class SousCategorieServices
         return $this->sousCategorieInterface->MembershipValidtion($clubid);
 
     }
+    public function SouscaegoriePayer($id){
+        return $this->sousCategorieInterface->SouscaegoriePayer($id);
+    }
+    public function existingReservation($sous){
+        return $this->sousCategorieInterface->existingReservation($sous);
+    }
 }

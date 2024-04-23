@@ -51,7 +51,9 @@ class ClubController extends Controller
         //  frsit club
         $club = $this->clubService->findfail($id);
 
+        //cateogrie
         $categories = $this->clubService->categorie($club->id);
+        // event chaque club
         $events = $this->clubService->event($club->id);
         $images = null;
         $commentaires = null;

@@ -27,5 +27,7 @@ interface SousCategorieInterface
 
     public function MembershipValidtion($clubid);
 
+    public function SouscaegoriePayer($id);
 
+    public function existingReservation($sous);
 }

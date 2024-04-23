@@ -2,7 +2,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ">
         <div>
             <h4 class="text-[#FFF] font-bold text-lg  md:mb-3">PHOENIXCLUB</h4>
-            <hr class="w-20  md:mb-1 mb-9">
+            <hr class="w-20 md:mb-1 mb-9">
         </div>
 
         <div>

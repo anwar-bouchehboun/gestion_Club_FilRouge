@@ -18,12 +18,14 @@ class SouscategorieController extends Controller
     }
     public function show($id)
     {
+
         $souscategories = $this->sousCategorieServices->showsouscategorie($id);
 
         $categories = $this->sousCategorieServices->shwocategorie($souscategories->categorie_id);
-
+        $existingReservation = $this->sousCategorieServices->existingReservation($id);
+        // dd($existingReservation);
         // $member = $this->sousCategorieServices->MembershipValidtion($categories->club_id);
 
-        return view('client.sous.show', compact('souscategories'));
+        return view('client.sous.show', compact('souscategories','existingReservation'));
     }
 }

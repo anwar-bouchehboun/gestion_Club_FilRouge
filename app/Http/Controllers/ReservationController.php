@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
+use App\Models\Souscategorie;
 use Illuminate\Support\Facades\Auth;
 use App\Services\SousCategorieServices;
 
@@ -66,15 +67,19 @@ class ReservationController extends Controller
 
 
     }
-    public function successsous(Request $request, $sous_id)
+    public function successsous(Request $request)
     {
         $sousId = $request->route('sous_id');
 
         $reservationId = $this->save($sousId);
-
-        if ($reservationId) {
-            return view('client.finpayment');
-        }
+         $sous=$this->sousCategorieServices->SouscaegoriePayer($sousId);
+        // dd($sous->id);
+    if ($reservationId) {
+            return redirect()->route('show.reseve',$sous->id)->with([
+                'message' => 'choisir SousCategorie succès',
+                'success' => true,
+            ]);
+     }
     }
     protected function save($sousId)
     {
