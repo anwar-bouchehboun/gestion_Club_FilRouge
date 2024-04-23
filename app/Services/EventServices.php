@@ -53,4 +53,8 @@ class EventServices
     public function Event_club($id){
         return $this->eventInterface->Event_club($id);
     }
+    public function Reserve_Ticket($subject,$body,$id){
+        return $this->eventInterface->Reserve_Ticket($subject,$body,$id);
+
+    }
 }

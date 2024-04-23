@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReserveEmail;
 use App\Models\Club;
 use App\Models\Event;
 use App\Models\Reservation;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use App\Services\EventServices;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class StripeController extends Controller
 {
@@ -70,10 +72,14 @@ class StripeController extends Controller
 
         $reservationId = $this->save($eventId);
 
-        $culb= $this->eventServices->Event_club($eventId);
+        $club= $this->eventServices->Event_club($eventId);
+
 
         if ($reservationId) {
-            return redirect()->route('categorie',$culb->club_id)->with([
+            $subject = 'Ticket Reservation';
+            $body = $club->club->club;
+             $this->eventServices->Reserve_Ticket($subject,$body,$eventId);
+            return redirect()->route('categorie',$club->club_id)->with([
                 'message' => 'Reservation succès',
                 'success' => true,
             ]);

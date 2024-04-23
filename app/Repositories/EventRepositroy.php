@@ -4,11 +4,13 @@ namespace App\Repositories;
 use App\Models\Club;
 use App\Models\Event;
 use App\Models\Image;
+use App\Mail\ReserveEmail;
 use App\Models\Membership;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Interface\EventInterface;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateEventRequest;
@@ -119,8 +121,19 @@ class EventRepositroy implements EventInterface
     }
 
     public function Event_club($id){
-     return Event::findOrFail($id);
+     return Event::with('club')->findOrFail($id);
     }
 
+    // ticket
+
+    public function Reserve_Ticket($subject,$body,$id){
+        $users = Auth::user();
+        if(Auth::check()){
+            $reservationData = Reservation::with('users','reservable')->where('user_id', $users->id)->where('reservable_id',$id)->first();
+
+              Mail::to($users->email)->send(new ReserveEmail($subject,$body,$reservationData));
+        }
+
+    }
 
 }
