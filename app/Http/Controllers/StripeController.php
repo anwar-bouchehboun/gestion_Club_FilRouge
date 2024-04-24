@@ -26,7 +26,7 @@ class StripeController extends Controller
                 $event = $this->eventServices->find($request);
                 if ($event === 0) {
                     return redirect()->back()->with([
-                        'message' => 'vous aves create compte pour   Club ',
+                        'message' => 'Add member pour   Club ',
                         'success' => false,
                     ]);
                 }
@@ -72,14 +72,14 @@ class StripeController extends Controller
 
         $reservationId = $this->save($eventId);
 
-        $club= $this->eventServices->Event_club($eventId);
+        $club = $this->eventServices->Event_club($eventId);
 
 
         if ($reservationId) {
             $subject = 'Ticket Reservation';
             $body = $club->club->club;
-             $this->eventServices->Reserve_Ticket($subject,$body,$eventId);
-            return redirect()->route('categorie',$club->club_id)->with([
+            $this->eventServices->Reserve_Ticket($subject, $body, $eventId);
+            return redirect()->route('categorie', $club->club_id)->with([
                 'message' => 'Reservation succès',
                 'success' => true,
             ]);
@@ -88,7 +88,7 @@ class StripeController extends Controller
 
     protected function save($eventId)
     {
-      return  $this->eventServices->reserveevent($eventId);
+        return $this->eventServices->reserveevent($eventId);
 
 
     }
