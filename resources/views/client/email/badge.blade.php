@@ -20,9 +20,9 @@
 
 
     <main class="flex flex-col w-screen h-screen">
-        <section class="flex items-center justify-center flex-grow w-full p-4">
+        <section class="flex items-center justify-center flex-grow w-full p-4 ">
             <div class="flex w-full h-64 max-w-3xl text-zinc-50">
-                <div class="flex flex-col flex-grow h-full px-10 py-8 bg-zinc-900 rounded-r-3xl">
+                <div class="flex flex-col flex-grow h-full px-10 py-8 bg-[#24B49A] rounded-r-3xl">
                     <div class="flex items-center justify-between w-full">
                         <div class="flex flex-col">
                             <span class="text-2xl font-bold">{!! $body !!}</span>
@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="flex flex-col items-center">
-                            <span class="text-2xl font-bold"> Add memeber Club :
+                            <span class="text-2xl font-bold">memeber Club  a :
                                 {{ $user->created_at->format('Y-m-d') }}</span>
                         </div>
                     </div>

@@ -34,13 +34,13 @@ class ClubRepository implements ClubInterface
     public function find($id)
     {
 
-        if(Auth::check()){
+        if (Auth::check()) {
             $club = Membership::with('club', 'users')
-            ->where('club_id', $id)
-            ->where('user_id', Auth::user()->id)
-            ->count();
+                ->where('club_id', $id)
+                ->where('user_id', Auth::user()->id)
+                ->count();
 
-        return $club;
+            return $club;
 
         }
         return null;
@@ -114,7 +114,8 @@ class ClubRepository implements ClubInterface
 
     }
 
-    public function storerating(Request $request){
+    public function storerating(Request $request)
+    {
         $user = Auth::User()->id;
         $valide = $request->validate([
             'club_id' => "required",
@@ -127,20 +128,35 @@ class ClubRepository implements ClubInterface
         ]);
         return $rating;
     }
-    public function rating_User($id){
+    public function rating_User($id)
+    {
 
         if (Auth::check()) {
             $user = Auth::user();
-            $rating=Rating::where('user_id',$user->id)->where('club_id', $id)->latest()->first();
+            $rating = Rating::where('user_id', $user->id)->where('club_id', $id)->latest()->first();
             return $rating;
         }
         return null;
     }
-    public function rating_club_Avg($id){
+    public function rating_club_Avg($id)
+    {
 
         $rating_club = Rating::where('club_id', $id)->avg('rating');
-        $rating_percentage  = number_format($rating_club, 1);
+        $rating_percentage = number_format($rating_club, 1);
         return $rating_percentage;
     }
 
+    public function event_club($id)
+    {
+
+        $data_events = Event::with('club', 'image', 'commentaires')->where('club_id', $id)->where('date', '<', date('Y-m-d'))
+        ->get()->map(function ($event) {
+            $event->comment_count = $event->commentaires->count();
+            return $event;
+        });
+        if ($data_events) {
+            return $data_events;
+        }
+        return null;
+    }
 }

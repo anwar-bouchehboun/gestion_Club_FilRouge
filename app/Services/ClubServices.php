@@ -63,28 +63,36 @@ class ClubServices
         return $this->clubtRepository->image($id);
 
     }
-    public function commentaire($id,$event)
+    public function commentaire($id, $event)
     {
-        return $this->clubtRepository->commentaire($id,$event);
+        return $this->clubtRepository->commentaire($id, $event);
 
     }
     public function findfail($id)
     {
         return $this->clubtRepository->findfail($id);
     }
-    public function existingReservation($events){
+    public function existingReservation($events)
+    {
         return $this->clubtRepository->existingReservation($events);
 
     }
 
-    public function storerating(Request $request){
+    public function storerating(Request $request)
+    {
         return $this->clubtRepository->storerating($request);
 
     }
-      public function rating_User($id){
+    public function rating_User($id)
+    {
         return $this->clubtRepository->rating_User($id);
-      }
-      public function rating_club_Avg($id){
+    }
+    public function rating_club_Avg($id)
+    {
         return $this->clubtRepository->rating_club_Avg($id);
-      }
+    }
+
+    public function event_club($id){
+        return $this->clubtRepository->event_club($id);
+    }
 }

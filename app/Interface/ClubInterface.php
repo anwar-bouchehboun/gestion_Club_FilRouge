@@ -33,6 +33,8 @@ interface ClubInterface{
     public function storerating(Request $request);
 
     public function rating_User($id);
-    
+
     public function rating_club_Avg($id);
+
+    public function event_club($id);
 }

@@ -29,6 +29,7 @@
     <x-footer />
     <script src="/assets/js/Sotrecommentiare.js"></script>
     <script src="/assets/js/etoile.js"></script>
+    {{-- <script src="/assets/js/addmember.js"></script> --}}
 </body>
 
 </html>

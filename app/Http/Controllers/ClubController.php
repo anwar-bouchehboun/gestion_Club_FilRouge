@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Club;
+use App\Models\Event;
 use App\Models\Rating;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
@@ -58,24 +59,19 @@ class ClubController extends Controller
         $images = null;
         $commentaires = null;
         $existingReservation = null;
-
-
-
-
         if ($events) {
+            // check deja reserve
             $existingReservation = $this->clubService->existingReservation($events->id);
-
             $images = $this->clubService->image($events->id);
+            // affiche commentaire
             $commentaires = $this->clubService->commentaire($id, $events->id);
-
         }
-
+        // rating club
         $rating_percentage=$this->clubService->rating_club_Avg($id);
-
-
         $rating=$this->clubService->rating_User($id);
+        $data_events=   $this->clubService->event_club($id);
 
-        return view('client.categorie.categorie', compact('rating_percentage','rating','existingReservation', 'club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
+        return view('client.categorie.categorie', compact('data_events','rating_percentage','rating','existingReservation', 'club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
 
 
     }

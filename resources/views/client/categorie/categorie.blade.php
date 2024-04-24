@@ -57,7 +57,6 @@
                                                         @endfor
                                                     </div>
                                                 @else
-
                                                     <span class="font-extrabold text-gray-700 etoile"
                                                         data-value="1">&#9734;</span>
                                                     <span class="font-extrabold text-gray-700 etoile"
@@ -76,10 +75,9 @@
                                             <!-- Content to display when the club's user is the authenticated user -->
                                         </div>
                                     @else
-                                        <form action="{{ route('membereShips.store') }}" method="POST">
-                                            @csrf
+                                        <form id="addMembersForm">
                                             <input type="hidden" name="club_id" value="{{ $club->id }}">
-                                            <button type="submit"
+                                            <button type="button" id="addMembersBtn"
                                                 class="bg-[#24B49A] border-2 border-[#24B49A] mt-10 transition-all text-black font-bold text-sm rounded-md px-6 py-2.5">
                                                 Add Members
                                             </button>
@@ -317,7 +315,7 @@
                                         class="text-[#24B49A]">{{ $events->prix }}</span>$</p>
                             </div>
                             <div>
-                                @if (!$existingReservation && ($events->date >= \Carbon\Carbon::now()->format('Y-m-d')))
+                                @if (!$existingReservation && $events->date >= \Carbon\Carbon::now()->format('Y-m-d'))
                                     <form action="{{ route('session') }}" method="post">
                                         @csrf
                                         <input type="hidden" name="event" value="{{ $events->id }}">
@@ -382,9 +380,8 @@
                             </span>
                         </button>
                     </div>
-
-            @else
-                     <div>
+                @else
+                    <div>
 
 
                     </div>
@@ -500,9 +497,220 @@
 
             </div>
         @endif
+        {{-- section Event  --}}
+        <div class="max-w-screen-xl p-5 mx-auto sm:p-10 md:p-16">
+
+            <div class="flex justify-between mb-5 text-sm ">
+                <div class="flex items-center pb-2 pr-2 ">
+
+                </div>
+                {{-- <a href="#" class="text-3xl font-extralight">See All</a> --}}
+            </div>
+
+
+            <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3">
+
+                <!-- CARD 1 -->
+                @foreach ($data_events as $data)
+                    <div class="flex flex-col overflow-hidden rounded shadow-lg">
+
+                        <div class="relative">
+                            <a href="#">
+                                <img class="event-image" src="../storage/{{ $data->image[2]->image }}"
+                                    style="width: 100%; max-width: 500px; height: auto;"
+                                    alt="Sunset in the mountains">
+
+
+                                <div
+                                    class="absolute top-0 bottom-0 left-0 right-0 transition duration-300 bg-gray-900 opacity-25 hover:bg-transparent">
+                                </div>
+                            </a>
 
 
 
+                        </div>
+                        <div class="px-6 py-4 mb-auto">
+                            <a href="#"
+                                class="inline-block mb-2 text-lg font-medium transition duration-500 ease-in-out hover:text-indigo-600">
+                                {{ $data->name }}
+                            </a>
+                            <p class="text-sm text-gray-500">
+                                {{ $data->date }}
+                            </p>
+                        </div>
+                        <div class="flex flex-row items-center justify-between px-6 py-3 bg-gray-100">
+                            <span href="#"
+                                class="flex flex-row items-center py-1 mr-1 text-xs text-gray-900 font-regular">
+                                <svg height="13px" width="13px" version="1.1" id="Layer_1"
+                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;"
+                                    xml:space="preserve">
+                                    <g>
+                                        <g>
+                                            <path
+                                                d="M256,0C114.837,0,0,114.837,0,256s114.837,256,256,256s256-114.837,256-256S397.163,0,256,0z M277.333,256 c0,11.797-9.536,21.333-21.333,21.333h-85.333c-11.797,0-21.333-9.536-21.333-21.333s9.536-21.333,21.333-21.333h64v-128 c0-11.797,9.536-21.333,21.333-21.333s21.333,9.536,21.333,21.333V256z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span class="ml-1">
+                                    {{ Carbon\Carbon::parse($data->created_at)->diffForHumans() }}
+                                </span>
+                            </span>
+
+                            <span href="#"
+                                class="flex flex-row items-center py-1 mr-1 text-xs text-gray-900 font-regular">
+                                <button data-modal-target="popup-modal-{{ $data->id }}"
+                                    data-modal-toggle="popup-modal-{{ $data->id }}" class=""
+                                    type="button">
+                                    <span class="ml-1 text-[#24B49A] font-bold"> {{ $data->comment_count }}</span>
+
+                                    <svg class="h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z">
+                                        </path>
+                                    </svg>
+                                </button>
+
+
+                                <div id="popup-modal-{{ $data->id }}" tabindex="-1"
+                                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                    <div class="relative w-full max-w-md max-h-full p-4">
+                                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                            <button type="button"
+                                                class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                data-modal-hide="popup-modal-{{ $data->id }}">
+                                                <svg class="w-3 h-3" aria-hidden="true"
+                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 14 14">
+                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"
+                                                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                </svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+                                            <div class="p-4 md:p-5">
+                                                @foreach ($data->commentaires as $comment)
+                                                    <article class="p-6 text-base bg-white dark:bg-gray-900"
+                                                        id="containerid{{ $comment->id }}">
+                                                        <footer class="flex items-center justify-between mb-2">
+                                                            <div class="flex items-center">
+                                                                <p
+                                                                    class="inline-flex items-center mr-3 text-sm font-semibold text-gray-900 dark:text-white">
+                                                                    <img class="w-10 h-10 mr-2 rounded-full"
+                                                                        src="../storage/{{ $comment->users->image }}"
+                                                                        alt="{{ $comment->users->name }}">{{ $comment->users->name }}
+                                                                </p>
+                                                                <p class="text-sm text-gray-600 dark:text-gray-400">
+                                                                    <time pubdate
+                                                                        datetime="{{ $comment->created_at }}"
+                                                                       >
+
+                                                                        {{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}
+                                                                    </time>
+                                                                </p>
+                                                            </div>
+                                                            <div>
+                                                                {{-- @auth
+                                                                    @if (Auth::user()->id === $commentaire->users->id)
+                                                                        <button
+                                                                            id="dropdownComment{{ $commentaire->id }}Button"
+                                                                            data-dropdown-toggle="dropdownComment{{ $commentaire->id }}"
+                                                                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg dark:text-gray-400 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                                                            type="button">
+                                                                            <svg class="w-4 h-4" aria-hidden="true"
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                fill="currentColor" viewBox="0 0 16 3">
+                                                                                <path
+                                                                                    d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                                                                            </svg>
+                                                                        </button>
+                                                                    @endif
+                                                                @endauth --}}
+
+                                                                <!-- Menu déroulant pour modifier et supprimer le commentaire -->
+                                                                {{-- <div id="dropdownComment{{ $commentaire->id }}"
+                                                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-36 dark:bg-gray-700 dark:divide-gray-600">
+                                                                    <ul
+                                                                        class="py-1 text-sm text-gray-700 dark:text-gray-200">
+                                                                        <li>
+                                                                            <!-- Bouton pour modifier le commentaire -->
+                                                                            <button
+                                                                                onclick="editcommentaire({{ $commentaire->id }},'{{ $commentaire->contenu }}')"
+                                                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Modifier</button>
+                                                                        </li>
+                                                                        <li>
+                                                                            <!-- Bouton pour supprimer le commentaire -->
+                                                                            <button
+                                                                                onclick="deletecommentaire({{ $commentaire->id }})"
+                                                                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Supprimer</button>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div> --}}
+                                                            </div>
+                                                        </footer>
+                                                        <div id="commentaire">
+                                                            <p class="text-gray-500 dark:text-gray-400">
+                                                                {{ $comment->contenu }}
+                                                            </p>
+                                                        </div>
+                                                    </article>
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </span>
+                        </div>
+                    </div>
+                @endforeach
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {{--  --}}
         {{-- edit commentaire --}}
         <div id="edit-modal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -599,70 +807,41 @@
     @endpush
 </x-platform-layout>
 
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const etoiles = document.querySelectorAll('.etoile');
-        let notation = 0;
-        let club_id = document.getElementById('club').value;
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("addMembersBtn").addEventListener("click", function() {
+            var form = document.getElementById("addMembersForm");
+            var formData = new FormData(form);
 
-
-        etoiles.forEach(etoile => {
-            etoile.addEventListener('mouseover', function() {
-                const value = etoile.getAttribute('data-value');
-                mettreEnSurbrillance(value);
-            });
-
-            etoile.addEventListener('click', function() {
-                const value = etoile.getAttribute('data-value');
-                notation = value;
-                envoyerNotation(value);
-            });
-
-            etoile.addEventListener('mouseout', function() {
-                mettreEnSurbrillance(notation);
-            });
-        });
-
-        function mettreEnSurbrillance(value) {
-            etoiles.forEach(etoile => {
-                etoile.classList.toggle('text-yellow-400', etoile.getAttribute('data-value') <= value);
-            });
-        }
-
-        function envoyerNotation(value) {
-            if (value < 1 || value > 5) {
-                console.error('La notation doit être comprise entre 1 et 5.');
-                return;
-            }
-
-            console.log('Notation envoyée :', value, club_id);
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '/rating', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.setRequestHeader(
-                "X-CSRF-TOKEN",
-                document
-                .querySelector('meta[name="csrf-token"]')
-                .getAttribute("content")
-            );
-
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "{{ route('membereShips.store') }}", true);
+            xhr.setRequestHeader("X-CSRF-Token", "{{ csrf_token() }}");
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
-                        console.log('Notation envoyée avec succès.');
-                        setInterval(function() {
-                            location.reload();
-                        }, 1000);
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Members added successfully!',
+                            timer: 3000,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                            didClose: () => {
+                                location.reload();
+                            }
+                        });
 
                     } else {
-                        console.error('Erreur lors de l\'envoi de la notation.');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                        });
                     }
                 }
             };
-            xhr.send(JSON.stringify({
-                club_id: club_id,
-                rating: value
-            }));
-        }
+            xhr.send(formData);
+        });
     });
-</script> --}}
+</script>

@@ -25,16 +25,10 @@ class MemberController extends Controller
             $member = $this->memberServices->store($memberRequest);
 
             if ($member === 1) {
-                return redirect()->back()->with([
-                    'message' => 'vous aves deja members  Club ',
-                    'success' => false,
-                ]);
-            } else if ($member === 0)  {
+                return response()->json($member);
+            } else if ($member === 0) {
 
-                return redirect()->back()->with([
-                    'message' => 'Bien venu Club  avec succès',
-                    'success' => true,
-                ]);
+                return response()->json($member);
             }
         } catch (\Throwable $th) {
             // throw $th;
