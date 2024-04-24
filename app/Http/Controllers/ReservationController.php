@@ -73,7 +73,7 @@ class ReservationController extends Controller
 
         $reservationId = $this->save($sousId);
          $sous=$this->sousCategorieServices->SouscaegoriePayer($sousId);
-        // dd($sous->id);
+      
     if ($reservationId) {
             return redirect()->route('show.reseve',$sous->id)->with([
                 'message' => 'choisir SousCategorie succès',

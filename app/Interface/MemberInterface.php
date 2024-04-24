@@ -5,7 +5,7 @@ use App\Http\Requests\MemberRequest;
 
 interface MemberInterface
 {
-  
-    public function store(MemberRequest $memberRequest);
 
+    public function store(MemberRequest $memberRequest);
+    public function Reserve_Badge($subject, $body, $id);
 }

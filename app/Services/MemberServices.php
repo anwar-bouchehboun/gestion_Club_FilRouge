@@ -22,7 +22,9 @@ class MemberServices
     }
 
 
-
+    // public function Reserve_Badge($subject, $body,$id){
+    //     return $this->memberInterface->Reserve_Badge($subject, $body,$id);
+    // }
 
 
 

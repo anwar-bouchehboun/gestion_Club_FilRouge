@@ -30,4 +30,6 @@ interface SousCategorieInterface
     public function SouscaegoriePayer($id);
 
     public function existingReservation($sous);
+
+ 
 }

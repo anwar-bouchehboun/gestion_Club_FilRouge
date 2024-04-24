@@ -44,7 +44,7 @@
                                         <div class="container mx-auto">
                                             <input type="hidden" name="club_id" value="{{ $club->id }}" id="club">
                                             <div class="flex items-center" id="ratingStars">
-                                                @if ($rating && $rating->status == 1)
+                                                @if ($rating)
                                                     <div hidden>
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $rating->rating)
@@ -57,6 +57,7 @@
                                                         @endfor
                                                     </div>
                                                 @else
+
                                                     <span class="font-extrabold text-gray-700 etoile"
                                                         data-value="1">&#9734;</span>
                                                     <span class="font-extrabold text-gray-700 etoile"
