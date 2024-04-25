@@ -51,34 +51,50 @@ class SousCategorieRepository implements SousCategorieInterface
     }
     public function find($id)
     {
-        return Souscategorie::with('categorie')->where('categorie_id', $id)->get();
+     
+        $sous = Souscategorie::with('categorie')->where('categorie_id', $id)->get();
+        if ($sous != null) {
+            return $sous;
+        }
+
+
     }
     public function shwocategorie($id)
     {
 
-        return Categorie::with('club')->where('id', $id)->first();
+        $categoire = Categorie::with('club')->where('id', $id)->first();
+        if ($categoire != null) {
+            return $categoire;
+              }
+                  return null;
+
 
     }
     public function showsouscategorie($id)
     {
 
-        return Souscategorie::with('categorie')->where('id', $id)->first();
+
+        $souscategorie= Souscategorie::with('categorie')->where('id', $id)->first();
+        if ($souscategorie === null) {
+            return null;
+        }
+         return $souscategorie;
 
     }
     public function findFail(Request $request)
     {
-       $sous= Souscategorie::where('id', $request->sous)->first();
+        $sous = Souscategorie::where('id', $request->sous)->first();
 
-       $club=$this->shwocategorie($sous->categorie_id);
+        $club = $this->shwocategorie($sous->categorie_id);
 
-    $member= $this->MembershipValidtion($club->club_id);
+        $member = $this->MembershipValidtion($club->club_id);
 
-       if($member==0){
-        return 0;
-       }else{
-        return  $sous;
+        if ($member == 0) {
+            return 0;
+        } else {
+            return $sous;
 
-       }
+        }
 
 
     }
@@ -97,15 +113,17 @@ class SousCategorieRepository implements SousCategorieInterface
             return $reservation;
         }
     }
-    public function MembershipValidtion($clubid){
+    public function MembershipValidtion($clubid)
+    {
 
-        $member=Membership::where('club_id',$clubid)->where('user_id',Auth::User()->id)->count();
+        $member = Membership::where('club_id', $clubid)->where('user_id', Auth::User()->id)->count();
 
-        return $member ;
+        return $member;
     }
 
-    public function SouscaegoriePayer($id){
-       return Souscategorie::findOrFail($id);
+    public function SouscaegoriePayer($id)
+    {
+        return Souscategorie::findOrFail($id);
     }
 
     public function existingReservation($sous)
@@ -120,6 +138,6 @@ class SousCategorieRepository implements SousCategorieInterface
         return null;
 
     }
-  
+
 
 }

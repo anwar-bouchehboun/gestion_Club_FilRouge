@@ -65,13 +65,17 @@
                                                         <strong class="font-light "> Club Created At:</strong>
                                                         {{ $user->club->created_at->format('Y-m-d') }}
                                                     </span>
-                                                    <form id="deleteForm{{ $user->id }}">
+                                                    <h6 class="my-5 text-lg font-medium ">
+                                                        <strong class="font-light ">Memeber Club Created At:</strong>
+                                                        {{ $user->created_at->format('Y-m-d') }}
+                                                    </h6>
+                                                    {{-- <form id="deleteForm{{ $user->id }}">
                                                         @csrf
                                                         <button id="deleteButton{{ $user->id }}"
                                                             onclick="deleteUser({{ $user->id }})" type="button"
                                                             class="p-2 text-white bg-red-700 rounded float-end">Delete
                                                             Club</button>
-                                                    </form>
+                                                    </form> --}}
 
                                                 </div>
                                             </div>

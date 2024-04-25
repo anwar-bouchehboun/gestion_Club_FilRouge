@@ -31,8 +31,13 @@ class AdminUserController extends Controller
     }
     public function destroy($id)
     {
-        $userDelete =$this->authInterface->destroy($id);
-        return response()->json($userDelete);
+        try{
+            $userDelete =$this->authInterface->destroy($id);
+            return response()->json($userDelete);
+        }   catch (\Throwable $th) {
+            return view('error.404');
+        }
+
 
     }
 }

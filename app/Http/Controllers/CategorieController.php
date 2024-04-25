@@ -20,14 +20,15 @@ class CategorieController extends Controller
         try {
 
 
+
             $categories = $this->sousCategorieServices->shwocategorie($id);
-            // dd($member);
+
             $souscategories = $this->sousCategorieServices->find($categories->id);
 
             return view('client.sous.souscategrie', compact('categories', 'souscategories'));
 
         } catch (\Throwable $th) {
-            //throw $th;
+            return view('error.404');
         }
 
 

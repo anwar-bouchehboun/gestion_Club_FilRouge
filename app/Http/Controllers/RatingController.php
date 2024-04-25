@@ -15,8 +15,13 @@ class RatingController extends Controller
     }
     public function store(Request $request)
     {
-       $rating=$this->clubService->storerating($request);
-        return response()->json($rating);
+        try {
+            $rating=$this->clubService->storerating($request);
+            return response()->json($rating);
+        } catch (\Throwable $th) {
+            return view('error.404');
+        }
+
 
     }
 }

@@ -28,6 +28,7 @@ class RegisterController extends Controller
     }
     public function store(StoreClientCompte $request)
     {
+        try{
         $data = $request->validated();
         $data['password'] = Hash::make($request->password);
         if ($request->hasFile('image')) {
@@ -37,7 +38,12 @@ class RegisterController extends Controller
 
         // Alert::success('Succes', 'Compte has been Create');
         return redirect()->route('login.index')->with('success', 'Compte has been created');
-
+    } catch (\Throwable $th) {
+        return redirect()->route('register')->with([
+            'message' => 'Une erreur s\'est  lors de la register. Veuillez réessayer.',
+            'success' => false,
+        ]);
+    }
 
     }
 }

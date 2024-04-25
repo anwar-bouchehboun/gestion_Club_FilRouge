@@ -46,7 +46,8 @@ class ClubController extends Controller
     public function show($id)
     {
 
-        // memebership
+        try {
+                // memebership
         $clubs = $this->clubService->find($id);
 
         //  frsit club
@@ -72,6 +73,11 @@ class ClubController extends Controller
         $data_events=   $this->clubService->event_club($id);
 
         return view('client.categorie.categorie', compact('data_events','rating_percentage','rating','existingReservation', 'club', 'clubs', 'categories', 'events', 'images', 'commentaires'));
+
+
+        } catch (\Throwable $th) {
+            return view('error.404');
+        }
 
 
     }

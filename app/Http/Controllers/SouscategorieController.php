@@ -18,14 +18,19 @@ class SouscategorieController extends Controller
     }
     public function show($id)
     {
+        try {
+            $souscategories = $this->sousCategorieServices->showsouscategorie($id);
 
-        $souscategories = $this->sousCategorieServices->showsouscategorie($id);
+            $categories = $this->sousCategorieServices->shwocategorie($souscategories->categorie_id);
 
-        $categories = $this->sousCategorieServices->shwocategorie($souscategories->categorie_id);
-        $existingReservation = $this->sousCategorieServices->existingReservation($id);
-        // dd($existingReservation);
-        // $member = $this->sousCategorieServices->MembershipValidtion($categories->club_id);
+            $existingReservation = $this->sousCategorieServices->existingReservation($id);
+            // dd($existingReservation);
+            // $member = $this->sousCategorieServices->MembershipValidtion($categories->club_id);
 
-        return view('client.sous.show', compact('souscategories','existingReservation'));
+            return view('client.sous.show', compact('souscategories', 'existingReservation'));
+        } catch (\Throwable $th) {
+            return view('error.404');
+        }
+
     }
 }

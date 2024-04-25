@@ -51,7 +51,12 @@ class ClubRepository implements ClubInterface
     }
     public function findfail($id)
     {
-        return Club::where('id', $id)->first();
+
+       $club= Club::where('id', $id)->first();
+       if($club==null){
+         abort(404);
+       }
+       return $club;
     }
     public function categorie($id)
     {

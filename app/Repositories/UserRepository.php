@@ -28,6 +28,7 @@ class UserRepository implements AuthInterface
         $this->user = $user;
     }
 
+    // search admin
     public function all(Request $request)
     {
         $searchTerm = $request->input('search');
@@ -56,7 +57,7 @@ class UserRepository implements AuthInterface
     {
         return $this->user->create($data);
     }
-
+    
     public function update(array $data, $id)
     {    //profile
         $user = $this->user->findOrFail($id);
@@ -64,12 +65,14 @@ class UserRepository implements AuthInterface
         return $user;
     }
 
+    // Admin
     public function delete($id)
     {
         $user = $this->user->findOrFail($id);
         $user->delete();
         return $user;
     }
+
 
     public function Count()
     {
