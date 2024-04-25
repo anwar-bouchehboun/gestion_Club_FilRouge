@@ -8,15 +8,16 @@ use App\Models\User;
 use App\Models\Event;
 use App\Models\Client;
 use App\Models\Categorie;
+use App\Models\Membership;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Souscategorie;
 use App\Interface\AuthInterface;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use App\Http\Requests\UpdateProfileRequest;
-use App\Models\Membership;
 
 class UserRepository implements AuthInterface
 {
@@ -50,29 +51,6 @@ class UserRepository implements AuthInterface
 
         return $data;
     }
-    // public function search(Request $request)
-    // {
-    //     $searchTerm = $request->input('search');
-
-    //     $data = Reservation::with('users', 'reservable')
-    //         ->where('reservable_type', 'App\Models\Souscategorie')
-    //         ->where(function ($query) use ($searchTerm) {
-    //             $query->whereHas('users', function ($userQuery) use ($searchTerm) {
-    //                     $userQuery->where('name', 'LIKE', "%{$searchTerm}%");
-    //                 })
-    //                 ->orWhereHas('reservable', function ($reservableQuery) use ($searchTerm) {
-    //                     $reservableQuery->where('name', 'LIKE', "%{$searchTerm}%");
-    //                 });
-    //         })
-    //         ->get();
-
-
-    // }
-
-    // public function find($id)
-    // {
-    //     return $this->user->find($id);
-    // }
 
     public function create(array $data)
     {
@@ -204,8 +182,32 @@ class UserRepository implements AuthInterface
 
     public function get_DataUser_Souscategorie()
     {
-       return Reservation::with('users', 'reservable')->where('user_id',Auth::User()->id)
-       ->where('reservable_type', 'App\Models\Souscategorie')->get();
+        return Reservation::with('users', 'reservable')->where('user_id', Auth::User()->id)
+            ->where('reservable_type', 'App\Models\Souscategorie')->get();
     }
+    public function get_rservation_Event()
+    {
+        $statsitque_reserve_event = Reservation::select(DB::raw("count(reservable_id) as reservation_count"), "events.name")
+            ->with("reservable")
+            ->join("events", "reservations.reservable_id", "=", "events.id")
+            ->groupBy("events.name")
+            ->get();
 
+        $reservationCounts = [];
+        $reservationNames = [];
+
+        foreach ($statsitque_reserve_event as $reservation) {
+
+            $count = $reservation->reservation_count;
+
+            $reservationCounts[] = $count;
+        }
+        foreach ($statsitque_reserve_event as $reservation) {
+
+            $name = $reservation->name;
+
+            $reservationNames[] = $name;
+        }
+        return compact('reservationNames','reservationCounts');
+    }
 }

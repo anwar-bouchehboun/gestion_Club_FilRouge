@@ -52,4 +52,6 @@ interface AuthInterface{
 
     public function get_DataUser_Souscategorie();
 
+    public function get_rservation_Event();
+
 }

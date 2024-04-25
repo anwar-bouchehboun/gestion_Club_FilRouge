@@ -66,4 +66,16 @@ class AdminEventController extends Controller
         ]);
 
     }
+    public function updateStatus($id){
+        if(Auth::User()->role=="admin"){
+
+       $this->eventServices->updateStatus($id);
+    }
+                return redirect()->route('event.index')->with([
+                    'message' => 'Event Status update  avec succès',
+                    'success' => true,
+                ]);
+
+
+    }
 }

@@ -57,4 +57,7 @@ class EventServices
         return $this->eventInterface->Reserve_Ticket($subject,$body,$id);
 
     }
+    public function updateStatus($id){
+        return $this->eventInterface->updateStatus($id);
+    }
 }

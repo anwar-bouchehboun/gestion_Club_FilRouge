@@ -149,7 +149,7 @@ class ClubRepository implements ClubInterface
     public function event_club($id)
     {
 
-        $data_events = Event::with('club', 'image', 'commentaires')->where('club_id', $id)->where('date', '<', date('Y-m-d'))
+        $data_events = Event::with('club', 'image', 'commentaires')->where('club_id', $id)->where('date', '<', date('Y-m-d'))->where('status','=',1)
         ->get()->map(function ($event) {
             $event->comment_count = $event->commentaires->count();
             return $event;

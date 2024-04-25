@@ -44,6 +44,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('user/search', [AdminUserController::class, 'search']);
     Route::resource('/Dashbord/club', AdminClubControlle::class);
     Route::delete('/user/{id}', [AdminUserController::class, 'destroy']);
+    Route::put('/Dashbord/event/status/{id}',[AdminEventController::class,'updateStatus'])->name('updateStatus');
 });
 // logout
 Route::middleware('auth')->group(function () {

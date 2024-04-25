@@ -14,6 +14,7 @@ use App\Models\Souscategorie;
 use App\Services\UserService;
 use App\Interface\AuthInterface;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 // use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
@@ -25,27 +26,30 @@ class AdminControlle extends Controller
     }
     public function index()
     {
-        
-        //Stistique Chart js
-     $data=$this->userService->Count();
 
-    //  statsitque cards
-        $client=$this->userService->ClientCount();
+        //Stistique Chart js
+        $data = $this->userService->Count();
+
+        //  statsitque cards
+        $client = $this->userService->ClientCount();
         $MemberClient = Membership::count();
-       //register
+        //register
         $newClientsCount = $this->userService->NowClient();
-        $newClientsYesterdayCount =$this->userService->YesterdayClient();
-       //rerser Sous
-        $CountClientSous=$this->userService->CountClientSous();
+        $newClientsYesterdayCount = $this->userService->YesterdayClient();
+        //rerser Sous
+        $CountClientSous = $this->userService->CountClientSous();
         $CountClientSousYesterdayCount = $this->userService->CountClientSousYesterdayCount();
         //reseve event
-        $CountClientEvent=$this->userService->CountClientEvent();
+        $CountClientEvent = $this->userService->CountClientEvent();
         $CountClientEventYesterdayCount = $this->userService->CountClientEventYesterdayCount();
 
+        // reservecountEvent
+        $reserve = $this->userService->get_rservation_Event();
+        // compact reservecountEvent
+        $reservationCounts = $reserve['reservationCounts'];
+        $reservationNames = $reserve['reservationNames'];
 
-
-
-        return view('admin.dashbord', compact('data','client','MemberClient','newClientsCount','newClientsYesterdayCount','CountClientSous','CountClientSousYesterdayCount','CountClientEvent','CountClientEventYesterdayCount'));
+        return view('admin.dashbord', compact('data', 'client', 'MemberClient', 'newClientsCount', 'newClientsYesterdayCount', 'CountClientSous', 'CountClientSousYesterdayCount', 'CountClientEvent', 'CountClientEventYesterdayCount', "reservationCounts", "reservationNames"));
     }
 }
 
@@ -64,14 +68,14 @@ class AdminControlle extends Controller
 
 
 
-        // $clubsWithCategoryCount = Club::withCount('categorie')->get();
-    //     $arryclub = [];
+// $clubsWithCategoryCount = Club::withCount('categorie')->get();
+//     $arryclub = [];
 
-    //     foreach ($clubsWithCategoryCount as $club) {
-    //         $arryclub[] ="['club',".$club->club."],['categorie',".$club->categorie_count."]";
-    //     }
+//     foreach ($clubsWithCategoryCount as $club) {
+//         $arryclub[] ="['club',".$club->club."],['categorie',".$club->categorie_count."]";
+//     }
 
-    //     // dd($arryclub);
+//     // dd($arryclub);
 
-    //   $d=$clubsWithCategoryCount;
-    //   dd($d);
+//   $d=$clubsWithCategoryCount;
+//   dd($d);

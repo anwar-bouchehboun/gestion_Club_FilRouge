@@ -81,6 +81,9 @@
                                     Price
                                 </th>
                                 <th class="px-6 py-3 text-sm font-semibold text-left text-black">
+                                    Status
+                                </th>
+                                <th class="px-6 py-3 text-sm font-semibold text-left text-black">
                                     Action
                                 </th>
 
@@ -107,6 +110,21 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $event->prix }} $
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        @if ($event->status == 1)
+                                          <span class="text-blue-500">  Status in Active</span>
+                                        @else
+                                            <form action="{{ route('updateStatus', $event->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="status" value="{{ $event->status }}">
+                                                <button class="text-green-400 ">
+                                                    Active Status
+                                                </button>
+                                            </form>
+                                        @endif
+
                                     </td>
 
 

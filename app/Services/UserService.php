@@ -109,7 +109,11 @@ class UserService
         return $this->clientRepository->get_DataUser_Souscategorie();
 
     }
+    public function get_rservation_Event()
+    {
+        return $this->clientRepository->get_rservation_Event();
 
+    }
 
 
 

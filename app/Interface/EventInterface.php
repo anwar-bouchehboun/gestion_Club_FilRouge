@@ -25,4 +25,6 @@ interface EventInterface
     public function store(StoreEventRequest $storeEventRequest, StoreImageRequest $storeImageRequest);
 
     public function Reserve_Ticket($subject, $body,$id);
+
+    public function updateStatus($id);
 }

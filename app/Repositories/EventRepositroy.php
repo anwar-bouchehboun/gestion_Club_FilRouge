@@ -35,15 +35,15 @@ class EventRepositroy implements EventInterface
     }
     public function find(Request $request)
     {
-       $enent=Event::where('id', $request->event)->first();
-       $club= Club ::where('id',$enent->club_id)->first();
-       $member=Membership::where('club_id',$club->id)->where('user_id',Auth::user()->id)->count();
-       if($member==0){
-        return 0;
-       }else{
-        return Event::where('id', $request->event)->first();
+        $enent = Event::where('id', $request->event)->first();
+        $club = Club::where('id', $enent->club_id)->first();
+        $member = Membership::where('club_id', $club->id)->where('user_id', Auth::user()->id)->count();
+        if ($member == 0) {
+            return 0;
+        } else {
+            return Event::where('id', $request->event)->first();
 
-       }
+        }
 
     }
 
@@ -99,41 +99,50 @@ class EventRepositroy implements EventInterface
     public function reserveevent($eventId)
     {
         $event = Event::find($eventId);
-         $club = Club::where('id', $event->club_id)->first();
+        $club = Club::where('id', $event->club_id)->first();
         $user_id = Auth::user()->id;
-    //  $idculb = $club[0]['id'];
+        //  $idculb = $club[0]['id'];
 
         // $member = Membership::where('user_id', $user_id)->where('club_id', $club->id)->count();
         //  if ($member) {
-            $reservation = new Reservation();
-            $reservation->user_id = $user_id;
-            $reservation->status = 1;
-            $reservation->reservable()->associate($event);
-            $reservation->save();
-            if ($reservation) {
-                $reservation = Reservation::with('reservable')->where('id', $reservation->id)->first();
-                return $reservation;
-            }
+        $reservation = new Reservation();
+        $reservation->user_id = $user_id;
+        $reservation->status = 1;
+        $reservation->reservable()->associate($event);
+        $reservation->save();
+        if ($reservation) {
+            $reservation = Reservation::with('reservable')->where('id', $reservation->id)->first();
+            return $reservation;
+        }
         //  }else{
         //     return 0;
         //  }
 
     }
 
-    public function Event_club($id){
-     return Event::with('club')->findOrFail($id);
+    public function Event_club($id)
+    {
+        return Event::with('club')->findOrFail($id);
     }
 
     // ticket
 
-    public function Reserve_Ticket($subject,$body,$id){
+    public function Reserve_Ticket($subject, $body, $id)
+    {
         $users = Auth::user();
-        if(Auth::check()){
-            $reservationData = Reservation::with('users','reservable')->where('user_id', $users->id)->where('reservable_id',$id)->first();
+        if (Auth::check()) {
+            $reservationData = Reservation::with('users', 'reservable')->where('user_id', $users->id)->where('reservable_id', $id)->first();
 
-              Mail::to($users->email)->send(new ReserveEmail($subject,$body,$reservationData));
+            Mail::to($users->email)->send(new ReserveEmail($subject, $body, $reservationData));
         }
 
+    }
+    public function updateStatus($id)
+    {
+
+        $update = Event::findOrFail($id);
+        $update->status = 1;
+        return $update->save();
     }
 
 }

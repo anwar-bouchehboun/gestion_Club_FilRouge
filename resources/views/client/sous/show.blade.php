@@ -13,11 +13,11 @@
         <div class="  w-full font-[sans-serif] mb-7">
 
             <div
-                class="grid md:grid-cols-2 gap-2 items-center md:max-h-[475px] overflow-hidden md:mx-4  border border-gray-200 rounded-lg shadow">
+                class="grid md:grid-cols-2  items-center md:max-h-[475px] overflow-hidden md:mx-4  border border-gray-200 rounded-lg shadow">
 
-                <div class="p-4 w-50 md:w-full ">
+                <div class="p-2 w-50 md:w-96 ">
 
-                    <img src="/../storage/{{ $souscategories->image }}" class="w-full rounded-2xl"
+                    <img src="/../storage/{{ $souscategories->image }}" class="w-full rounded-2xl md:w-96"
                         alt="{{ $souscategories->name }}">
                     <a href="#">
                     </a>
@@ -27,7 +27,7 @@
                     <h1 class="text-2xl font-bold md:text-4xl text-[#24B49A]">{{ $souscategories->name }}</h1>
                     <p class="mt-4 text-sm font-semibold leading-9 text-black">{{ $souscategories->discrption }}</p>
 
-                    <div class="flex justify-between px-2 ">
+                    <div class="flex flex-col justify-between px-2 md:flex-row">
                         <div>
                             <h4 class="text-2xl font-bold">Cateogrie <strong class="text-[#24B49A] italic">
                                     {{ $souscategories->categorie->name }}</strong></h4>
@@ -37,7 +37,7 @@
                         <div>
                             @if ($existingReservation>0)
                                   <div>
-                                    
+
                                   </div>
                             @else
                             <form action="{{ route('sessionsous') }}" method="post">

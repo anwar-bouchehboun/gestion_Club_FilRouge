@@ -166,19 +166,23 @@
                     <div id="piechart_3d" style="width: 350px; height: 300px;"></div>
                 </div>
 
-                <div class="">
-                    <div id="CHART3d" style="width: 350px; height: 300px;"></div>
 
+
+                <div class="chart">
+                    <canvas id="myChart" width="400" height="200"></canvas>
                 </div>
 
-
-
             </div>
+
+
+
 
         </div>
 
     </x-slot>
 </x-app-layout>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+
 <script type="text/javascript">
     google.charts.load("current", {
         packages: ["corechart"]
@@ -205,5 +209,52 @@
         chart.draw(data, options);
     }
 
-    
+
+
+    /////kdk
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line', // also try bar or other graph types
+
+        // The data for our dataset
+        data: {
+            labels: <?php echo json_encode($reservationNames); ?>,
+            // Information about the dataset
+            datasets: [{
+                label: "Event",
+                backgroundColor: 'lightblue',
+                borderColor: 'royalblue',
+                data: <?php echo json_encode($reservationCounts); ?>,
+            }]
+        },
+
+        // Configuration options
+        options: {
+            layout: {
+                padding: 10,
+            },
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: true,
+                text: 'Precipitation in Reservation'
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: ''
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: ''
+                    }
+                }]
+            }
+        }
+    });
 </script>
