@@ -82,6 +82,7 @@ class ClubRepository implements ClubInterface
 
         return Event::with('club')
             ->where('club_id', $id)
+            ->where('status','=',0)
             ->orderBy('id', 'desc')
             ->first();
 
