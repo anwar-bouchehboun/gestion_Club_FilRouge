@@ -57,15 +57,15 @@
                                                         @endfor
                                                     </div>
                                                 @else
-                                                    <span class="font-extrabold text-gray-700 etoile"
+                                                    <span class="font-extrabold cursor-pointer etoile"
                                                         data-value="1">&#9734;</span>
-                                                    <span class="font-extrabold text-gray-700 etoile"
+                                                    <span class="font-extrabold cursor-pointer etoile"
                                                         data-value="2">&#9734;</span>
-                                                    <span class="font-extrabold text-gray-700 etoile"
+                                                    <span class="font-extrabold cursor-pointer etoile"
                                                         data-value="3">&#9734;</span>
-                                                    <span class="font-extrabold text-gray-700 etoile"
+                                                    <span class="font-extrabold cursor-pointer etoile"
                                                         data-value="4">&#9734;</span>
-                                                    <span class="font-extrabold text-gray-700 etoile"
+                                                    <span class="font-extrabold cursor-pointer etoile"
                                                         data-value="5">&#9734;</span>
                                                 @endif
                                             </div>
@@ -603,8 +603,7 @@
                                                                 </p>
                                                                 <p class="text-sm text-gray-600 dark:text-gray-400">
                                                                     <time pubdate
-                                                                        datetime="{{ $comment->created_at }}"
-                                                                       >
+                                                                        datetime="{{ $comment->created_at }}">
 
                                                                         {{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}
                                                                     </time>

@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="icon" href="./storage/image/logo.png" type="image/x-icon">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
-
+    <title>PHONIXCLUB</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -52,17 +53,17 @@
 
                 </div>
                 <div class="px-4 py-6 text-center bg-white rounded group hover:bg-[#24B49A] hover:text-white">
-                    <h3 class="mb-4 text-xl font-extrabold">Trouver une université</h3>
-                    <p class="text-sm">Trouver la bonne université est crucial pour votre parcours éducatif.
-                        Explorez les cours, les programmes et l'atmosphère de chaque établissement pour trouver
-                        celui qui correspond le mieux à vos besoins.</p>
+                    <h3 class="mb-4 text-xl font-extrabold">Trouver une Clubs</h3>
+                    <p class="text-sm">Trouver le bon club est crucial pour votre parcours psychologique. Explorez les
+                        cours, les programmes et l'ambiance de chaque établissement pour trouver le programme qui
+                        correspond le mieux à vos besoins.</p>
 
                 </div>
                 <div class="px-4 py-6 text-center bg-white rounded group hover:bg-[#24B49A] hover:text-white">
                     <h3 class="mb-4 text-xl font-extrabold">Trouvez la réponse à votre question
                     </h3>
-                    <p class="text-sm">Partagez vos expériences scolaires, discutez avec d'autres membres et
-                        posez-leur des questions pour élargir votre compréhension et enrichir votre expérience.</p>
+                    <p class="text-sm">Partagez vos expériences , Communauté avec d'autres membres et posez-leur des
+                        questions pour élargir votre compréhension et enrichir votre expérience.</p>
 
                 </div>
             </div>

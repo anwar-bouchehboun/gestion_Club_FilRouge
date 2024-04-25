@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
     const etoiles = document.querySelectorAll(".etoile");
     let notation = 0;
