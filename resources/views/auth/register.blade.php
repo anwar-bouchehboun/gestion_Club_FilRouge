@@ -50,10 +50,20 @@
                             </div>
                             <div>
                                 <x-input-label for="password" :value="__('Password')" />
+                                <div class="relative ">
+                                    <input type="password" name="password" id="password" placeholder="••••••••"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <span id=""
+                                        class="absolute text-gray-400 transform -translate-y-1/2 right-3 top-1/2">
+                                        <button type="button" id="togglePassword"
+                                            class="text-gray-500 dark:text-gray-300 focus:outline-none">
+                                            <i class="far fa-eye-slash"></i>
+                                        </button>
+                                    </span>
 
-                                {{-- <label for="password" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Password</label> --}}
-                                <input type="password" name="password" id="password" placeholder="••••••••"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                                </div>
+
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
 
                             </div>
@@ -86,8 +96,8 @@
                                 Don’t have an account yet? <a href="{{ route('login.index') }}"
                                     class="font-medium text-[#24B49A] hover:underline">Login ,</a>
 
-                            <a href="/"
-                                class="font-medium text-[#24B49A] hover:underline ">PHONIXCLUB</a></p>
+                                <a href="/" class="font-medium text-[#24B49A] hover:underline ">PHONIXCLUB</a>
+                            </p>
                         </form>
 
                     </div>
@@ -98,3 +108,18 @@
     </x-slot>
 </x-auth-layout>
 <script src="/assets/js/RegisterVlidation.js"></script>
+<script>
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordField = document.getElementById("password");
+
+    togglePassword.addEventListener("click", function() {
+        console.log(passwordField);
+        const type =
+            passwordField.type === "password" ? "text" : "password";
+        passwordField.type = type;
+        this.innerHTML =
+            type === "password" ?
+            '<i class="far fa-eye-slash"></i>' :
+            '<i class="far fa-eye"></i>';
+    });
+</script>

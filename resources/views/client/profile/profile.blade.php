@@ -25,6 +25,7 @@
                         <div class="h-[1px] bg-[#24B49A] "></div>
                         <div class="grid grid-cols-2 p-2 pt-5 gap-x-2 gap-y-3">
                             @foreach ($club_User as $user)
+                  
                                 <div>
                                     <button data-modal-target="popup-modal-{{ $user->id }}"
                                         data-modal-toggle="popup-modal-{{ $user->id }}" class=""

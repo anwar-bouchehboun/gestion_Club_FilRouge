@@ -31,7 +31,7 @@ class MemberController extends Controller
                 return response()->json($member);
             }
         } catch (\Throwable $th) {
-            // throw $th;
+            return view('error.404');
         }
 
 
