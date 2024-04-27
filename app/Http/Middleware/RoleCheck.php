@@ -28,6 +28,7 @@ class RoleCheck
             if (!Auth::check() || Auth::user()->role !== $role) {
                 abort(403, 'Unauthorized action.');
             }
+            
         }
         return back();
 

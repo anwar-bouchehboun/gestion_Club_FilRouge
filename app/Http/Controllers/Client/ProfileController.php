@@ -25,7 +25,7 @@ class ProfileController extends Controller
         $profile = $this->userService->get_User();
         $club_User=$this->userService->get_User_Club();
         $SousUser=$this->userService->get_DataUser_Souscategorie();
-
+      
 
         return view('client.profile.profile', compact('profile','club_User','SousUser'));
     }

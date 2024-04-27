@@ -80,3 +80,9 @@ Route::middleware('guest')->group(function () {
     Route::get('password/reset/{token}', [ForgotPasswordController::class, 'create'])->name('password.reset');
     Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('reset');
 });
+
+
+
+Route::fallback(function () {
+    return view('error.404');
+});

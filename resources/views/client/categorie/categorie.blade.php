@@ -45,19 +45,19 @@
                                             <input type="hidden" name="club_id" value="{{ $club->id }}" id="club">
                                             <div class="flex items-center" id="ratingStars">
                                                 @if ($rating)
-                                                    <div hidden>
+                                                    <div >
                                                         @for ($i = 1; $i <= 5; $i++)
                                                             @if ($i <= $rating->rating)
-                                                                <span class="font-extrabold text-gray-500 etoile"
+                                                                <span class="font-extrabold text-yellow-300 etoile"
                                                                     data-value="{{ $i }}">&#9733;</span>
                                                             @else
-                                                                <span class="font-extrabold text-gray-500 etoile"
+                                                                <span class="font-extrabold etoile"
                                                                     data-value="{{ $i }}">&#9734;</span>
                                                             @endif
                                                         @endfor
                                                     </div>
                                                 @else
-                                                    <span class="font-extrabold cursor-pointer etoile"
+                                                    <span class="font-extrabold cursor-pointer etoile "
                                                         data-value="1">&#9734;</span>
                                                     <span class="font-extrabold cursor-pointer etoile"
                                                         data-value="2">&#9734;</span>
@@ -822,7 +822,7 @@
                         Swal.fire({
                             icon: 'success',
                             title: 'Success',
-                            text: 'Members added successfully!',
+                            text: 'Members added successfully! Check Email Badge',
                             timer: 3000,
                             timerProgressBar: true,
                             showConfirmButton: false,

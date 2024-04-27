@@ -23,6 +23,7 @@ class AdminSousCategorieController extends Controller
     {
         if (Auth::User()->role == "admin") {
             $categories = $this->sousCategorieServices->categorie();
+
             $souscategories = $this->sousCategorieServices->all();
         }
         return view('admin.sous.sous', compact('categories', 'souscategories'));

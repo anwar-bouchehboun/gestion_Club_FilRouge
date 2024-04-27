@@ -24,12 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
     function mettreEnSurbrillance(value) {
         etoiles.forEach((etoile) => {
             etoile.classList.toggle(
-                "text-yellow-400",
+                "text-yellow-700",
                 etoile.getAttribute("data-value") <= value
             );
         });
     }
-
     function envoyerNotation(value) {
         if (value < 1 || value > 5) {
             console.error("La notation doit être comprise entre 1 et 5.");

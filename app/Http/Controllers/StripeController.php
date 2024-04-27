@@ -80,7 +80,7 @@ class StripeController extends Controller
             $body = $club->club->club;
             $this->eventServices->Reserve_Ticket($subject, $body, $eventId);
             return redirect()->route('categorie', $club->club_id)->with([
-                'message' => 'Reservation succès',
+                'message' => 'Reservation succès Check Email',
                 'success' => true,
             ]);
         }
