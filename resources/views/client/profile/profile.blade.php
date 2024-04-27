@@ -25,7 +25,7 @@
                         <div class="h-[1px] bg-[#24B49A] "></div>
                         <div class="grid grid-cols-2 p-2 pt-5 gap-x-2 gap-y-3">
                             @foreach ($club_User as $user)
-                  
+
                                 <div>
                                     <button data-modal-target="popup-modal-{{ $user->id }}"
                                         data-modal-toggle="popup-modal-{{ $user->id }}" class=""
@@ -231,7 +231,7 @@
 
 
 
-                                <div class="w-full col-span-1 form-item">
+                                <div class="w-full col-span-2 md:col-span-1 form-item ">
                                     <label class="font-semibold text-black md:text-xl text-md ">Confirme
                                         Password</label>
 
@@ -241,7 +241,7 @@
 
 
                                 </div>
-                                <div class="flex w-full mb-1 justify-evenly">
+                                <div class="flex w-full my-5 md:my-1">
                                     <button
                                         class=" inline-flex items-center justify-center px-28   py-3 text-sm font-semibold text-white transition-all duration-200 bg-[#24B49A]  font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">Reset</button>
                                 </div>
