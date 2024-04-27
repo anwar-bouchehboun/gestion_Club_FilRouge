@@ -100,7 +100,8 @@
                                     <button data-modal-target="popup-modal-{{ $user_client->id }}"
                                         data-modal-toggle="popup-modal-{{ $user_client->id }}" class=""
                                         type="button">
-                                        <img src="../storage/{{ $user_client->reservable->image }}" alt="{{ $user_client->reservable->image }}">
+                                        <img src="../storage/{{ $user_client->reservable->image }}"
+                                            alt="{{ $user_client->reservable->image }}">
 
                                     </button>
 
@@ -123,7 +124,8 @@
                                                 </button>
                                                 <div class="p-4 md:p-5">
                                                     <img src="../storage/{{ $user_client->reservable->image }}"
-                                                        alt="{{ $user_client->reservable->image }}" class="mx-auto w-60">
+                                                        alt="{{ $user_client->reservable->image }}"
+                                                        class="mx-auto w-60">
 
                                                     <h2 class="mb-3 text-lg font-semibold text-[#24B49A]  ">
                                                         {{ $user_client->reservable->name }}
@@ -176,8 +178,8 @@
                                 <div class="relative w-full form-item">
                                     <label class="text-base font-semibold md:text-xl">Full Name</label>
                                     <div class="relative my-3">
-                                        <input id="nameInput" type="text"
-                                            value="{{ old('name', $profile->name) }}" name="name"
+                                        <input id="nameInput" type="text" value="{{ old('name', $profile->name) }}"
+                                            name="name"
                                             class="w-full px-2 py-2 pr-8 text-black bg-white rounded shadow appearance-none focus:outline-none focus:shadow-outline focus:border-blue-200">
                                     </div>
 
@@ -211,8 +213,19 @@
                                 </div>
                                 <div class="w-full col-span-2 pb-3 md:col-span-1 form-item">
                                     <label class="font-semibold text-black md:text-xl text-md">New Password</label>
-                                    <input type="password" name="password" value="{{ old('password') }}"
-                                        class="w-full px-2 py-2 mr-2 text-opacity-50 rounded shadow appearance-none focus:outline-none focus:shadow-outline focus:border-blue-200 ">
+                                    <div class="relative ">
+                                        <input type="password" name="password" id="password"
+                                            value="{{ old('password') }}"
+                                            class="w-full px-2 py-2 mr-2 text-opacity-50 rounded shadow appearance-none focus:outline-none focus:shadow-outline focus:border-blue-200 ">
+                                        <span id=""
+                                            class="absolute text-gray-400 transform -translate-y-1/2 right-3 top-1/2">
+                                            <button type="button" id="togglePassword"
+                                                class="text-gray-500 dark:text-gray-300 focus:outline-none">
+                                                <i class="far fa-eye-slash"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+
                                 </div>
 
 
@@ -220,17 +233,17 @@
                                 <div class="w-full col-span-1 form-item">
                                     <label class="font-semibold text-black md:text-xl text-md ">Confirme
                                         Password</label>
+
+
                                     <input type="password" name="password_confirmation"
                                         class="w-full px-2 py-2 mr-2 text-opacity-50 rounded shadow appearance-none focus:outline-none focus:shadow-outline focus:border-blue-200 ">
 
+
                                 </div>
-
-
-                            </div>
-                            <div class="flex w-full mb-1 justify-evenly">
-                                <button
-                                    class=" inline-flex items-center justify-center px-28   py-3 text-sm font-semibold text-white transition-all duration-200 bg-[#24B49A]  font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">Reset</button>
-                            </div>
+                                <div class="flex w-full mb-1 justify-evenly">
+                                    <button
+                                        class=" inline-flex items-center justify-center px-28   py-3 text-sm font-semibold text-white transition-all duration-200 bg-[#24B49A]  font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">Reset</button>
+                                </div>
 
                         </form>
 
@@ -306,3 +319,4 @@
 </script>
 
 <script src="/assets/js/deleteClubuser.js"></script>
+<script src="/assets/js/affichepasswordInput.js"></script>
