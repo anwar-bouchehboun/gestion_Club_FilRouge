@@ -18,7 +18,7 @@
                         </h1>
 
                         <form class="space-y-2 md:space-y-2" action="{{ route('register.store') }}" method="post"
-                            enctype="multipart/form-data">
+                            onsubmit="return validateForm()" enctype="multipart/form-data">
                             @csrf
                             <div>
                                 <x-input-label for="name" :value="__('Name')" />
@@ -108,6 +108,7 @@
     </x-slot>
 </x-auth-layout>
 <script src="/assets/js/RegisterVlidation.js"></script>
+<script src="/assets/js/validationForm.js"></script>
 <script>
     const togglePassword = document.getElementById("togglePassword");
     const passwordField = document.getElementById("password");
