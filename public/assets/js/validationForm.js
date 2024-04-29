@@ -12,27 +12,45 @@ function validateForm() {
     var passwordRegex = /^[a-zA-Z0-9]{8,}$/;
 
     if (!nameRegex.test(name)) {
-        alert("Please enter a valid name.");
+        Swal.fire({
+            icon: "error",
+            title: "Invalid name",
+            text: "Please enter a valid name.",
+        });
         return false;
     }
-
     if (!emailRegex.test(email)) {
-        alert("Please enter a valid email address.");
+        Swal.fire({
+            icon: "error",
+            title: "Invalid email",
+            text: "Please enter a valid email address.",
+        });
         return false;
     }
-
     if (!passwordRegex.test(password)) {
-        alert("Password must contain at least 8 ,characters,number");
+        Swal.fire({
+            icon: "error",
+            title: "Invalid password",
+            text: "Password must contain at least 8 characters and include numbers.",
+        });
         return false;
     }
 
     if (password !== password_confirmation) {
-        alert("Password and Confirm Password must match.");
+        Swal.fire({
+            icon: "error",
+            title: "Password mismatch",
+            text: "Password and Confirm Password must match.",
+        });
         return false;
     }
 
     if (image.trim() === "") {
-        alert("Please select an image.");
+        Swal.fire({
+            icon: "error",
+            title: "No image selected",
+            text: "Please select an image.",
+        });
         return false;
     }
 
