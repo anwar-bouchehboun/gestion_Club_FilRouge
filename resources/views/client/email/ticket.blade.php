@@ -24,7 +24,7 @@
         {{-- @foreach ($reservationData as $reserve) --}}
         <section class="flex items-center justify-center flex-grow w-full p-4 bg-red-800">
             <div class="flex w-full h-64 max-w-3xl text-zinc-50"
-                style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL-Lm45K5q1h-05z6F3JOhI0iEIa9lyj-A2g&usqp=CAU'); background-repeat: no-repeat; background-size: cover; background-position: center; width:100%;">
+                style="background-image: url('https://t4.ftcdn.net/jpg/02/16/94/65/360_F_216946587_rmug8FCNgpDCPQlstiCJ0CAXJ2sqPRU7.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center; width:100%;">
 
                 {{-- <div class="px-3 mt-8 ml-12 rou9nded-full bg-lime-400" style="rotate: 90deg;height:12rem"> --}}
 
